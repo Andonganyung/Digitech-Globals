@@ -333,6 +333,18 @@ img {
     color: var(--accent);
 }
 
+.hero-author {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.hero-author strong {
+    color: var(--accent);
+    font-style: normal;
+}
+
 .hero-description {
     font-size: 17px;
     color: var(--text-muted);
