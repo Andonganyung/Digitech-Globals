@@ -1,0 +1,6 @@
+# DigiTech Globals - robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://digitechglobals.com/sitemap.xml
