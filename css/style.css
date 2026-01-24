@@ -1603,56 +1603,116 @@ img {
         transform: rotate(-45deg) translate(7px, -6px);
     }
 
+    /* Keep desktop-like layout on mobile */
     .hero-text h1 {
-        font-size: 28px;
+        font-size: 26px;
+        line-height: 1.3;
     }
 
     .hero-buttons {
-        flex-direction: column;
-        gap: 12px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .hero-buttons .btn {
+        padding: 10px 16px;
+        font-size: 13px;
     }
 
     .hero-trust-badges {
-        gap: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
     }
 
     .trust-item {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .stats-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .stat-item {
+        padding: 15px 10px;
     }
 
     .stat-number {
-        font-size: 28px;
+        font-size: 24px;
+    }
+
+    .stat-label {
+        font-size: 11px;
     }
 
     .tech-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
+        gap: 10px;
     }
 
     .tech-item {
-        padding: 15px 10px;
+        padding: 12px 8px;
     }
 
     .tech-item i {
-        font-size: 24px;
+        font-size: 20px;
+    }
+
+    .tech-item span {
+        font-size: 10px;
+    }
+
+    /* Why Us section - keep side by side */
+    .why-us-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .why-us-content {
+        order: 1;
+    }
+
+    .why-us-image {
+        order: 2;
+    }
+
+    .why-feature {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .why-icon {
+        flex-shrink: 0;
+    }
+
+    .cta-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
     }
 
     .cta-buttons {
-        flex-direction: column;
-        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
     }
 
     .cta-buttons .btn {
-        width: 100%;
+        padding: 10px 16px;
+        font-size: 13px;
     }
 
     .section-title h2 {
-        font-size: 24px;
+        font-size: 22px;
+    }
+
+    .section-title p {
+        font-size: 13px;
     }
 
     .services-grid {
@@ -1660,29 +1720,29 @@ img {
     }
 
     .page-header {
-        padding: 65px 0 15px;
+        padding: 80px 0 20px;
     }
 
     .page-header h1 {
-        font-size: 22px;
+        font-size: 24px;
     }
 
     .service-header {
-        padding: 65px 0 15px;
+        padding: 80px 0 20px;
     }
 
     .service-header-icon {
-        width: 32px;
-        height: 32px;
-        margin: 0 auto 5px;
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 8px;
     }
 
     .service-header-icon i {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .skills-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .form-row {
@@ -1691,49 +1751,122 @@ img {
 
     .contact-form-card,
     .contact-info-card {
-        padding: 25px;
+        padding: 20px;
     }
 
     .footer-content {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
         text-align: left;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
     }
 
     .footer-contact li {
         justify-content: flex-start;
     }
+
+    /* YouTube section mobile */
+    .youtube-coming-soon {
+        padding: 30px 20px;
+    }
+
+    .youtube-coming-soon > i {
+        font-size: 50px;
+    }
+
+    .youtube-coming-soon h3 {
+        font-size: 20px;
+    }
+
+    .youtube-coming-soon p {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 480px) {
     .hero-text h1 {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .hero-badge {
-        font-size: 11px;
-        padding: 6px 14px;
+        font-size: 10px;
+        padding: 5px 12px;
+    }
+
+    .hero-buttons {
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .hero-buttons .btn {
+        padding: 8px 12px;
+        font-size: 12px;
     }
 
     .hero-trust-badges {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .trust-item {
+        font-size: 10px;
+    }
+
+    .trust-item i {
+        font-size: 14px;
     }
 
     .stats-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .stat-number {
+        font-size: 20px;
     }
 
     .tech-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .tech-item {
+        padding: 10px 5px;
+    }
+
+    .tech-item i {
+        font-size: 18px;
+    }
+
+    .tech-item span {
+        font-size: 9px;
     }
 
     .cta-text h2 {
-        font-size: 24px;
+        font-size: 20px;
+    }
+
+    .cta-buttons {
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .cta-buttons .btn {
+        padding: 8px 12px;
+        font-size: 11px;
     }
 
     .about-profile-small {
         width: 100px;
         height: 100px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
     }
 }
 
