@@ -1736,3 +1736,143 @@ img {
         height: 100px;
     }
 }
+
+/* =============================================
+   YouTube Section
+   ============================================= */
+.youtube-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.youtube-section .section-title h2 i {
+    color: #FF0000;
+    margin-right: 10px;
+}
+
+.youtube-content {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.youtube-coming-soon {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.youtube-coming-soon > i {
+    font-size: 80px;
+    color: #FF0000;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.youtube-coming-soon h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: var(--white);
+}
+
+.youtube-coming-soon p {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.youtube-coming-soon .btn {
+    background: #FF0000;
+    border-color: #FF0000;
+}
+
+.youtube-coming-soon .btn:hover {
+    background: #cc0000;
+    border-color: #cc0000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+}
+
+/* =============================================
+   Social Links
+   ============================================= */
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    font-size: 18px;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+}
+
+.social-icon:hover i.fa-youtube {
+    color: #FF0000;
+}
+
+.social-icon:hover i.fa-linkedin-in {
+    color: #0077B5;
+}
+
+.social-icon:hover i.fa-twitter {
+    color: #1DA1F2;
+}
+
+.social-icon:hover i.fa-facebook-f {
+    color: #1877F2;
+}
+
+.social-icon:hover i.fa-instagram {
+    color: #E4405F;
+}
+
+.social-icon.coming-soon {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.social-icon.coming-soon:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .youtube-coming-soon {
+        padding: 40px 25px;
+    }
+    
+    .youtube-coming-soon > i {
+        font-size: 60px;
+    }
+    
+    .youtube-coming-soon h3 {
+        font-size: 22px;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
