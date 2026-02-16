@@ -985,6 +985,81 @@ img {
     color: var(--primary);
 }
 
+/* Mission & Vision Section */
+.mission-vision-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.mission-box,
+.vision-box {
+    background: var(--dark-card);
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.mission-box:hover,
+.vision-box:hover {
+    border-color: var(--accent);
+}
+
+.mission-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.mission-icon i {
+    font-size: 28px;
+    color: var(--dark);
+}
+
+.mission-box h2,
+.vision-box h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.mission-box p,
+.vision-box p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.value-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .mission-vision-section {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .mission-box,
+    .vision-box {
+        padding: 30px 20px;
+    }
+    
+    .mission-box h2,
+    .vision-box h2 {
+        font-size: 20px;
+    }
+}
+
 /* Overview Hero Section */
 .overview-hero-section {
     padding: 60px 0;
