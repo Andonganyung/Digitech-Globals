@@ -151,4 +151,143 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Initialize Pricing Calculator
+    initPricingCalculator();
+
 });
+
+// Pricing Calculator Function
+function initPricingCalculator() {
+    const rates = {
+        users: 125,
+        devices: 45,
+        servers: 250,
+        locations: 200,
+        firewalls: 75,
+        switches: 35,
+        afterHours: 150,
+        onsite: 125,
+        emergency: 200,
+        projects: 100
+    };
+
+    // Slider inputs and their displays
+    const sliders = {
+        users: { input: document.getElementById('users'), display: document.getElementById('usersValue') },
+        devices: { input: document.getElementById('devices'), display: document.getElementById('devicesValue') },
+        servers: { input: document.getElementById('servers'), display: document.getElementById('serversValue') },
+        locations: { input: document.getElementById('locations'), display: document.getElementById('locationsValue') },
+        firewalls: { input: document.getElementById('firewalls'), display: document.getElementById('firewallsValue') },
+        switches: { input: document.getElementById('switches'), display: document.getElementById('switchesValue') }
+    };
+
+    // Hourly add-ons
+    const addons = {
+        afterHours: {
+            checkbox: document.getElementById('optAfterHours'),
+            slider: document.getElementById('afterHoursHrs'),
+            display: document.getElementById('afterHoursHrsValue'),
+            container: document.querySelector('#optAfterHours')?.closest('.hourly-service-item')?.querySelector('.hours-slider')
+        },
+        onsite: {
+            checkbox: document.getElementById('optOnsite'),
+            slider: document.getElementById('onsiteHrs'),
+            display: document.getElementById('onsiteHrsValue'),
+            container: document.querySelector('#optOnsite')?.closest('.hourly-service-item')?.querySelector('.hours-slider')
+        },
+        emergency: {
+            checkbox: document.getElementById('optEmergency'),
+            slider: document.getElementById('emergencyHrs'),
+            display: document.getElementById('emergencyHrsValue'),
+            container: document.querySelector('#optEmergency')?.closest('.hourly-service-item')?.querySelector('.hours-slider')
+        },
+        projects: {
+            checkbox: document.getElementById('optProjects'),
+            slider: document.getElementById('projectHrs'),
+            display: document.getElementById('projectHrsValue'),
+            container: document.querySelector('#optProjects')?.closest('.hourly-service-item')?.querySelector('.hours-slider')
+        }
+    };
+
+    // Output elements
+    const totalPriceEl = document.getElementById('totalPrice');
+    const desktopPriceEl = document.getElementById('desktopPrice');
+    const networkPriceEl = document.getElementById('networkPrice');
+    const addonsPriceEl = document.getElementById('addonsPrice');
+
+    // Check if calculator elements exist
+    if (!totalPriceEl) return;
+
+    function calculatePrice() {
+        // Desktop support
+        const usersVal = sliders.users.input ? parseInt(sliders.users.input.value) : 0;
+        const devicesVal = sliders.devices.input ? parseInt(sliders.devices.input.value) : 0;
+        const serversVal = sliders.servers.input ? parseInt(sliders.servers.input.value) : 0;
+        const desktopTotal = (usersVal * rates.users) + (devicesVal * rates.devices) + (serversVal * rates.servers);
+
+        // Network support
+        const locationsVal = sliders.locations.input ? parseInt(sliders.locations.input.value) : 0;
+        const firewallsVal = sliders.firewalls.input ? parseInt(sliders.firewalls.input.value) : 0;
+        const switchesVal = sliders.switches.input ? parseInt(sliders.switches.input.value) : 0;
+        const networkTotal = (locationsVal * rates.locations) + (firewallsVal * rates.firewalls) + (switchesVal * rates.switches);
+
+        // Add-ons
+        let addonsTotal = 0;
+        
+        if (addons.afterHours.checkbox?.checked && addons.afterHours.slider) {
+            addonsTotal += parseInt(addons.afterHours.slider.value) * rates.afterHours;
+        }
+        if (addons.onsite.checkbox?.checked && addons.onsite.slider) {
+            addonsTotal += parseInt(addons.onsite.slider.value) * rates.onsite;
+        }
+        if (addons.emergency.checkbox?.checked && addons.emergency.slider) {
+            addonsTotal += parseInt(addons.emergency.slider.value) * rates.emergency;
+        }
+        if (addons.projects.checkbox?.checked && addons.projects.slider) {
+            addonsTotal += parseInt(addons.projects.slider.value) * rates.projects;
+        }
+
+        // Update displays
+        const total = desktopTotal + networkTotal + addonsTotal;
+        
+        if (totalPriceEl) totalPriceEl.textContent = total.toLocaleString();
+        if (desktopPriceEl) desktopPriceEl.textContent = '$' + desktopTotal.toLocaleString();
+        if (networkPriceEl) networkPriceEl.textContent = '$' + networkTotal.toLocaleString();
+        if (addonsPriceEl) addonsPriceEl.textContent = '$' + addonsTotal.toLocaleString();
+    }
+
+    // Initialize slider event listeners
+    Object.keys(sliders).forEach(key => {
+        const slider = sliders[key];
+        if (slider.input && slider.display) {
+            slider.input.addEventListener('input', () => {
+                slider.display.textContent = slider.input.value;
+                calculatePrice();
+            });
+        }
+    });
+
+    // Initialize add-on event listeners
+    Object.keys(addons).forEach(key => {
+        const addon = addons[key];
+        
+        if (addon.checkbox) {
+            addon.checkbox.addEventListener('change', () => {
+                if (addon.container) {
+                    addon.container.classList.toggle('active', addon.checkbox.checked);
+                }
+                calculatePrice();
+            });
+        }
+        
+        if (addon.slider && addon.display) {
+            addon.slider.addEventListener('input', () => {
+                addon.display.textContent = addon.slider.value;
+                calculatePrice();
+            });
+        }
+    });
+
+    // Initial calculation
+    calculatePrice();
+}

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Calculator | DigiTech Globals</title>
+    <meta name="description" content="Calculate your IT services investment with our interactive pricing estimator. Transparent pricing for desktop support, network management, and more.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/auth.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-globe"></i>
+                <span>DigiTech<strong>Globals</strong></span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="overview.html" class="nav-link">Overview</a></li>
+                <li class="nav-dropdown">
+                    <a href="about.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html"><i class="fas fa-bullseye"></i> Company Mission & Vision</a></li>
+                        <li><a href="accomplishments.html"><i class="fas fa-users"></i> Meet the Team</a></li>
+                        <li><a href="education.html"><i class="fas fa-user-tie"></i> The CEO</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="services/it-support.html"><i class="fas fa-headset"></i> IT Support & Systems Engineering</a></li>
+                        <li><a href="services/endpoint-management.html"><i class="fas fa-laptop-code"></i> Endpoint & Device Management</a></li>
+                        <li><a href="services/cloud-services.html"><i class="fas fa-cloud"></i> Cloud Services & Microsoft 365</a></li>
+                        <li><a href="services/networking.html"><i class="fas fa-network-wired"></i> Networking & Infrastructure</a></li>
+                        <li><a href="services/security.html"><i class="fas fa-shield-alt"></i> Security & Compliance</a></li>
+                        <li><a href="services/automation.html"><i class="fas fa-cogs"></i> Automation & IT Optimization</a></li>
+                        <li><a href="services/web-development.html"><i class="fas fa-code"></i> Web & App Development</a></li>
+                    </ul>
+                </li>
+                <li><a href="pricing.html" class="nav-link active">Pricing</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Pricing Calculator</h1>
+            <p>Transparent IT Investment Estimator</p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Calculate Your <span class="text-accent">Investment</span></h2>
+                <p>Use our interactive estimator to get a quick quote for your IT services needs</p>
+            </div>
+            <div class="pricing-calculator">
+                <div class="calculator-inputs">
+                    <!-- Desktop Support Plans -->
+                    <div class="options-group">
+                        <label><i class="fas fa-desktop"></i> Desktop Support Plans</label>
+                        <p class="plan-description">Includes helpdesk + endpoint security + patching</p>
+                        <div class="plan-options">
+                            <div class="input-group">
+                                <label>Users (Per User: $125/mo)</label>
+                                <input type="range" id="users" min="0" max="50" value="0">
+                                <span class="input-value" id="usersValue">0</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Devices (Per Device: $45/mo)</label>
+                                <input type="range" id="devices" min="0" max="100" value="0">
+                                <span class="input-value" id="devicesValue">0</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Servers (Per Server: $250/mo)</label>
+                                <input type="range" id="servers" min="0" max="10" value="0">
+                                <span class="input-value" id="serversValue">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Network Support Plans -->
+                    <div class="options-group">
+                        <label><i class="fas fa-network-wired"></i> Network Support Plans</label>
+                        <p class="plan-description">Includes monitoring + maintenance + changes</p>
+                        <div class="plan-options">
+                            <div class="input-group">
+                                <label>Locations (Per Location: $200/mo)</label>
+                                <input type="range" id="locations" min="0" max="10" value="0">
+                                <span class="input-value" id="locationsValue">0</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Firewalls (Per Firewall: $75/mo)</label>
+                                <input type="range" id="firewalls" min="0" max="10" value="0">
+                                <span class="input-value" id="firewallsValue">0</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Switches (Per Switch: $35/mo)</label>
+                                <input type="range" id="switches" min="0" max="20" value="0">
+                                <span class="input-value" id="switchesValue">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Add-Ons -->
+                    <div class="options-group">
+                        <label><i class="fas fa-plus-circle"></i> Add-On Services</label>
+                        <div class="hourly-services">
+                            <div class="hourly-service-item">
+                                <label class="service-header" for="optAfterHours">
+                                    <input type="checkbox" id="optAfterHours">
+                                    <span class="checkmark"></span>
+                                    <span class="service-name">After-Hours Support</span>
+                                    <span class="service-rate">$150/hr</span>
+                                </label>
+                                <div class="hours-slider">
+                                    <span>Hours/month:</span>
+                                    <input type="range" id="afterHoursHrs" min="0" max="20" value="0">
+                                    <span class="hours-value" id="afterHoursHrsValue">0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="hourly-service-item">
+                                <label class="service-header" for="optOnsite">
+                                    <input type="checkbox" id="optOnsite">
+                                    <span class="checkmark"></span>
+                                    <span class="service-name">Onsite Support</span>
+                                    <span class="service-rate">$125/hr</span>
+                                </label>
+                                <div class="hours-slider">
+                                    <span>Hours/month:</span>
+                                    <input type="range" id="onsiteHrs" min="0" max="20" value="0">
+                                    <span class="hours-value" id="onsiteHrsValue">0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="hourly-service-item">
+                                <label class="service-header" for="optEmergency">
+                                    <input type="checkbox" id="optEmergency">
+                                    <span class="checkmark"></span>
+                                    <span class="service-name">Emergency Response</span>
+                                    <span class="service-rate">$200/hr</span>
+                                </label>
+                                <div class="hours-slider">
+                                    <span>Hours/month:</span>
+                                    <input type="range" id="emergencyHrs" min="0" max="10" value="0">
+                                    <span class="hours-value" id="emergencyHrsValue">0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="hourly-service-item">
+                                <label class="service-header" for="optProjects">
+                                    <input type="checkbox" id="optProjects">
+                                    <span class="checkmark"></span>
+                                    <span class="service-name">Projects & Upgrades</span>
+                                    <span class="service-rate">$100/hr</span>
+                                </label>
+                                <div class="hours-slider">
+                                    <span>Hours/month:</span>
+                                    <input type="range" id="projectHrs" min="0" max="40" value="0">
+                                    <span class="hours-value" id="projectHrsValue">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calculator-result">
+                    <div class="result-card">
+                        <span class="result-label">Estimated Monthly Investment</span>
+                        <div class="result-price">
+                            <span class="currency">$</span>
+                            <span class="amount" id="totalPrice">0</span>
+                        </div>
+                        <span class="result-note">per month</span>
+                        <div class="price-breakdown" id="priceBreakdown">
+                            <div class="breakdown-item">
+                                <span>Desktop Support:</span>
+                                <span id="desktopPrice">$0</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Network Support:</span>
+                                <span id="networkPrice">$0</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>Add-Ons:</span>
+                                <span id="addonsPrice">$0</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-block">Request Detailed Quote</a>
+                        <p class="result-disclaimer">Final pricing confirmed after comprehensive network assessment</p>
+                    </div>
+                    <div class="pricing-rates-summary">
+                        <h4>Service Rates Summary</h4>
+                        <div class="rates-columns">
+                            <div class="rates-column">
+                                <h5>Desktop Support</h5>
+                                <ul>
+                                    <li>Per User: <strong>$125/mo</strong></li>
+                                    <li>Per Device: <strong>$45/mo</strong></li>
+                                    <li>Per Server: <strong>$250/mo</strong></li>
+                                </ul>
+                            </div>
+                            <div class="rates-column">
+                                <h5>Network Support</h5>
+                                <ul>
+                                    <li>Per Location: <strong>$200/mo</strong></li>
+                                    <li>Per Firewall: <strong>$75/mo</strong></li>
+                                    <li>Per Switch: <strong>$35/mo</strong></li>
+                                </ul>
+                            </div>
+                            <div class="rates-column">
+                                <h5>Add-Ons (Hourly)</h5>
+                                <ul>
+                                    <li>After-Hours: <strong>$150/hr</strong></li>
+                                    <li>Onsite: <strong>$125/hr</strong></li>
+                                    <li>Emergency: <strong>$200/hr</strong></li>
+                                    <li>Projects: <strong>$100/hr</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-globe"></i>
+                        <span>DigiTech<strong>Globals</strong></span>
+                    </a>
+                    <p>Delivering secure, scalable IT solutions that drive business success.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services/it-support.html">IT Support</a></li>
+                        <li><a href="services/cloud-services.html">Cloud Services</a></li>
+                        <li><a href="services/security.html">Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+14436819715">+1 443 681 9715</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@digitechglobals.com">info@digitechglobals.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Maryland, USA</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DigiTech Globals. All Rights Reserved. | Designed by <strong>Fedelis Andonganyung</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    <script src="js/main.js"></script>
+</body>
+</html>
