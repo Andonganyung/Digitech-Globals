@@ -3242,14 +3242,534 @@ img {
     }
     
     .options-group {
-        padding: 24px;
+        padding: 20px;
+    }
+    
+    .options-group > label {
+        font-size: 16px;
+    }
+    
+    .plan-description {
+        padding-left: 0;
+        font-size: 13px;
+    }
+    
+    .input-group label {
+        font-size: 13px;
     }
     
     .result-price .amount {
         font-size: 44px;
     }
     
+    .result-price .currency {
+        font-size: 22px;
+    }
+    
+    .result-card {
+        padding: 24px;
+    }
+    
     .pricing-rates-summary {
         display: none;
+    }
+    
+    .hourly-service-item .service-header {
+        padding: 14px 16px;
+    }
+    
+    .hourly-service-item .service-name {
+        font-size: 14px;
+    }
+    
+    .hourly-service-item .service-rate {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pricing-section {
+        padding: 40px 0;
+    }
+    
+    .options-group {
+        padding: 16px;
+    }
+    
+    .options-group > label {
+        font-size: 15px;
+        gap: 10px;
+    }
+    
+    .result-price .amount {
+        font-size: 36px;
+    }
+    
+    .result-price .currency {
+        font-size: 18px;
+        margin-top: 4px;
+    }
+    
+    .result-card {
+        padding: 20px;
+    }
+    
+    .price-breakdown {
+        padding: 16px;
+    }
+    
+    .breakdown-item {
+        font-size: 13px;
+        padding: 8px 0;
+    }
+}
+
+/* =============================================
+   ADDITIONAL MOBILE OPTIMIZATIONS
+   ============================================= */
+
+/* Mission & Vision Mobile */
+@media (max-width: 768px) {
+    .mission-vision-section {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .mission-box,
+    .vision-box {
+        padding: 30px 20px;
+    }
+    
+    .mission-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 16px;
+    }
+    
+    .mission-icon i {
+        font-size: 24px;
+    }
+    
+    .mission-box h2,
+    .vision-box h2 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    
+    .mission-box p,
+    .vision-box p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 480px) {
+    .mission-box,
+    .vision-box {
+        padding: 24px 16px;
+    }
+    
+    .mission-box h2,
+    .vision-box h2 {
+        font-size: 18px;
+    }
+    
+    .mission-box p,
+    .vision-box p {
+        font-size: 13px;
+    }
+}
+
+/* Skills Section Mobile */
+@media (max-width: 768px) {
+    .skills-section {
+        padding: 50px 0;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .skill-card {
+        padding: 20px 15px;
+    }
+    
+    .skill-card .skill-icon {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 12px;
+    }
+    
+    .skill-card .skill-icon i {
+        font-size: 18px;
+    }
+    
+    .skill-card h3 {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    
+    .skill-card .skill-percent {
+        font-size: 12px;
+    }
+    
+    .value-desc {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .skill-card {
+        padding: 16px 12px;
+    }
+    
+    .skill-card h3 {
+        font-size: 12px;
+    }
+}
+
+/* About Stats Section Mobile */
+@media (max-width: 768px) {
+    .about-stats-section {
+        padding: 50px 0;
+    }
+    
+    .about-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .about-stats-content {
+        text-align: center;
+    }
+    
+    .about-stats-content h2 {
+        font-size: 24px;
+    }
+    
+    .about-stats-content .description {
+        font-size: 14px;
+    }
+    
+    .about-stats-numbers {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        max-width: 100%;
+    }
+    
+    .stat-box {
+        padding: 20px 15px;
+    }
+    
+    .stat-box .stat-number {
+        font-size: 28px;
+    }
+    
+    .stat-box .stat-label {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-stats-content h2 {
+        font-size: 20px;
+    }
+    
+    .about-stats-content .hero-badge {
+        font-size: 11px;
+        padding: 6px 14px;
+    }
+    
+    .stat-box {
+        padding: 16px 12px;
+    }
+    
+    .stat-box .stat-number {
+        font-size: 24px;
+    }
+    
+    .stat-box .stat-label {
+        font-size: 11px;
+    }
+    
+    .trust-badges {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+}
+
+/* Service Content Mobile */
+@media (max-width: 768px) {
+    .service-content {
+        padding: 50px 0;
+    }
+    
+    .service-intro {
+        margin-bottom: 40px;
+    }
+    
+    .service-intro h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    
+    .service-intro p {
+        font-size: 14px;
+    }
+    
+    .service-cta {
+        padding: 30px 20px;
+        border-radius: 15px;
+    }
+    
+    .service-cta h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    
+    .service-cta p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Contact Page Mobile */
+@media (max-width: 768px) {
+    .contact-page-section {
+        padding: 50px 0;
+    }
+    
+    .contact-info-card h2 {
+        font-size: 22px;
+    }
+    
+    .contact-info-card > p {
+        font-size: 14px;
+    }
+    
+    .contact-info-item {
+        gap: 12px;
+    }
+    
+    .contact-info-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .contact-info-icon i {
+        font-size: 14px;
+    }
+    
+    .contact-info-text a,
+    .contact-info-text span {
+        font-size: 13px;
+    }
+    
+    .contact-form-card h3 {
+        font-size: 18px;
+    }
+    
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+}
+
+/* Page Header Mobile */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 80px 0 20px;
+    }
+    
+    .page-header h1 {
+        font-size: 24px;
+    }
+    
+    .page-header p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        padding: 75px 0 18px;
+    }
+    
+    .page-header h1 {
+        font-size: 22px;
+    }
+}
+
+/* Hero Minimal Mobile */
+@media (max-width: 768px) {
+    .hero.hero-minimal .hero-text h1 {
+        font-size: 36px;
+    }
+    
+    .hero.hero-minimal .hero-tagline {
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+    
+    .hero.hero-minimal .hero-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .hero.hero-minimal .hero-buttons .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero.hero-minimal .hero-text h1 {
+        font-size: 28px;
+    }
+    
+    .hero.hero-minimal .hero-tagline {
+        font-size: 14px;
+    }
+}
+
+/* Content Placeholder Mobile */
+@media (max-width: 768px) {
+    .content-page {
+        padding: 50px 0;
+        min-height: 40vh;
+    }
+    
+    .content-placeholder {
+        padding: 0 20px;
+    }
+    
+    .placeholder-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 20px;
+    }
+    
+    .placeholder-icon i {
+        font-size: 28px;
+    }
+    
+    .content-placeholder h2 {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+    
+    .content-placeholder p {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Overview Page Mobile */
+@media (max-width: 768px) {
+    .overview-section {
+        padding: 50px 0;
+    }
+    
+    .overview-intro {
+        margin-bottom: 30px;
+    }
+    
+    .overview-intro h2 {
+        font-size: 22px;
+    }
+    
+    .overview-intro p {
+        font-size: 14px;
+    }
+}
+
+/* Buttons Mobile */
+@media (max-width: 768px) {
+    .btn {
+        padding: 12px 24px;
+        font-size: 13px;
+    }
+    
+    .btn-sm {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
+}
+
+/* Generic Text Mobile */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    h3 {
+        font-size: 18px;
+    }
+    
+    h4 {
+        font-size: 16px;
+    }
+    
+    p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+}
+
+/* Ensure Touch Targets */
+@media (max-width: 768px) {
+    a, button, input[type="submit"], .btn {
+        min-height: 44px;
+    }
+    
+    .nav-link {
+        padding: 12px 0;
+    }
+    
+    .dropdown-menu li a {
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Fix Horizontal Scroll */
+html, body {
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 100%;
+}
+
+/* Image Mobile */
+@media (max-width: 768px) {
+    img {
+        max-width: 100%;
+        height: auto;
     }
 }
