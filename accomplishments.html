@@ -170,14 +170,33 @@
 
         @media (max-width: 1024px) {
             .team-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .team-hero h1 { font-size: 2.5rem; }
         }
         @media (max-width: 768px) {
-            .team-hero h1 { font-size: 2rem; }
             .team-hero { min-height: 35vh; padding: 80px 0 50px; }
-            .team-section { padding: 60px 0; }
-            .team-grid { grid-template-columns: 1fr; gap: 25px; }
-            .team-card-image { height: 280px; }
+            .team-hero h1 { font-size: 1.8rem; }
+            .team-hero p { font-size: 1rem; padding: 0 10px; }
+            .team-section { padding: 50px 0; }
+            .team-intro { margin-bottom: 40px; }
             .team-intro h2 { font-size: 1.5rem; }
+            .team-intro p { font-size: 1rem; }
+            .team-grid { grid-template-columns: 1fr; gap: 25px; max-width: 400px; margin: 0 auto; }
+            .team-card-image { height: 280px; }
+            .team-card-content { padding: 20px 25px 25px; }
+            .team-card-content h3 { font-size: 1.2rem; }
+            .team-card-content .role { font-size: 0.85rem; }
+            .team-card-content p { font-size: 0.9rem; }
+            .team-credentials { gap: 6px; }
+            .credential-tag { font-size: 0.7rem; padding: 4px 10px; }
+            .team-social a { width: 36px; height: 36px; }
+        }
+        @media (max-width: 480px) {
+            .team-hero { min-height: 30vh; padding: 70px 0 40px; }
+            .team-hero h1 { font-size: 1.5rem; }
+            .team-section { padding: 40px 0; }
+            .team-grid { max-width: 100%; }
+            .team-card-image { height: 250px; }
+            .team-card-content { padding: 18px 20px 22px; }
         }
     </style>
     <script src="js/auth.js"></script>
