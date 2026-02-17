@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | DigiTech Globals</title>
+    <meta name="description" content="Comprehensive IT services including cybersecurity, cloud solutions, infrastructure management, and digital transformation. Enterprise-grade solutions for your business.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Services Hero */
+        .services-hero {
+            min-height: 65vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 100px 0 80px;
+            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80') center center / cover no-repeat;
+        }
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(10, 37, 64, 0.92) 0%, rgba(15, 23, 42, 0.88) 50%, rgba(245, 158, 11, 0.15) 100%);
+        }
+        .services-hero .container { position: relative; z-index: 1; text-align: center; }
+        .services-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 20px;
+            text-shadow: 2px 4px 20px rgba(0,0,0,0.5);
+        }
+        .services-hero h1 span { color: var(--accent); }
+        .services-hero p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 750px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+        }
+        .hero-stat {
+            text-align: center;
+        }
+        .hero-stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+            line-height: 1;
+        }
+        .hero-stat-label {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+
+        /* Section Styling */
+        .section-dark {
+            background: linear-gradient(180deg, var(--dark) 0%, #0a1628 100%);
+            padding: 100px 0;
+            position: relative;
+        }
+        .section-dark::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 20% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 80%, rgba(30, 111, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .section-gradient {
+            background: linear-gradient(180deg, #1e293b 0%, var(--dark) 100%);
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Intro Section */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .intro-content h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        .intro-content p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .intro-features {
+            margin-top: 30px;
+        }
+        .intro-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .intro-feature i {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-top: 3px;
+        }
+        .intro-feature h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .intro-feature p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .intro-image {
+            position: relative;
+        }
+        .intro-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+        }
+        .intro-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 4px solid var(--accent);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        .intro-image .floating-badge {
+            position: absolute;
+            bottom: 30px;
+            left: -30px;
+            background: var(--gradient-accent);
+            color: var(--dark);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4);
+        }
+        .floating-badge .badge-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .floating-badge .badge-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .service-card {
+            background: linear-gradient(145deg, var(--dark-card), var(--dark-lighter));
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+        .service-card:hover::before {
+            left: 100%;
+        }
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 40px rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: all 0.4s ease;
+        }
+        .service-card:hover .service-icon {
+            background: var(--gradient-accent);
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+        .service-icon i {
+            font-size: 2.2rem;
+            color: var(--accent);
+            transition: color 0.4s ease;
+        }
+        .service-card:hover .service-icon i {
+            color: var(--dark);
+        }
+        .service-card h3 {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        .service-card .btn-link {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
+        }
+        .service-card:hover .btn-link {
+            gap: 15px;
+        }
+
+        /* Why Choose Section */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        .why-card {
+            background: linear-gradient(145deg, var(--dark-card), var(--dark-lighter));
+            border-radius: 15px;
+            padding: 35px 25px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
+        }
+        .why-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(245, 158, 11, 0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+        .why-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .why-card h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .why-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: linear-gradient(rgba(10, 37, 64, 0.95), rgba(15, 23, 42, 0.95)), 
+                        url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80') center / cover fixed;
+            padding: 100px 0;
+        }
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 12%;
+            right: 12%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+            opacity: 0.3;
+        }
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+        .process-number {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+        .process-step h4 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .process-step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 40%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        .cta-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-content h2 {
+            font-size: 2.8rem;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        .cta-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .intro-grid { grid-template-columns: 1fr; gap: 50px; }
+            .intro-image { order: -1; }
+            .intro-image img { height: 400px; }
+            .intro-image::before { display: none; }
+            .floating-badge { left: 20px; bottom: 20px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+            .process-grid::before { display: none; }
+            .hero-stats { gap: 40px; }
+        }
+        @media (max-width: 768px) {
+            .services-hero { min-height: 55vh; padding: 80px 0 60px; }
+            .services-hero h1 { font-size: 2rem; }
+            .services-hero p { font-size: 1rem; }
+            .hero-stats { flex-wrap: wrap; gap: 30px; }
+            .hero-stat-number { font-size: 2.2rem; }
+            .section-dark, .section-gradient, .process-section, .cta-section { padding: 70px 0; }
+            .section-header h2 { font-size: 1.8rem; }
+            .intro-content h2 { font-size: 1.7rem; }
+            .intro-image img { height: 300px; }
+            .services-grid, .why-grid, .process-grid { grid-template-columns: 1fr; }
+            .service-card { padding: 30px 25px; }
+            .cta-content h2 { font-size: 1.8rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+    <script src="js/auth.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-globe"></i>
+                <span>DigiTech<strong>Globals</strong></span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="about.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="mission.html"><i class="fas fa-bullseye"></i> Mission & Vision</a></li>
+                        <li><a href="accomplishments.html"><i class="fas fa-users"></i> Meet the Team</a></li>
+                        <li><a href="education.html"><i class="fas fa-user-tie"></i> The CEO</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="services.html" class="nav-link active">Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="services/it-support.html"><i class="fas fa-headset"></i> IT Support & Systems Engineering</a></li>
+                        <li><a href="services/endpoint-management.html"><i class="fas fa-laptop-code"></i> Endpoint & Device Management</a></li>
+                        <li><a href="services/cloud-services.html"><i class="fas fa-cloud"></i> Cloud Services & Microsoft 365</a></li>
+                        <li><a href="services/networking.html"><i class="fas fa-network-wired"></i> Networking & Infrastructure</a></li>
+                        <li><a href="services/security.html"><i class="fas fa-shield-alt"></i> Security & Compliance</a></li>
+                        <li><a href="services/automation.html"><i class="fas fa-cogs"></i> Automation & IT Optimization</a></li>
+                        <li><a href="services/web-development.html"><i class="fas fa-code"></i> Web & App Development</a></li>
+                    </ul>
+                </li>
+                <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+                <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="container">
+            <h1>Enterprise IT <span>Solutions</span></h1>
+            <p>Comprehensive technology services designed to transform your business, enhance security, and drive sustainable growth in the digital age.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">500+</span>
+                    <span class="hero-stat-label">Projects Delivered</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">99.9%</span>
+                    <span class="hero-stat-label">Uptime Guarantee</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">24/7</span>
+                    <span class="hero-stat-label">Expert Support</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">50+</span>
+                    <span class="hero-stat-label">Enterprise Clients</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="section-dark">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h2>Technology That <span class="text-accent">Empowers</span> Your Business</h2>
+                    <p>In an era where technology defines competitive advantage, we deliver enterprise-grade solutions that don't just solve problems—they create opportunities.</p>
+                    <p>Our services are built on a foundation of deep technical expertise, industry best practices, and an unwavering commitment to your success.</p>
+                    <div class="intro-features">
+                        <div class="intro-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Tailored Solutions</h4>
+                                <p>Custom-designed strategies aligned with your unique business objectives</p>
+                            </div>
+                        </div>
+                        <div class="intro-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Proven Methodology</h4>
+                                <p>Industry-standard frameworks ensuring consistent, reliable results</p>
+                            </div>
+                        </div>
+                        <div class="intro-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>End-to-End Support</h4>
+                                <p>From initial assessment to ongoing optimization—we're with you every step</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=800&q=80" alt="IT Services">
+                    <div class="floating-badge">
+                        <span class="badge-number">10+</span>
+                        <span class="badge-text">Years Excellence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="section-gradient">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our <span class="text-accent">Services</span></h2>
+                <p>Comprehensive IT solutions covering every aspect of your technology infrastructure</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>IT Support & Systems Engineering</h3>
+                    <p>Proactive technical support and systems design ensuring your infrastructure runs smoothly 24/7.</p>
+                    <a href="services/it-support.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Endpoint & Device Management</h3>
+                    <p>Centralized management and security for all your workstations, laptops, and mobile devices.</p>
+                    <a href="services/endpoint-management.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Services & Microsoft 365</h3>
+                    <p>Seamless cloud migration and management with Azure, AWS, and Microsoft 365 expertise.</p>
+                    <a href="services/cloud-services.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Networking & Infrastructure</h3>
+                    <p>Enterprise network design, implementation, and optimization for peak performance.</p>
+                    <a href="services/networking.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security & Compliance</h3>
+                    <p>Comprehensive cybersecurity solutions protecting your assets and ensuring regulatory compliance.</p>
+                    <a href="services/security.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Automation & IT Optimization</h3>
+                    <p>Streamline operations with intelligent automation, reducing costs and improving efficiency.</p>
+                    <a href="services/automation.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose <span class="text-accent">DigiTech Globals</span></h2>
+                <p>What sets us apart in delivering exceptional IT services</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <i class="fas fa-certificate"></i>
+                    <h4>Certified Experts</h4>
+                    <p>Our team holds certifications from Microsoft, Cisco, AWS, and other industry leaders.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Rapid Response</h4>
+                    <p>Average response time under 15 minutes for critical issues with 24/7 monitoring.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Scalable Solutions</h4>
+                    <p>Architecture designed to grow with your business, from startup to enterprise.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-lock"></i>
+                    <h4>Security First</h4>
+                    <p>Zero-trust principles and defense-in-depth strategies protecting your data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our <span class="text-accent">Approach</span></h2>
+                <p>A proven methodology delivering consistent results</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <h4>Discovery</h4>
+                    <p>Deep dive into your current environment, challenges, and business objectives.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <h4>Strategy</h4>
+                    <p>Custom roadmap designed to address your specific needs and goals.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <h4>Implementation</h4>
+                    <p>Expert execution with minimal disruption to your operations.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <h4>Optimization</h4>
+                    <p>Continuous improvement and proactive management for lasting success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to <span class="text-accent">Transform</span> Your IT?</h2>
+                <p>Let's discuss how our services can drive efficiency, security, and growth for your business.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Schedule Consultation</a>
+                    <a href="tel:+14436819715" class="btn btn-outline btn-lg"><i class="fas fa-phone"></i> Call Us Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-globe"></i>
+                        <span>DigiTech<strong>Globals</strong></span>
+                    </a>
+                    <p>Delivering secure, scalable IT solutions that drive business success.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services/it-support.html">IT Support</a></li>
+                        <li><a href="services/cloud-services.html">Cloud Services</a></li>
+                        <li><a href="services/security.html">Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+14436819715">+1 443 681 9715</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@digitechglobals.com">info@digitechglobals.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Maryland, USA</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DigiTech Globals. All Rights Reserved. | Designed by <strong>Fedelis Andonganyung</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    <script src="js/main.js"></script>
+</body>
+</html>
