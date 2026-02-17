@@ -153,13 +153,16 @@
         }
         .intro-image {
             position: relative;
+            height: 500px;
         }
         .intro-image img {
             width: 100%;
-            height: 500px;
+            height: 100%;
             object-fit: cover;
+            object-position: center center;
             border-radius: 20px;
             box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+            display: block;
         }
         .intro-image::before {
             content: '';
@@ -413,8 +416,7 @@
         /* Responsive */
         @media (max-width: 1024px) {
             .intro-grid { grid-template-columns: 1fr; gap: 50px; }
-            .intro-image { order: -1; }
-            .intro-image img { height: 400px; }
+            .intro-image { order: -1; height: 400px; }
             .intro-image::before { display: none; }
             .floating-badge { left: 20px; bottom: 20px; }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -432,7 +434,7 @@
             .section-dark, .section-gradient, .process-section, .cta-section { padding: 70px 0; }
             .section-header h2 { font-size: 1.8rem; }
             .intro-content h2 { font-size: 1.7rem; }
-            .intro-image img { height: 300px; }
+            .intro-image { height: 300px; }
             .services-grid, .why-grid, .process-grid { grid-template-columns: 1fr; }
             .service-card { padding: 30px 25px; }
             .cta-content h2 { font-size: 1.8rem; }
@@ -541,7 +543,7 @@
                     </div>
                 </div>
                 <div class="intro-image">
-                    <img src="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=800&q=80" alt="IT Services">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80" alt="IT Services">
                     <div class="floating-badge">
                         <span class="badge-number">10+</span>
                         <span class="badge-text">Years Excellence</span>
