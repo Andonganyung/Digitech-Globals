@@ -168,7 +168,7 @@ img {
 
 .dropdown-menu {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 10px);
     left: 0;
     background: var(--dark-lighter);
     min-width: 260px;
@@ -182,6 +182,15 @@ img {
     list-style: none;
     border: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1000;
+}
+
+.nav-dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 15px;
 }
 
 .nav-dropdown:hover .dropdown-menu {

@@ -16,10 +16,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const dropdowns = navMenu.querySelectorAll('.nav-dropdown');
         dropdowns.forEach(dropdown => {
             const link = dropdown.querySelector('.nav-link');
+            const chevron = link.querySelector('i');
+            
             link.addEventListener('click', (e) => {
                 if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    dropdown.classList.toggle('active');
+                    // On mobile, if clicking on the chevron icon, toggle dropdown
+                    // Otherwise, navigate to the link
+                    if (e.target === chevron || e.target === link && !link.getAttribute('href').includes('.html')) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                    // If link has a valid href, allow navigation
                 }
             });
         });
