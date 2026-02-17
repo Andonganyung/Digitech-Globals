@@ -43,13 +43,21 @@
             margin: 0 auto;
         }
 
-        /* Light Section - White/Gray Background */
+        /* Light Section - Soft Gray Background */
         .light-section {
-            background: var(--light-section);
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
             padding: 80px 0;
+            position: relative;
         }
-        .light-section h2 { color: var(--text-dark); }
-        .light-section p { color: #64748b; }
+        .light-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(245, 158, 11, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .light-section h2 { color: var(--white); }
+        .light-section p { color: var(--text-muted); }
         .light-section .text-accent { color: var(--accent); }
 
         /* Dark Section */
@@ -80,15 +88,17 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
         .intro-content h2 {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 20px;
-            color: var(--text-dark);
+            color: var(--white);
         }
         .intro-content p {
-            color: #64748b;
+            color: var(--text-muted);
             line-height: 1.8;
             margin-bottom: 15px;
         }
@@ -96,7 +106,7 @@
             position: relative;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
         }
         .intro-image img {
             width: 100%;
@@ -110,6 +120,7 @@
             border: 4px solid var(--accent);
             border-radius: 15px;
             z-index: -1;
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.2);
         }
 
         /* Challenge Cards */
@@ -117,18 +128,22 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
+            position: relative;
+            z-index: 1;
         }
         .challenge-card {
-            background: var(--white);
+            background: linear-gradient(145deg, var(--dark-card), var(--dark-lighter));
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border-left: 4px solid var(--accent);
+            border-top: 1px solid rgba(255,255,255,0.05);
             transition: var(--transition);
         }
         .challenge-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 20px rgba(245, 158, 11, 0.1);
+            border-left-color: var(--accent-light);
         }
         .challenge-card i {
             font-size: 2rem;
@@ -136,12 +151,12 @@
             margin-bottom: 15px;
         }
         .challenge-card h4 {
-            color: var(--text-dark);
+            color: var(--white);
             font-size: 1.1rem;
             margin-bottom: 10px;
         }
         .challenge-card p {
-            color: #64748b;
+            color: var(--text-muted);
             font-size: 0.95rem;
         }
 
@@ -212,14 +227,23 @@
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 20px;
+            position: relative;
+            z-index: 1;
         }
         .process-step {
             text-align: center;
             padding: 30px 20px;
-            background: var(--white);
+            background: linear-gradient(145deg, var(--dark-card), var(--dark-lighter));
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             position: relative;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            border-color: rgba(245, 158, 11, 0.3);
         }
         .process-step::after {
             content: '\f054';
@@ -245,13 +269,14 @@
             font-weight: 700;
             font-size: 1.3rem;
             margin: 0 auto 15px;
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.3);
         }
         .process-step h4 {
-            color: var(--text-dark);
+            color: var(--white);
             margin-bottom: 8px;
         }
         .process-step p {
-            color: #64748b;
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
@@ -262,19 +287,21 @@
             gap: 20px;
         }
         .transform-card {
-            background: var(--dark-card);
+            background: linear-gradient(145deg, var(--dark-card), var(--dark-lighter));
             padding: 30px 20px;
             border-radius: 12px;
             text-align: center;
             border: 1px solid rgba(255,255,255,0.05);
             transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         .transform-card:hover {
             border-color: var(--accent);
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 25px rgba(245, 158, 11, 0.15);
         }
         .transform-card .from {
-            color: #ef4444;
+            color: #f87171;
             font-weight: 500;
             font-size: 1rem;
         }
@@ -284,7 +311,7 @@
             margin: 12px 0;
         }
         .transform-card .to {
-            color: #22c55e;
+            color: #4ade80;
             font-weight: 600;
             font-size: 1.1rem;
         }
@@ -294,17 +321,22 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
+            position: relative;
+            z-index: 1;
         }
         .commitment-card {
-            background: var(--white);
+            background: linear-gradient(145deg, var(--dark-card), var(--dark-lighter));
             padding: 40px 25px;
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.05);
         }
         .commitment-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 25px rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.3);
         }
         .commitment-card i {
             font-size: 3rem;
@@ -312,17 +344,32 @@
             margin-bottom: 20px;
         }
         .commitment-card h4 {
-            color: var(--text-dark);
+            color: var(--white);
             font-size: 1.1rem;
         }
 
         /* Final CTA */
         .final-cta {
-            background: var(--gradient-accent);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
             padding: 60px;
             border-radius: 20px;
             text-align: center;
             margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(245, 158, 11, 0.3);
+        }
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
         }
         .final-cta p {
             color: var(--dark);
@@ -330,6 +377,8 @@
             font-weight: 500;
             margin: 0;
             line-height: 1.7;
+            position: relative;
+            z-index: 1;
         }
         .final-cta strong { font-weight: 700; }
 
@@ -549,7 +598,7 @@
     <section class="light-section" style="padding-top: 0;">
         <div class="container">
             <div class="section-header">
-                <h2 style="color: var(--text-dark);">Challenges Organizations <span class="text-accent">Face Today</span></h2>
+                <h2>Challenges Organizations <span class="text-accent">Face Today</span></h2>
                 <p>Across industries, organizations face overwhelming challenges</p>
             </div>
             <div class="challenges-grid">
@@ -640,7 +689,7 @@
     <section class="light-section">
         <div class="container">
             <div class="section-header">
-                <h2 style="color: var(--text-dark);">Our Strategic <span class="text-accent">Approach</span></h2>
+                <h2>Our Strategic <span class="text-accent">Approach</span></h2>
                 <p>We do not offer generic solutions. Our process is built on proven methodologies.</p>
             </div>
             <div class="process-grid">
@@ -670,7 +719,7 @@
                     <p>Evolving as technology advances</p>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 40px; color: #64748b; font-size: 1.1rem;"><strong style="color: var(--accent);">Technology evolves daily. So do we.</strong></p>
+            <p style="text-align: center; margin-top: 40px; color: var(--text-muted); font-size: 1.1rem;"><strong style="color: var(--accent);">Technology evolves daily. So do we.</strong></p>
         </div>
     </section>
 
@@ -740,7 +789,7 @@
     <section class="light-section">
         <div class="container">
             <div class="section-header">
-                <h2 style="color: var(--text-dark);">Our <span class="text-accent">Commitment</span></h2>
+                <h2>Our <span class="text-accent">Commitment</span></h2>
             </div>
             <div class="commitment-grid">
                 <div class="commitment-card">
