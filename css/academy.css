@@ -58,12 +58,12 @@
 }
 
 .academy-hero h1 {
-    font-size: 56px;
-    font-weight: 800;
+    font-size: 36px;
+    font-weight: 700;
     color: var(--white);
-    margin-bottom: 25px;
-    line-height: 1.2;
-    letter-spacing: -1px;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
 }
 
 .academy-hero .hero-subtitle {
@@ -644,7 +644,7 @@
 }
 
 .academy-cta h2 {
-    font-size: 42px;
+    font-size: 36px;
     color: var(--white);
     margin-bottom: 20px;
 }
@@ -698,7 +698,7 @@
     }
     
     .academy-hero h1 {
-        font-size: 36px;
+        font-size: 28px;
     }
     
     .academy-hero .hero-subtitle {
