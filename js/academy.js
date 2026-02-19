@@ -200,9 +200,7 @@ function updateProgress(courseId, lessonId, completed) {
 }
 
 function syncProgressToServer(courseId, progress) {
-    // API call to save progress
-    // This would connect to your backend
-    console.log('Syncing progress:', courseId, progress);
+    // API call to save progress - connect to your backend when ready
 }
 
 // Certificate Generation

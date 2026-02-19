@@ -38,7 +38,6 @@ let stripe = null;
 function initStripe() {
     if (typeof Stripe !== 'undefined' && STRIPE_CONFIG.publishableKey !== 'pk_test_YOUR_PUBLISHABLE_KEY') {
         stripe = Stripe(STRIPE_CONFIG.publishableKey);
-        console.log('Stripe initialized successfully');
     } else {
         console.warn('Stripe not initialized. Please add your publishable key.');
     }
@@ -186,9 +185,6 @@ function processPayment(event, type, courseId) {
     
     const email = document.getElementById('paymentEmail').value;
     const cardNumber = document.getElementById('cardNumber').value;
-    
-    // Demo mode - simulate successful payment
-    console.log('Processing payment for:', type, courseId);
     
     // Show loading
     const btn = event.target.querySelector('button[type="submit"]');
