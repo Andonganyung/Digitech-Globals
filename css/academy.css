@@ -1,7 +1,21 @@
 /* =============================================
    DigiTech Academy - Stylesheet
    Training & Development Platform
+   FULLY RESPONSIVE & ELASTIC
    ============================================= */
+
+/* Fluid Typography for Academy */
+.academy-hero h1 {
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+}
+
+.academy-hero .hero-subtitle {
+    font-size: clamp(0.9rem, 2.5vw, 1.125rem);
+}
+
+.academy-cta h2 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
 
 /* Academy Hero Section */
 .academy-hero {
