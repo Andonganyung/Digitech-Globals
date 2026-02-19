@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Plans | DigiTech Academy</title>
+    <meta name="description" content="Choose your learning plan. Flexible subscription options for IT training courses at DigiTech Academy.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Unlock Unlimited IT Training | DigiTech Academy">
+    <meta property="og:description" content="Get access to 25+ courses for just $49/month. Start your IT career today!">
+    <meta property="og:image" content="https://digitechglobals.com/images/academy-plans-og.jpg">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/academy.css">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="../js/auth.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-globe"></i>
+                <span>DigiTech<strong>Globals</strong></span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="../about.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../mission.html"><i class="fas fa-bullseye"></i> Mission & Vision</a></li>
+                        <li><a href="../accomplishments.html"><i class="fas fa-users"></i> Meet the Team</a></li>
+                        <li><a href="../education.html"><i class="fas fa-user-tie"></i> The CEO</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="../services.html" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../services/it-support.html"><i class="fas fa-headset"></i> IT Support</a></li>
+                        <li><a href="../services/cloud-services.html"><i class="fas fa-cloud"></i> Cloud Services</a></li>
+                        <li><a href="../services/security.html"><i class="fas fa-shield-alt"></i> Security</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="index.html" class="nav-link active">DigiTech Academy <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html"><i class="fas fa-book-open"></i> All Courses</a></li>
+                        <li><a href="plans.html" class="active"><i class="fas fa-crown"></i> Subscription Plans</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> My Dashboard</a></li>
+                        <li><a href="certificates.html"><i class="fas fa-certificate"></i> Certificates</a></li>
+                    </ul>
+                </li>
+                <li><a href="../pricing.html" class="nav-link">Pricing</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Choose Your Plan</h1>
+            <p>Invest in yourself with flexible learning options</p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-plans plans-page">
+        <div class="container">
+            <div class="section-title">
+                <h2>Simple, Transparent <span class="text-accent">Pricing</span></h2>
+                <p>No hidden fees. Cancel anytime. Start learning today.</p>
+            </div>
+
+            <!-- Billing Toggle -->
+            <div class="billing-toggle">
+                <span class="toggle-label" data-billing="monthly">Monthly</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="billingToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label" data-billing="annual">Annual <span class="save-badge">Save 40%</span></span>
+            </div>
+
+            <div class="plans-grid">
+                <!-- Free Plan -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Free</h3>
+                        <p>Get started with basics</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-amount">$0</span>
+                        <span class="price-period">forever</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 3 Free courses access</li>
+                        <li><i class="fas fa-check"></i> Community forum access</li>
+                        <li><i class="fas fa-check"></i> Course previews</li>
+                        <li class="not-included"><i class="fas fa-times"></i> Certificates</li>
+                        <li class="not-included"><i class="fas fa-times"></i> Downloadable resources</li>
+                        <li class="not-included"><i class="fas fa-times"></i> Live Q&A sessions</li>
+                        <li class="not-included"><i class="fas fa-times"></i> Career coaching</li>
+                    </ul>
+                    <button class="btn btn-outline btn-block" onclick="startFreePlan()">Start Free</button>
+                </div>
+
+                <!-- Pro Monthly/Annual -->
+                <div class="plan-card featured">
+                    <div class="plan-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3>Pro</h3>
+                        <p>Unlimited access to everything</p>
+                    </div>
+                    <div class="plan-price" id="proPriceDisplay">
+                        <span class="price-amount" id="proPrice">$49</span>
+                        <span class="price-period" id="proPeriod">/month</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Access to ALL 25+ courses</li>
+                        <li><i class="fas fa-check"></i> Unlimited certificates</li>
+                        <li><i class="fas fa-check"></i> Downloadable resources</li>
+                        <li><i class="fas fa-check"></i> Priority email support</li>
+                        <li><i class="fas fa-check"></i> Monthly live Q&A sessions</li>
+                        <li><i class="fas fa-check"></i> New courses added monthly</li>
+                        <li class="not-included"><i class="fas fa-times"></i> 1-on-1 career coaching</li>
+                    </ul>
+                    <button class="btn btn-primary btn-block" id="proSubscribeBtn" onclick="subscribePro()">
+                        <i class="fas fa-crown"></i> Subscribe to Pro
+                    </button>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="plan-card">
+                    <div class="plan-badge save">Best Value</div>
+                    <div class="plan-header">
+                        <h3>Enterprise</h3>
+                        <p>For teams and organizations</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-amount">Custom</span>
+                        <span class="price-period">pricing</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check"></i> Unlimited team members</li>
+                        <li><i class="fas fa-check"></i> Admin dashboard & analytics</li>
+                        <li><i class="fas fa-check"></i> Custom learning paths</li>
+                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                        <li><i class="fas fa-check"></i> API access</li>
+                        <li><i class="fas fa-check"></i> On-site training options</li>
+                    </ul>
+                    <a href="../contact.html" class="btn btn-outline btn-block">Contact Sales</a>
+                </div>
+            </div>
+
+            <!-- Guarantee -->
+            <div class="money-back-guarantee">
+                <div class="guarantee-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="guarantee-text">
+                    <h4>30-Day Money-Back Guarantee</h4>
+                    <p>Not satisfied? Get a full refund within 30 days, no questions asked.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked <span class="text-accent">Questions</span></h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can I cancel my subscription anytime?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! You can cancel your subscription at any time from your dashboard. You'll continue to have access until the end of your billing period.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do I keep my certificates after canceling?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! All certificates you earn are yours forever. You can download and share them even after your subscription ends.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What payment methods do you accept?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit/debit cards (Visa, Mastercard, American Express), PayPal, and bank transfers for Enterprise plans.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can I switch between plans?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing date, and we'll prorate any differences.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you offer student discounts?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Students with a valid .edu email address get 20% off all plans. Contact us with your student ID to get your discount code.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How do live Q&A sessions work?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pro members get access to live sessions with instructors where you can ask questions, get career advice, and learn advanced topics. Sessions are recorded if you can't attend live.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="academy-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Career?</h2>
+                <p>Join thousands of students who have launched successful IT careers with DigiTech Academy.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary btn-lg" onclick="subscribePro()"><i class="fas fa-rocket"></i> Start Pro Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo"><i class="fas fa-globe"></i><span>DigiTech<strong>Globals</strong></span></a>
+                    <p>Delivering secure, scalable IT solutions and world-class training.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Academy</h4>
+                    <ul>
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li><a href="plans.html">Pricing Plans</a></li>
+                        <li><a href="dashboard.html">My Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+14436819715">+1 443 681 9715</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:academy@digitechglobals.com">academy@digitechglobals.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DigiTech Globals. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    <script src="../js/main.js"></script>
+    <script src="../js/academy.js"></script>
+    <script src="../js/stripe-integration.js"></script>
+    <script src="//code.tidio.co/nkfknphgamsw0fusqmoaxjx3nkdd9f2x.js" async></script>
+</body>
+</html>

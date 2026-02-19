@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | DigiTech Academy</title>
+    <meta name="description" content="Track your learning progress, access courses, and manage your DigiTech Academy subscription.">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/academy.css">
+    <script src="../js/auth.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-globe"></i>
+                <span>DigiTech<strong>Globals</strong></span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="index.html" class="nav-link active">DigiTech Academy <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html"><i class="fas fa-home"></i> Academy Home</a></li>
+                        <li><a href="courses.html"><i class="fas fa-book-open"></i> All Courses</a></li>
+                        <li><a href="plans.html"><i class="fas fa-crown"></i> Subscription Plans</a></li>
+                        <li><a href="dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> My Dashboard</a></li>
+                        <li><a href="certificates.html"><i class="fas fa-certificate"></i> Certificates</a></li>
+                    </ul>
+                </li>
+                <li><a href="../contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="dashboard-welcome">
+                <div class="user-avatar" id="userAvatar">FA</div>
+                <div class="welcome-text">
+                    <h1>Welcome back, <span id="userName">Student</span>!</h1>
+                    <p>Continue your learning journey</p>
+                </div>
+            </div>
+            <div class="dashboard-stats">
+                <div class="dash-stat-card">
+                    <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                    <div class="stat-value" id="coursesEnrolled">0</div>
+                    <div class="stat-label">Courses Enrolled</div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-value" id="coursesCompleted">0</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="stat-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="stat-value" id="certificatesEarned">0</div>
+                    <div class="stat-label">Certificates</div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                    <div class="stat-value" id="hoursLearned">0</div>
+                    <div class="stat-label">Hours Learned</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Content -->
+    <section class="dashboard-content">
+        <div class="container">
+            <div class="dashboard-grid">
+                <!-- Main Content -->
+                <div class="dashboard-main">
+                    <!-- Continue Learning -->
+                    <div class="dashboard-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-play-circle"></i> Continue Learning</h2>
+                            <a href="courses.html" class="view-all">Browse All Courses <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="enrolled-courses" id="enrolledCourses">
+                            <!-- Sample enrolled course -->
+                            <div class="enrolled-course">
+                                <div class="enrolled-course-image">
+                                    <img src="../images/bg-cloud.jpg" alt="Azure Fundamentals">
+                                </div>
+                                <div class="enrolled-course-info">
+                                    <h4>Microsoft Azure Fundamentals (AZ-900)</h4>
+                                    <div class="enrolled-course-meta">
+                                        <span><i class="fas fa-video"></i> 15/45 Lessons</span>
+                                        <span><i class="fas fa-clock"></i> 8h remaining</span>
+                                    </div>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" style="width: 33%"></div>
+                                    </div>
+                                </div>
+                                <a href="course-player.html?id=az-900" class="continue-btn">
+                                    Continue <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            
+                            <div class="enrolled-course">
+                                <div class="enrolled-course-image">
+                                    <img src="../images/bg-security.jpg" alt="Cybersecurity">
+                                </div>
+                                <div class="enrolled-course-info">
+                                    <h4>Cybersecurity Essentials</h4>
+                                    <div class="enrolled-course-meta">
+                                        <span><i class="fas fa-video"></i> 5/60 Lessons</span>
+                                        <span><i class="fas fa-clock"></i> 25h remaining</span>
+                                    </div>
+                                    <div class="progress-container">
+                                        <div class="progress-bar" style="width: 8%"></div>
+                                    </div>
+                                </div>
+                                <a href="course-player.html?id=cybersec" class="continue-btn">
+                                    Continue <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+
+                            <!-- Empty state -->
+                            <div class="empty-state" id="emptyCoursesState" style="display: none;">
+                                <i class="fas fa-book-reader"></i>
+                                <h3>No courses yet</h3>
+                                <p>Start your learning journey by enrolling in a course</p>
+                                <a href="courses.html" class="btn btn-primary">Browse Courses</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommended Courses -->
+                    <div class="dashboard-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-star"></i> Recommended For You</h2>
+                        </div>
+                        <div class="recommended-grid">
+                            <div class="recommended-card">
+                                <img src="../images/bg-endpoint2.jpg" alt="Intune">
+                                <div class="recommended-info">
+                                    <span class="rec-category">Microsoft 365</span>
+                                    <h4>Microsoft Intune & Endpoint Management</h4>
+                                    <p>Based on your Azure course progress</p>
+                                    <a href="course-detail.html?id=intune" class="btn btn-sm btn-outline">View Course</a>
+                                </div>
+                            </div>
+                            <div class="recommended-card">
+                                <img src="../images/bg-networking.jpg" alt="Networking">
+                                <div class="recommended-info">
+                                    <span class="rec-category">Networking</span>
+                                    <h4>Networking Fundamentals</h4>
+                                    <p>Essential for IT professionals</p>
+                                    <a href="course-detail.html?id=networking" class="btn btn-sm btn-outline">View Course</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="dashboard-sidebar">
+                    <!-- Subscription Status -->
+                    <div class="sidebar-card subscription-card">
+                        <div class="subscription-header">
+                            <i class="fas fa-crown"></i>
+                            <span id="subscriptionType">Free Plan</span>
+                        </div>
+                        <p id="subscriptionDesc">Upgrade to Pro for unlimited access to all courses.</p>
+                        <a href="plans.html" class="btn btn-primary btn-block" id="upgradeBtn">Upgrade to Pro</a>
+                    </div>
+
+                    <!-- Recent Certificates -->
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-certificate"></i> Recent Certificates</h3>
+                        <div class="certificates-list" id="certificatesList">
+                            <div class="certificate-item">
+                                <div class="cert-icon"><i class="fas fa-award"></i></div>
+                                <div class="cert-info">
+                                    <h4>IT Support Fundamentals</h4>
+                                    <span>Earned Jan 15, 2025</span>
+                                </div>
+                            </div>
+                            <p class="empty-certs" id="emptyCerts" style="display: none;">
+                                Complete a course to earn your first certificate!
+                            </p>
+                        </div>
+                        <a href="certificates.html" class="view-all-link">View All Certificates <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <!-- Learning Streak -->
+                    <div class="sidebar-card streak-card">
+                        <div class="streak-header">
+                            <i class="fas fa-fire"></i>
+                            <span class="streak-count">5</span>
+                        </div>
+                        <p>Day Learning Streak!</p>
+                        <span class="streak-message">Keep it up! Learn today to maintain your streak.</span>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-link"></i> Quick Links</h3>
+                        <ul class="quick-links">
+                            <li><a href="courses.html"><i class="fas fa-book-open"></i> Browse Courses</a></li>
+                            <li><a href="certificates.html"><i class="fas fa-certificate"></i> My Certificates</a></li>
+                            <li><a href="#" id="accountSettings"><i class="fas fa-cog"></i> Account Settings</a></li>
+                            <li><a href="../contact.html"><i class="fas fa-headset"></i> Get Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo"><i class="fas fa-globe"></i><span>DigiTech<strong>Globals</strong></span></a>
+                    <p>Empowering IT careers through world-class training.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Academy</h4>
+                    <ul>
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li><a href="plans.html">Pricing</a></li>
+                        <li><a href="certificates.html">Certificates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:academy@digitechglobals.com">academy@digitechglobals.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DigiTech Globals. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/academy.js"></script>
+    <script>
+        // Dashboard initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load user data
+            const userData = JSON.parse(localStorage.getItem('academyUser') || '{}');
+            
+            if (userData.email) {
+                const initials = userData.email.substring(0, 2).toUpperCase();
+                document.getElementById('userAvatar').textContent = initials;
+                document.getElementById('userName').textContent = userData.name || userData.email.split('@')[0];
+                
+                if (userData.subscription === 'pro') {
+                    document.getElementById('subscriptionType').textContent = 'Pro Member';
+                    document.getElementById('subscriptionDesc').textContent = 'You have unlimited access to all courses.';
+                    document.getElementById('upgradeBtn').textContent = 'Manage Subscription';
+                    document.getElementById('upgradeBtn').href = '#';
+                }
+            }
+            
+            // Load certificates
+            const certificates = JSON.parse(localStorage.getItem('certificates') || '[]');
+            document.getElementById('certificatesEarned').textContent = certificates.length;
+            
+            // Check URL params
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('payment') === 'success') {
+                // Show success message handled by stripe-integration.js
+            }
+        });
+    </script>
+    <script src="../js/stripe-integration.js"></script>
+    <script src="//code.tidio.co/nkfknphgamsw0fusqmoaxjx3nkdd9f2x.js" async></script>
+</body>
+</html>

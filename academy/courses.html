@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Courses | DigiTech Academy</title>
+    <meta name="description" content="Browse all IT training courses at DigiTech Academy. Cloud Computing, Cybersecurity, Microsoft 365, Networking, and more.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="IT Training Courses | DigiTech Academy">
+    <meta property="og:description" content="25+ Professional IT Courses. Start Your Tech Career Today!">
+    <meta property="og:image" content="https://digitechglobals.com/images/academy-courses-og.jpg">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/academy.css">
+    <script src="../js/auth.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-globe"></i>
+                <span>DigiTech<strong>Globals</strong></span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="../about.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../mission.html"><i class="fas fa-bullseye"></i> Mission & Vision</a></li>
+                        <li><a href="../accomplishments.html"><i class="fas fa-users"></i> Meet the Team</a></li>
+                        <li><a href="../education.html"><i class="fas fa-user-tie"></i> The CEO</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="../services.html" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../services/it-support.html"><i class="fas fa-headset"></i> IT Support</a></li>
+                        <li><a href="../services/endpoint-management.html"><i class="fas fa-laptop-code"></i> Endpoint Management</a></li>
+                        <li><a href="../services/cloud-services.html"><i class="fas fa-cloud"></i> Cloud Services</a></li>
+                        <li><a href="../services/networking.html"><i class="fas fa-network-wired"></i> Networking</a></li>
+                        <li><a href="../services/security.html"><i class="fas fa-shield-alt"></i> Security</a></li>
+                        <li><a href="../services/automation.html"><i class="fas fa-cogs"></i> Automation</a></li>
+                        <li><a href="../services/web-development.html"><i class="fas fa-code"></i> Web Development</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="index.html" class="nav-link active">DigiTech Academy <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html" class="active"><i class="fas fa-book-open"></i> All Courses</a></li>
+                        <li><a href="plans.html"><i class="fas fa-crown"></i> Subscription Plans</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> My Dashboard</a></li>
+                        <li><a href="certificates.html"><i class="fas fa-certificate"></i> Certificates</a></li>
+                    </ul>
+                </li>
+                <li><a href="../pricing.html" class="nav-link">Pricing</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>All Courses</h1>
+            <p>Explore our comprehensive IT training catalog</p>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses-page">
+        <div class="container">
+            <!-- Filters -->
+            <div class="courses-filters">
+                <div class="filter-group">
+                    <label>Category</label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="it-support">IT Support & Help Desk</option>
+                        <option value="cloud">Cloud Computing</option>
+                        <option value="security">Cybersecurity</option>
+                        <option value="microsoft">Microsoft 365 & Intune</option>
+                        <option value="office">Microsoft Office Applications</option>
+                        <option value="windows">Windows Essentials</option>
+                        <option value="digital-literacy">Digital Literacy</option>
+                        <option value="networking">Networking</option>
+                        <option value="automation">Automation & Scripting</option>
+                        <option value="math">Basic Maths Tutoring</option>
+                        <option value="business">Business Champions</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Level</label>
+                    <select id="levelFilter">
+                        <option value="all">All Levels</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Price</label>
+                    <select id="priceFilter">
+                        <option value="all">All Prices</option>
+                        <option value="free">Free</option>
+                        <option value="paid">Paid</option>
+                    </select>
+                </div>
+                <div class="filter-search">
+                    <input type="text" id="searchCourses" placeholder="Search courses...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <!-- Courses Grid -->
+            <div class="courses-grid" id="coursesGrid">
+                <!-- IT Support Courses -->
+                <div class="course-card" data-category="it-support" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/big-it-support1.jpg" alt="IT Support Fundamentals">
+                        <span class="course-badge bestseller">Bestseller</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">IT Support</div>
+                        <h3>IT Support Fundamentals</h3>
+                        <p>Master the essentials of IT support, troubleshooting, and customer service.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 15 Hours</span>
+                            <span><i class="fas fa-video"></i> 35 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$149</span>
+                                <span class="price-current">$49</span>
+                            </div>
+                            <a href="course-detail.html?id=it-support-fundamentals" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="it-support" data-level="intermediate" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-endpoint.jpg" alt="Help Desk Professional">
+                        <span class="course-level">Intermediate</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">IT Support</div>
+                        <h3>Help Desk Professional Certification</h3>
+                        <p>Advanced ticketing systems, escalation procedures, and SLA management.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 20 Hours</span>
+                            <span><i class="fas fa-video"></i> 42 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$199</span>
+                                <span class="price-current">$79</span>
+                            </div>
+                            <a href="course-detail.html?id=helpdesk-pro" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud Courses -->
+                <div class="course-card" data-category="cloud" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-cloud.jpg" alt="Azure Fundamentals">
+                        <span class="course-badge bestseller">Bestseller</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Cloud Computing</div>
+                        <h3>Microsoft Azure Fundamentals (AZ-900)</h3>
+                        <p>Master cloud concepts and prepare for the AZ-900 certification exam.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 20 Hours</span>
+                            <span><i class="fas fa-video"></i> 45 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$199</span>
+                                <span class="price-current">$79</span>
+                            </div>
+                            <a href="course-detail.html?id=az-900" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="cloud" data-level="intermediate" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-cloud.jpg" alt="Azure Administrator">
+                        <span class="course-badge new">New</span>
+                        <span class="course-level">Intermediate</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Cloud Computing</div>
+                        <h3>Azure Administrator (AZ-104)</h3>
+                        <p>Learn to manage Azure subscriptions, resources, and identities.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 40 Hours</span>
+                            <span><i class="fas fa-video"></i> 80 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$349</span>
+                                <span class="price-current">$149</span>
+                            </div>
+                            <a href="course-detail.html?id=az-104" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Courses -->
+                <div class="course-card" data-category="security" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-security.jpg" alt="Cybersecurity Essentials">
+                        <span class="course-badge popular">Popular</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Cybersecurity</div>
+                        <h3>Cybersecurity Essentials</h3>
+                        <p>Learn to identify vulnerabilities and protect against cyber threats.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 30 Hours</span>
+                            <span><i class="fas fa-video"></i> 60 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$249</span>
+                                <span class="price-current">$99</span>
+                            </div>
+                            <a href="course-detail.html?id=cybersec-essentials" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="security" data-level="advanced" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-security.jpg" alt="Security+">
+                        <span class="course-level">Advanced</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Cybersecurity</div>
+                        <h3>CompTIA Security+ Prep</h3>
+                        <p>Complete preparation for the CompTIA Security+ certification exam.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 50 Hours</span>
+                            <span><i class="fas fa-video"></i> 100 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$399</span>
+                                <span class="price-current">$179</span>
+                            </div>
+                            <a href="course-detail.html?id=security-plus" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Microsoft 365 Courses -->
+                <div class="course-card" data-category="microsoft" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bp-endpoint1.jpg" alt="Microsoft 365 Fundamentals">
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Microsoft 365</div>
+                        <h3>Microsoft 365 Fundamentals (MS-900)</h3>
+                        <p>Understand Microsoft 365 cloud services and concepts.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 15 Hours</span>
+                            <span><i class="fas fa-video"></i> 30 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$149</span>
+                                <span class="price-current">$59</span>
+                            </div>
+                            <a href="course-detail.html?id=ms-900" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="microsoft" data-level="intermediate" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-endpoint2.jpg" alt="Microsoft Intune">
+                        <span class="course-badge bestseller">Bestseller</span>
+                        <span class="course-level">Intermediate</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Microsoft 365</div>
+                        <h3>Microsoft Intune & Endpoint Management</h3>
+                        <p>Master device management and endpoint security with Intune.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 25 Hours</span>
+                            <span><i class="fas fa-video"></i> 50 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$229</span>
+                                <span class="price-current">$89</span>
+                            </div>
+                            <a href="course-detail.html?id=intune-endpoint" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Networking Courses -->
+                <div class="course-card" data-category="networking" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-networking.jpg" alt="Networking Fundamentals">
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Networking</div>
+                        <h3>Networking Fundamentals</h3>
+                        <p>Learn TCP/IP, subnetting, routing, and network architecture.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 25 Hours</span>
+                            <span><i class="fas fa-video"></i> 55 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$199</span>
+                                <span class="price-current">$79</span>
+                            </div>
+                            <a href="course-detail.html?id=networking-fundamentals" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="networking" data-level="intermediate" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-fibre-optic.jpg" alt="CCNA Prep">
+                        <span class="course-badge new">New</span>
+                        <span class="course-level">Intermediate</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Networking</div>
+                        <h3>Cisco CCNA Preparation</h3>
+                        <p>Complete CCNA exam preparation with hands-on labs.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 60 Hours</span>
+                            <span><i class="fas fa-video"></i> 120 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$499</span>
+                                <span class="price-current">$199</span>
+                            </div>
+                            <a href="course-detail.html?id=ccna-prep" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Automation Courses -->
+                <div class="course-card" data-category="automation" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-automation.jpg" alt="PowerShell">
+                        <span class="course-badge popular">Popular</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Automation</div>
+                        <h3>PowerShell for IT Professionals</h3>
+                        <p>Automate Windows administration tasks with PowerShell scripting.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 20 Hours</span>
+                            <span><i class="fas fa-video"></i> 40 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$179</span>
+                                <span class="price-current">$69</span>
+                            </div>
+                            <a href="course-detail.html?id=powershell-it" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="automation" data-level="intermediate" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/Coding at night 2.avif" alt="Python for IT">
+                        <span class="course-level">Intermediate</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Automation</div>
+                        <h3>Python for IT Automation</h3>
+                        <p>Build powerful automation scripts with Python for system administration.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 30 Hours</span>
+                            <span><i class="fas fa-video"></i> 65 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$249</span>
+                                <span class="price-current">$99</span>
+                            </div>
+                            <a href="course-detail.html?id=python-it" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Microsoft Office Applications -->
+                <div class="course-card" data-category="office" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bp-endpoint1.jpg" alt="Microsoft Word">
+                        <span class="course-badge bestseller">Bestseller</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Microsoft Office</div>
+                        <h3>Microsoft Word Mastery</h3>
+                        <p>Create professional documents, reports, and letters with Word.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 10 Hours</span>
+                            <span><i class="fas fa-video"></i> 25 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$79</span>
+                                <span class="price-current">$29</span>
+                            </div>
+                            <a href="course-detail.html?id=ms-word" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="office" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-automation.jpg" alt="Microsoft Excel">
+                        <span class="course-badge popular">Popular</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Microsoft Office</div>
+                        <h3>Excel Fundamentals to Advanced</h3>
+                        <p>Master spreadsheets, formulas, charts, pivot tables and data analysis.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 18 Hours</span>
+                            <span><i class="fas fa-video"></i> 45 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$129</span>
+                                <span class="price-current">$49</span>
+                            </div>
+                            <a href="course-detail.html?id=ms-excel" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="office" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-about.jpg" alt="Microsoft PowerPoint">
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Microsoft Office</div>
+                        <h3>PowerPoint Presentation Pro</h3>
+                        <p>Create stunning presentations that captivate your audience.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 8 Hours</span>
+                            <span><i class="fas fa-video"></i> 20 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$69</span>
+                                <span class="price-current">$25</span>
+                            </div>
+                            <a href="course-detail.html?id=ms-powerpoint" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="office" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-contact.jpg" alt="Microsoft Outlook">
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Microsoft Office</div>
+                        <h3>Outlook Email & Calendar Mastery</h3>
+                        <p>Manage emails, calendars, contacts, and tasks like a pro.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 6 Hours</span>
+                            <span><i class="fas fa-video"></i> 18 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$59</span>
+                                <span class="price-current">$22</span>
+                            </div>
+                            <a href="course-detail.html?id=ms-outlook" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Windows Essentials -->
+                <div class="course-card" data-category="windows" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-endpoint.jpg" alt="Windows Basics">
+                        <span class="course-badge new">New</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Windows Essentials</div>
+                        <h3>Windows 11 Complete Beginner Guide</h3>
+                        <p>Learn to navigate Windows 11 from scratch - perfect for beginners.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 8 Hours</span>
+                            <span><i class="fas fa-video"></i> 22 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$79</span>
+                                <span class="price-current">$29</span>
+                            </div>
+                            <a href="course-detail.html?id=windows-basics" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="windows" data-level="intermediate" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-endpoint2.jpg" alt="Windows Power User">
+                        <span class="course-level">Intermediate</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Windows Essentials</div>
+                        <h3>Windows Power User Tips & Tricks</h3>
+                        <p>Advanced features, shortcuts, and productivity hacks for Windows.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 12 Hours</span>
+                            <span><i class="fas fa-video"></i> 30 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$99</span>
+                                <span class="price-current">$39</span>
+                            </div>
+                            <a href="course-detail.html?id=windows-power" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digital Literacy -->
+                <div class="course-card" data-category="digital-literacy" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/big-it-support.jpg" alt="Computer Basics">
+                        <span class="course-badge bestseller">Bestseller</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Digital Literacy</div>
+                        <h3>Computer Basics for Absolute Beginners</h3>
+                        <p>Your first step into the digital world - no experience needed.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 6 Hours</span>
+                            <span><i class="fas fa-video"></i> 20 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$49</span>
+                                <span class="price-current">$19</span>
+                            </div>
+                            <a href="course-detail.html?id=computer-basics" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="digital-literacy" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-fibre-optic1.jpg" alt="Internet Safety">
+                        <span class="course-badge popular">Popular</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Digital Literacy</div>
+                        <h3>Internet Safety & Online Security</h3>
+                        <p>Stay safe online - protect yourself from scams, phishing & hackers.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 5 Hours</span>
+                            <span><i class="fas fa-video"></i> 15 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$39</span>
+                                <span class="price-current">$15</span>
+                            </div>
+                            <a href="course-detail.html?id=internet-safety" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="digital-literacy" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/HERO-BG.JPG" alt="Email & Social Media">
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Digital Literacy</div>
+                        <h3>Email & Social Media Essentials</h3>
+                        <p>Set up email accounts, use social media safely, and communicate online.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 4 Hours</span>
+                            <span><i class="fas fa-video"></i> 12 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$35</span>
+                                <span class="price-current">$12</span>
+                            </div>
+                            <a href="course-detail.html?id=email-social" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Basic Maths Tutoring -->
+                <div class="course-card" data-category="math" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-contact1.jpg" alt="Grade 1-3 Math">
+                        <span class="course-badge new">New</span>
+                        <span class="course-level">Grade 1-3</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Basic Maths</div>
+                        <h3>Fun Math for Grades 1-3</h3>
+                        <p>Numbers, counting, addition, subtraction - made fun with games!</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 10 Hours</span>
+                            <span><i class="fas fa-video"></i> 30 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$59</span>
+                                <span class="price-current">$25</span>
+                            </div>
+                            <a href="course-detail.html?id=math-grade1-3" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="math" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-about.jpg" alt="Grade 4-6 Math">
+                        <span class="course-badge popular">Popular</span>
+                        <span class="course-level">Grade 4-6</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Basic Maths</div>
+                        <h3>Math Mastery for Grades 4-6</h3>
+                        <p>Multiplication, division, fractions, decimals, and word problems.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 15 Hours</span>
+                            <span><i class="fas fa-video"></i> 40 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$79</span>
+                                <span class="price-current">$35</span>
+                            </div>
+                            <a href="course-detail.html?id=math-grade4-6" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="math" data-level="intermediate" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/Coding At night.avif" alt="Grade 7-9 Math">
+                        <span class="course-level">Grade 7-9</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Basic Maths</div>
+                        <h3>Pre-Algebra & Algebra Basics (Grades 7-9)</h3>
+                        <p>Equations, graphs, geometry basics, and problem-solving skills.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 20 Hours</span>
+                            <span><i class="fas fa-video"></i> 50 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$99</span>
+                                <span class="price-current">$45</span>
+                            </div>
+                            <a href="course-detail.html?id=math-grade7-9" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Champions -->
+                <div class="course-card" data-category="business" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/Profile.jpg.jpeg" alt="Entrepreneurship">
+                        <span class="course-badge bestseller">Bestseller</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Business Champions</div>
+                        <h3>Entrepreneurship 101: Start Your Business</h3>
+                        <p>Turn your idea into a real business - from concept to launch.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 15 Hours</span>
+                            <span><i class="fas fa-video"></i> 35 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$149</span>
+                                <span class="price-current">$59</span>
+                            </div>
+                            <a href="course-detail.html?id=entrepreneurship" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="business" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/big-networking.jpg" alt="Leadership">
+                        <span class="course-badge popular">Popular</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Business Champions</div>
+                        <h3>Leadership & Team Management</h3>
+                        <p>Develop leadership skills to inspire and manage teams effectively.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 12 Hours</span>
+                            <span><i class="fas fa-video"></i> 28 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$129</span>
+                                <span class="price-current">$49</span>
+                            </div>
+                            <a href="course-detail.html?id=leadership" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="business" data-level="intermediate" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-fibre-optic.jpg" alt="Digital Marketing">
+                        <span class="course-badge new">New</span>
+                        <span class="course-level">Intermediate</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Business Champions</div>
+                        <h3>Digital Marketing for Small Business</h3>
+                        <p>Social media, SEO, ads, and content marketing to grow your business.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 18 Hours</span>
+                            <span><i class="fas fa-video"></i> 42 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$179</span>
+                                <span class="price-current">$69</span>
+                            </div>
+                            <a href="course-detail.html?id=digital-marketing" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="business" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/coding at night 1.avif" alt="Financial Literacy">
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Business Champions</div>
+                        <h3>Financial Literacy & Money Management</h3>
+                        <p>Budgeting, saving, investing basics, and financial planning.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 10 Hours</span>
+                            <span><i class="fas fa-video"></i> 25 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$99</span>
+                                <span class="price-current">$39</span>
+                            </div>
+                            <a href="course-detail.html?id=financial-literacy" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card" data-category="business" data-level="beginner" data-price="paid">
+                    <div class="course-image">
+                        <img src="../images/bg-security.jpg" alt="Communication Skills">
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Business Champions</div>
+                        <h3>Professional Communication Skills</h3>
+                        <p>Public speaking, presentations, emails, and workplace communication.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 8 Hours</span>
+                            <span><i class="fas fa-video"></i> 20 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$79</span>
+                                <span class="price-current">$29</span>
+                            </div>
+                            <a href="course-detail.html?id=communication" class="btn btn-primary btn-sm">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No courses found</h3>
+                <p>Try adjusting your filters or search terms</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo"><i class="fas fa-globe"></i><span>DigiTech<strong>Globals</strong></span></a>
+                    <p>Delivering secure, scalable IT solutions and world-class training.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Academy</h4>
+                    <ul>
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li><a href="plans.html">Pricing Plans</a></li>
+                        <li><a href="dashboard.html">My Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+14436819715">+1 443 681 9715</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:academy@digitechglobals.com">academy@digitechglobals.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DigiTech Globals. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    <script src="../js/main.js"></script>
+    <script src="../js/academy.js"></script>
+    <script src="//code.tidio.co/nkfknphgamsw0fusqmoaxjx3nkdd9f2x.js" async></script>
+</body>
+</html>

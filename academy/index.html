@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiTech Academy | IT Training & Professional Development</title>
+    <meta name="description" content="Transform your career with DigiTech Academy. Professional IT training courses in Cloud Computing, Cybersecurity, Microsoft 365, Networking, and more. Learn from industry experts.">
+    <meta name="keywords" content="IT Training, Cloud Certification, Cybersecurity Course, Microsoft 365 Training, IT Career, Professional Development, Tech Skills">
+    <meta name="author" content="DigiTech Globals">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digitechglobals.com/academy/">
+    <meta property="og:title" content="DigiTech Academy | Launch Your IT Career Today">
+    <meta property="og:description" content="Industry-recognized IT certifications. Learn Cloud, Security, Networking & more. Start your transformation now!">
+    <meta property="og:image" content="https://digitechglobals.com/images/academy-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://digitechglobals.com/academy/">
+    <meta name="twitter:title" content="DigiTech Academy | Launch Your IT Career Today">
+    <meta name="twitter:description" content="Industry-recognized IT certifications. Learn Cloud, Security, Networking & more. Start your transformation now!">
+    <meta name="twitter:image" content="https://digitechglobals.com/images/academy-twitter.jpg">
+    
+    <!-- TikTok / Video Ad Optimized -->
+    <meta property="og:video" content="https://digitechglobals.com/ads/academy-promo.mp4">
+    <meta property="og:video:type" content="video/mp4">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/academy.css">
+    <script src="../js/auth.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-globe"></i>
+                <span>DigiTech<strong>Globals</strong></span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="../about.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../mission.html"><i class="fas fa-bullseye"></i> Mission & Vision</a></li>
+                        <li><a href="../accomplishments.html"><i class="fas fa-users"></i> Meet the Team</a></li>
+                        <li><a href="../education.html"><i class="fas fa-user-tie"></i> The CEO</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="../services.html" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../services/it-support.html"><i class="fas fa-headset"></i> IT Support & Systems Engineering</a></li>
+                        <li><a href="../services/endpoint-management.html"><i class="fas fa-laptop-code"></i> Endpoint & Device Management</a></li>
+                        <li><a href="../services/cloud-services.html"><i class="fas fa-cloud"></i> Cloud Services & Microsoft 365</a></li>
+                        <li><a href="../services/networking.html"><i class="fas fa-network-wired"></i> Networking & Infrastructure</a></li>
+                        <li><a href="../services/security.html"><i class="fas fa-shield-alt"></i> Security & Compliance</a></li>
+                        <li><a href="../services/automation.html"><i class="fas fa-cogs"></i> Automation & IT Optimization</a></li>
+                        <li><a href="../services/web-development.html"><i class="fas fa-code"></i> Web & App Development</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="index.html" class="nav-link active">DigiTech Academy <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html"><i class="fas fa-book-open"></i> All Courses</a></li>
+                        <li><a href="plans.html"><i class="fas fa-crown"></i> Subscription Plans</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> My Dashboard</a></li>
+                        <li><a href="certificates.html"><i class="fas fa-certificate"></i> Certificates</a></li>
+                    </ul>
+                </li>
+                <li><a href="../pricing.html" class="nav-link">Pricing</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact Us</a></li>
+                <li><a href="../app.html" class="nav-link nav-app-btn"><i class="fas fa-mobile-alt"></i> Get App</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="academy-hero">
+        <div class="hero-bg-video">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="academy-hero-content">
+                <span class="hero-badge"><i class="fas fa-graduation-cap"></i> Transform Your Future</span>
+                <h1>Master IT Skills.<br><span class="text-accent">Accelerate Your Career.</span></h1>
+                <p class="hero-subtitle">Industry-recognized certifications in Cloud Computing, Cybersecurity, Microsoft 365, Networking, and more. Learn from experts who work in the field.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-num">25+</span>
+                        <span class="stat-label">Courses</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-num">500+</span>
+                        <span class="stat-label">Students</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="stat-num">95%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="courses.html" class="btn btn-primary btn-lg"><i class="fas fa-play-circle"></i> Explore Courses</a>
+                    <a href="plans.html" class="btn btn-outline btn-lg"><i class="fas fa-crown"></i> View Plans</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why DigiTech Academy -->
+    <section class="academy-why">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose <span class="text-accent">DigiTech Academy?</span></h2>
+                <p>We don't just teach IT - we prepare you for real-world success</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from certified professionals with 10+ years of hands-on industry experience.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Hands-On Labs</h3>
+                    <p>Practice with real tools and environments - not just theory, but actual skills you'll use on the job.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Industry Certificates</h3>
+                    <p>Earn recognized certificates that boost your resume and prove your expertise.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-users"></i></div>
+                    <h3>Career Support</h3>
+                    <p>Get job placement assistance, resume reviews, and interview preparation.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Flexible Learning</h3>
+                    <p>Study at your own pace with lifetime access to course materials and updates.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Community Access</h3>
+                    <p>Join our exclusive community of learners and professionals for networking and support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Categories -->
+    <section class="course-categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Explore Our <span class="text-accent">Learning Paths</span></h2>
+                <p>Choose your career track and start learning today</p>
+            </div>
+            <div class="categories-grid">
+                <a href="courses.html?category=it-support" class="category-card">
+                    <div class="category-icon"><i class="fas fa-headset"></i></div>
+                    <h3>IT Support & Help Desk</h3>
+                    <p>Start your IT career with foundational support skills</p>
+                    <span class="course-count">5 Courses</span>
+                </a>
+                <a href="courses.html?category=cloud" class="category-card">
+                    <div class="category-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>Cloud Computing</h3>
+                    <p>Master Azure, AWS, and cloud architecture</p>
+                    <span class="course-count">6 Courses</span>
+                </a>
+                <a href="courses.html?category=security" class="category-card">
+                    <div class="category-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Cybersecurity</h3>
+                    <p>Protect organizations from cyber threats</p>
+                    <span class="course-count">4 Courses</span>
+                </a>
+                <a href="courses.html?category=microsoft" class="category-card">
+                    <div class="category-icon"><i class="fab fa-microsoft"></i></div>
+                    <h3>Microsoft 365 & Intune</h3>
+                    <p>Become a Microsoft ecosystem expert</p>
+                    <span class="course-count">5 Courses</span>
+                </a>
+                <a href="courses.html?category=office" class="category-card">
+                    <div class="category-icon"><i class="fas fa-file-word"></i></div>
+                    <h3>Microsoft Office Applications</h3>
+                    <p>Master Word, Excel, PowerPoint, Outlook & more</p>
+                    <span class="course-count">6 Courses</span>
+                </a>
+                <a href="courses.html?category=windows" class="category-card">
+                    <div class="category-icon"><i class="fab fa-windows"></i></div>
+                    <h3>Windows Essentials</h3>
+                    <p>Navigate Windows like a pro - basics to advanced</p>
+                    <span class="course-count">4 Courses</span>
+                </a>
+                <a href="courses.html?category=digital-literacy" class="category-card">
+                    <div class="category-icon"><i class="fas fa-laptop"></i></div>
+                    <h3>Digital Literacy</h3>
+                    <p>Essential computer skills for the modern world</p>
+                    <span class="course-count">5 Courses</span>
+                </a>
+                <a href="courses.html?category=networking" class="category-card">
+                    <div class="category-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Networking & Infrastructure</h3>
+                    <p>Build and manage enterprise networks</p>
+                    <span class="course-count">4 Courses</span>
+                </a>
+                <a href="courses.html?category=automation" class="category-card">
+                    <div class="category-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Automation & Scripting</h3>
+                    <p>Automate tasks with PowerShell and Python</p>
+                    <span class="course-count">3 Courses</span>
+                </a>
+                <a href="courses.html?category=math" class="category-card">
+                    <div class="category-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>Basic Maths Tutoring</h3>
+                    <p>Grade school mathematics made simple & fun</p>
+                    <span class="course-count">8 Courses</span>
+                </a>
+                <a href="courses.html?category=business" class="category-card">
+                    <div class="category-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Business Champions</h3>
+                    <p>Entrepreneurship, leadership & business skills</p>
+                    <span class="course-count">6 Courses</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Courses -->
+    <section class="featured-courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured <span class="text-accent">Courses</span></h2>
+                <p>Our most popular courses to kickstart your IT journey</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="../images/bg-cloud.jpg" alt="Azure Fundamentals">
+                        <span class="course-badge bestseller">Bestseller</span>
+                        <span class="course-level">Beginner</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Cloud Computing</div>
+                        <h3>Microsoft Azure Fundamentals (AZ-900)</h3>
+                        <p>Master cloud concepts and prepare for the AZ-900 certification exam.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 20 Hours</span>
+                            <span><i class="fas fa-video"></i> 45 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$199</span>
+                                <span class="price-current">$79</span>
+                            </div>
+                            <a href="course-detail.html?id=az-900" class="btn btn-primary btn-sm">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="../images/bg-security.jpg" alt="Cybersecurity Essentials">
+                        <span class="course-badge new">New</span>
+                        <span class="course-level">Intermediate</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Cybersecurity</div>
+                        <h3>Cybersecurity Essentials</h3>
+                        <p>Learn to identify vulnerabilities and protect against cyber threats.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 30 Hours</span>
+                            <span><i class="fas fa-video"></i> 60 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$249</span>
+                                <span class="price-current">$99</span>
+                            </div>
+                            <a href="course-detail.html?id=cybersec-essentials" class="btn btn-primary btn-sm">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="../images/bg-endpoint.jpg" alt="Microsoft Intune">
+                        <span class="course-badge popular">Popular</span>
+                        <span class="course-level">Intermediate</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">Microsoft 365</div>
+                        <h3>Microsoft Intune & Endpoint Management</h3>
+                        <p>Master device management and endpoint security with Intune.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 25 Hours</span>
+                            <span><i class="fas fa-video"></i> 50 Lessons</span>
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-price">
+                                <span class="price-original">$229</span>
+                                <span class="price-current">$89</span>
+                            </div>
+                            <a href="course-detail.html?id=intune-endpoint" class="btn btn-primary btn-sm">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-cta">
+                <a href="courses.html" class="btn btn-outline btn-lg">View All Courses <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="pricing-plans">
+        <div class="container">
+            <div class="section-title">
+                <h2>Choose Your <span class="text-accent">Learning Plan</span></h2>
+                <p>Flexible options for every learner and budget</p>
+            </div>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Single Course</h3>
+                        <p>Perfect for focused learning</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-from">From</span>
+                        <span class="price-amount">$49</span>
+                        <span class="price-period">one-time</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Lifetime course access</li>
+                        <li><i class="fas fa-check"></i> Certificate of completion</li>
+                        <li><i class="fas fa-check"></i> Downloadable resources</li>
+                        <li><i class="fas fa-check"></i> Community forum access</li>
+                        <li class="not-included"><i class="fas fa-times"></i> Live Q&A sessions</li>
+                        <li class="not-included"><i class="fas fa-times"></i> Career coaching</li>
+                    </ul>
+                    <a href="courses.html" class="btn btn-outline btn-block">Browse Courses</a>
+                </div>
+                
+                <div class="plan-card featured">
+                    <div class="plan-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3>Pro Monthly</h3>
+                        <p>Unlimited access to all courses</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-amount">$49</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Access to ALL courses</li>
+                        <li><i class="fas fa-check"></i> Unlimited certificates</li>
+                        <li><i class="fas fa-check"></i> Downloadable resources</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Monthly live Q&A sessions</li>
+                        <li class="not-included"><i class="fas fa-times"></i> 1-on-1 career coaching</li>
+                    </ul>
+                    <a href="plans.html?plan=pro-monthly" class="btn btn-primary btn-block">Start Pro Monthly</a>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-badge save">Save 40%</div>
+                    <div class="plan-header">
+                        <h3>Pro Annual</h3>
+                        <p>Best value for serious learners</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price-amount">$349</span>
+                        <span class="price-period">/year</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Access to ALL courses</li>
+                        <li><i class="fas fa-check"></i> Unlimited certificates</li>
+                        <li><i class="fas fa-check"></i> Downloadable resources</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Weekly live Q&A sessions</li>
+                        <li><i class="fas fa-check"></i> 2 hours 1-on-1 career coaching</li>
+                    </ul>
+                    <a href="plans.html?plan=pro-annual" class="btn btn-primary btn-block">Start Pro Annual</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Student <span class="text-accent">Success Stories</span></h2>
+                <p>Join thousands who have transformed their careers</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p>"DigiTech Academy helped me transition from retail to a Help Desk role in just 3 months. The hands-on labs made all the difference!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JM</div>
+                        <div class="author-info">
+                            <h4>James M.</h4>
+                            <span>IT Support Specialist</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p>"The Azure courses are top-notch. Passed my AZ-900 on the first try and got promoted within 2 months. Worth every penny!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SK</div>
+                        <div class="author-info">
+                            <h4>Sarah K.</h4>
+                            <span>Cloud Administrator</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p>"As a dropout, I thought IT was out of reach. DigiTech Academy proved me wrong. Now I'm earning more than my college-grad friends!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DT</div>
+                        <div class="author-info">
+                            <h4>David T.</h4>
+                            <span>Network Technician</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="academy-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your IT Journey?</h2>
+                <p>Join DigiTech Academy today and take the first step towards a rewarding tech career. No experience required - just passion and dedication.</p>
+                <div class="cta-buttons">
+                    <a href="courses.html" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Start Learning Free</a>
+                    <a href="../contact.html" class="btn btn-outline btn-lg"><i class="fas fa-phone"></i> Talk to an Advisor</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        <i class="fas fa-globe"></i>
+                        <span>DigiTech<strong>Globals</strong></span>
+                    </a>
+                    <p>Delivering secure, scalable IT solutions and world-class training that drive success.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Academy</h4>
+                    <ul>
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li><a href="plans.html">Pricing Plans</a></li>
+                        <li><a href="dashboard.html">My Dashboard</a></li>
+                        <li><a href="certificates.html">Certificates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../services.html">Services</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+14436819715">+1 443 681 9715</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:academy@digitechglobals.com">academy@digitechglobals.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Maryland, USA</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DigiTech Globals. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    <script src="../js/main.js"></script>
+    <script src="../js/academy.js"></script>
+    
+    <!-- Tidio Chatbot -->
+    <script src="//code.tidio.co/nkfknphgamsw0fusqmoaxjx3nkdd9f2x.js" async></script>
+</body>
+</html>
