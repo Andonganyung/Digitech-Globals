@@ -2,8 +2,8 @@
 // IMPORTANT: Replace 'pk_test_YOUR_PUBLISHABLE_KEY' with your actual Stripe publishable key
 
 const STRIPE_CONFIG = {
-    // Replace with your actual Stripe publishable key
-    publishableKey: 'pk_test_YOUR_PUBLISHABLE_KEY',
+    // DigiTech Globals Stripe publishable key
+    publishableKey: 'pk_test_51T2YOpDzN3usTtjjKByGRiTKhCTOtXpqae29uyXXyInXEojIcYKGUGh3zLE7SsQM9AO9F7G634J6CsfOqjhVEu6m00Os1T9bqy',
     
     // Price IDs from your Stripe Dashboard
     // Create these products/prices in Stripe Dashboard first
