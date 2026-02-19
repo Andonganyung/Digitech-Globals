@@ -96,36 +96,36 @@ img {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 35px;
+    gap: 10px;
+    align-items: center;
 }
 
 .nav-link {
     color: var(--text-muted);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     position: relative;
-    padding: 5px 0;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
 }
 
 .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.3s ease;
+    display: none;
 }
 
-.nav-link:hover,
-.nav-link.active {
+.nav-link:hover {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));
+    border-color: rgba(245, 158, 11, 0.4);
     color: var(--white);
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
+.nav-link.active {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.08));
+    border-color: rgba(245, 158, 11, 0.3);
+    color: var(--accent);
 }
 
 .nav-app-btn {
@@ -2013,13 +2013,9 @@ img {
 
     .nav-menu .nav-link {
         color: var(--white);
-        font-size: 14px;
-    }
-
-    /* Mobile: Uniform round transparent design for dropdown nav-links */
-    .nav-dropdown > .nav-link {
+        font-size: 13px;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-        padding: 10px 16px !important;
+        padding: 10px 16px;
         border-radius: 25px;
         border: 1px solid rgba(255, 255, 255, 0.15);
         margin-bottom: 5px;
@@ -2027,7 +2023,7 @@ img {
         width: auto;
     }
 
-    .nav-dropdown > .nav-link.nav-academy-link {
+    .nav-menu .nav-link.nav-academy-link {
         background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05)) !important;
         border-color: rgba(245, 158, 11, 0.3) !important;
         color: var(--accent) !important;
@@ -3792,7 +3788,7 @@ img {
     }
     
     .nav-link {
-        padding: 12px 0;
+        padding: 10px 16px;
     }
     
     .dropdown-menu li a {
@@ -3819,31 +3815,6 @@ html, body {
     }
 }
 
-/* Uniform Navigation Tab Styling - Round Transparent Design */
-.nav-dropdown > .nav-link {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-    padding: 8px 16px !important;
-    border-radius: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: all 0.3s ease;
-}
-
-.nav-dropdown > .nav-link:hover {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));
-    border-color: rgba(245, 158, 11, 0.4);
-    color: var(--white) !important;
-}
-
-.nav-dropdown > .nav-link.active {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.08));
-    border-color: rgba(245, 158, 11, 0.3);
-    color: var(--accent) !important;
-}
-
-.nav-dropdown > .nav-link::after {
-    display: none !important;
-}
-
 /* Academy Navigation Highlight - Special Accent */
 .nav-academy-link {
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05)) !important;
@@ -3856,10 +3827,6 @@ html, body {
     background: var(--gradient-accent) !important;
     color: var(--dark) !important;
     border-color: var(--accent) !important;
-}
-
-.nav-academy-link::after {
-    display: none !important;
 }
 
 .nav-academy-link i.fa-graduation-cap {
