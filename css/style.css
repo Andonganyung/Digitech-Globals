@@ -4577,3 +4577,85 @@ html, body {
         font-size: 18px;
     }
 }
+
+/* =============================================
+   MOBILE BACKGROUND IMAGE FIX
+   Ensures backgrounds scale properly on all devices
+   ============================================= */
+
+/* Base background settings for all sections with backgrounds */
+.hero-section,
+.hero,
+.cta-section,
+.about-hero,
+.contact-hero,
+.services-hero,
+.page-header,
+[class*="bg-"] {
+    background-attachment: scroll !important;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Mobile-specific background fixes */
+@media (max-width: 768px) {
+    .hero-section,
+    .hero,
+    .cta-section,
+    .about-hero,
+    .contact-hero,
+    .services-hero,
+    .page-header,
+    [class*="bg-"] {
+        background-attachment: scroll !important;
+        background-position: center center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+    }
+    
+    /* Hero section mobile background */
+    .hero {
+        background-size: cover;
+        background-position: center top;
+        min-height: auto;
+    }
+    
+    /* CTA section mobile background */
+    .cta-section {
+        background-size: cover;
+        background-position: center center;
+    }
+    
+    /* Service page backgrounds */
+    .service-header {
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+/* Small mobile phones */
+@media (max-width: 480px) {
+    .hero-section,
+    .hero,
+    .cta-section,
+    .page-header {
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+/* iOS Safari specific fix */
+@supports (-webkit-touch-callout: none) {
+    .hero-section,
+    .hero,
+    .cta-section,
+    .about-hero,
+    .contact-hero,
+    .services-hero,
+    .page-header {
+        background-attachment: scroll !important;
+    }
+}
