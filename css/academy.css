@@ -728,33 +728,63 @@
     .academy-hero-section {
         padding: 100px 0 60px;
         min-height: 50vh;
+        background-attachment: scroll !important;
+        background-position: center center;
+        background-size: cover;
     }
     
     .academy-hero h1,
     .academy-hero-section h1 {
-        font-size: 28px;
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        line-height: 1.3;
     }
     
     .academy-hero .hero-subtitle,
     .academy-hero-section .hero-subtitle {
-        font-size: 16px;
+        font-size: clamp(0.9rem, 3vw, 1.1rem);
+        padding: 0 10px;
     }
     
     .academy-content-section {
-        padding: 40px 0 30px;
+        padding: 50px 0 40px;
+    }
+    
+    .hero-badge {
+        font-size: 0.85rem;
+        padding: 8px 20px;
     }
     
     .hero-stats {
-        gap: 30px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 25px;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    
+    .hero-stat {
+        flex: 0 1 auto;
+        min-width: 100px;
     }
     
     .hero-stat .stat-num {
-        font-size: 32px;
+        font-size: 2rem;
+    }
+    
+    .hero-stat .stat-label {
+        font-size: 0.85rem;
     }
     
     .academy-hero .hero-buttons {
         flex-direction: column;
         gap: 15px;
+        width: 100%;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
     }
     
     .why-grid,
@@ -1310,3 +1340,122 @@
 .course-buttons .btn-sm { flex: 1; font-size: 0.85rem; padding: 8px 12px; }
 .course-buttons .btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--accent); }
 .course-buttons .btn-outline:hover { background: var(--accent); color: var(--dark); }
+
+/* =============================================
+   MOBILE OPTIMIZATION - SMALL PHONES
+   ============================================= */
+
+/* Small Mobile Phones (max-width: 480px) */
+@media (max-width: 480px) {
+    /* Academy Hero Section */
+    .academy-hero-section {
+        min-height: 45vh;
+        padding: 90px 0 50px;
+    }
+    
+    .academy-hero-section h1 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .academy-hero-section .hero-subtitle {
+        font-size: 0.95rem;
+        padding: 0 15px;
+    }
+    
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: 6px 16px;
+    }
+    
+    .academy-content-section {
+        padding: 40px 0 30px;
+    }
+    
+    .hero-stats {
+        gap: 20px;
+    }
+    
+    .hero-stat {
+        min-width: 90px;
+    }
+    
+    .hero-stat .stat-num {
+        font-size: 1.75rem;
+    }
+    
+    .hero-stat .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .hero-buttons .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra Small Phones (max-width: 360px) */
+@media (max-width: 360px) {
+    .academy-hero-section {
+        min-height: 40vh;
+        padding: 80px 0 40px;
+    }
+    
+    .academy-hero-section h1 {
+        font-size: 1.3rem;
+    }
+    
+    .academy-hero-section .hero-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .hero-badge {
+        font-size: 0.7rem;
+        padding: 5px 12px;
+    }
+    
+    .academy-content-section {
+        padding: 35px 0 25px;
+    }
+    
+    .hero-stats {
+        gap: 15px;
+    }
+    
+    .hero-stat {
+        min-width: 80px;
+    }
+    
+    .hero-stat .stat-num {
+        font-size: 1.5rem;
+    }
+    
+    .hero-stat .stat-label {
+        font-size: 0.75rem;
+    }
+}
+
+/* iOS Safari & Touch Device Optimization */
+@supports (-webkit-touch-callout: none) {
+    .academy-hero-section {
+        background-attachment: scroll !important;
+    }
+}
+
+/* Android & Mobile Browser Optimization */
+@media (hover: none) and (pointer: coarse) {
+    .academy-hero-section {
+        background-attachment: scroll !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Optimize touch targets */
+    .hero-buttons .btn {
+        min-height: 48px;
+        padding: 14px 28px;
+    }
+    
+    .hero-badge {
+        min-height: 36px;
+    }
+}

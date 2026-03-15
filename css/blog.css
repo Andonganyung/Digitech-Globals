@@ -466,22 +466,82 @@
 }
 
 @media (max-width: 480px) {
+    .blog-hero {
+        padding: 90px 0 50px;
+        min-height: 45vh;
+    }
+    
+    .blog-hero h1 {
+        font-size: 1.5rem;
+    }
+    
     .blog-search {
         flex-direction: column;
     }
     
+    .blog-search input {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+    
     .blog-search button {
         width: 100%;
+        padding: 12px;
     }
     
     .blog-meta {
         flex-direction: column;
         gap: 8px;
+        font-size: 0.85rem;
     }
     
     .blog-footer {
         flex-direction: column;
         gap: 15px;
         align-items: flex-start;
+    }
+    
+    .blog-filters {
+        gap: 8px;
+    }
+    
+    .filter-btn {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+    }
+}
+
+/* Extra Small Phones (max-width: 360px) */
+@media (max-width: 360px) {
+    .blog-hero {
+        padding: 80px 0 40px;
+        min-height: 40vh;
+    }
+    
+    .blog-hero h1 {
+        font-size: 1.3rem;
+    }
+    
+    .blog-hero p {
+        font-size: 0.85rem;
+    }
+    
+    .filter-btn {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+    
+    .blog-card h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Touch Device Optimization */
+@media (hover: none) and (pointer: coarse) {
+    .filter-btn,
+    .blog-search button,
+    .share-btn {
+        min-height: 44px;
+        min-width: 44px;
     }
 }
