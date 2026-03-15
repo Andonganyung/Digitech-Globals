@@ -13,20 +13,79 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/auth.js"></script>
     <style>
-        /* Mission Page Custom Styles */
-        .about-page.with-bg {
-            padding-top: 150px !important;
-            min-height: 100vh;
+        /* Mission Hero Section - Full Background Display */
+        .mission-hero-section {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('images/bg-about.jpg') center center / cover no-repeat;
+            position: relative;
+            padding: 120px 0 80px;
         }
-        .mission-box,
-        .vision-box {
-            padding: 30px !important;
-            max-width: 550px;
+        
+        .mission-hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(10, 37, 64, 0.50) 0%, rgba(15, 23, 42, 0.55) 100%);
+            z-index: 0;
+        }
+        
+        .mission-hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .mission-hero-section h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--white);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .mission-hero-section p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
             margin: 0 auto;
         }
+        
+        /* Mission Content Section - Dark Background */
+        .mission-content-section {
+            background: var(--dark);
+            padding: 80px 0;
+        }
+        
+        .mission-box,
+        .vision-box {
+            padding: 35px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
         .mission-vision-section {
-            gap: 40px !important;
-            margin-bottom: 50px;
+            gap: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .mission-hero-section {
+                min-height: 50vh;
+                padding: 100px 0 60px;
+            }
+            
+            .mission-content-section {
+                padding: 60px 0;
+            }
+            
+            .mission-box,
+            .vision-box {
+                padding: 25px;
+            }
         }
     </style>
 </head>
@@ -82,16 +141,16 @@
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
+    <!-- Hero Section with Background -->
+    <section class="mission-hero-section">
         <div class="container">
             <h1>Mission & Vision</h1>
             <p>Driving Business Success Through Technology</p>
         </div>
     </section>
 
-    <!-- Mission & Vision Content -->
-    <section class="about-page with-bg">
+    <!-- Mission & Vision Content (Separate Dark Section) -->
+    <section class="mission-content-section">
         <div class="container">
             <div class="mission-vision-section">
                 <div class="mission-box">
