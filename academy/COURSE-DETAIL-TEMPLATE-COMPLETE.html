@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[COURSE NAME] | DigiTech Academy</title>
+    <meta name="description" content="[BRIEF SEO DESCRIPTION 150-160 CHARS]">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/academy.css">
+    <link rel="stylesheet" href="../css/course-detail.css">
+    <script src="../js/auth.js"></script>
+</head>
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo"><i class="fas fa-globe"></i><span>DigiTech<strong>Globals</strong></span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="../about.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../mission.html"><i class="fas fa-bullseye"></i> Mission & Vision</a></li>
+                        <li><a href="../accomplishments.html"><i class="fas fa-users"></i> Meet the Team</a></li>
+                        <li><a href="../education.html"><i class="fas fa-user-tie"></i> The CEO</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="../services.html" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../services/it-support.html"><i class="fas fa-headset"></i> IT Support</a></li>
+                        <li><a href="../services/endpoint-management.html"><i class="fas fa-laptop-code"></i> Endpoint Management</a></li>
+                        <li><a href="../services/cloud-services.html"><i class="fas fa-cloud"></i> Cloud Services</a></li>
+                        <li><a href="../services/networking.html"><i class="fas fa-network-wired"></i> Networking</a></li>
+                        <li><a href="../services/security.html"><i class="fas fa-shield-alt"></i> Security</a></li>
+                        <li><a href="../services/automation.html"><i class="fas fa-cogs"></i> Automation</a></li>
+                        <li><a href="../services/web-development.html"><i class="fas fa-code"></i> Web Development</a></li>
+                        <li><a href="../services/seo-digital-visibility.html"><i class="fas fa-search"></i> Google SEO</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="index.html" class="nav-link active">DigiTech Academy <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html"><i class="fas fa-book-open"></i> All Courses</a></li>
+                        <li><a href="plans.html"><i class="fas fa-crown"></i> Subscription Plans</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> My Dashboard</a></li>
+                        <li><a href="certificates.html"><i class="fas fa-certificate"></i> Certificates</a></li>
+                    </ul>
+                </li>
+                <li><a href="../pricing.html" class="nav-link">Pricing</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="course-detail-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Academy</a> <i class="fas fa-chevron-right"></i>
+                <a href="courses.html">Courses</a> <i class="fas fa-chevron-right"></i>
+                <span>[COURSE NAME]</span>
+            </div>
+            <div class="course-header-content">
+                <div class="course-badge-group">
+                    <!-- OPTIONS: badge-bestseller, badge-popular, badge-new -->
+                    <span class="badge badge-bestseller">Bestseller</span>
+                    <!-- OPTIONS: Beginner, Intermediate, Advanced, or Grade X-Y -->
+                    <span class="badge badge-level">Beginner</span>
+                </div>
+                <h1>[COURSE NAME]</h1>
+                <!-- 120-word description emphasizing hands-on practice and real outcomes -->
+                <p class="course-subtitle">[120-WORD DESCRIPTION HERE - Include: what students learn, key tools/topics, practical applications, target audience, career benefits. Use "70% hands-on" for tech courses, adjust for others.]</p>
+                <div class="course-stats">
+                    <div class="stat-item"><i class="fas fa-clock"></i><span>[X] Hours</span></div>
+                    <div class="stat-item"><i class="fas fa-video"></i><span>[X] Lessons</span></div>
+                    <div class="stat-item"><i class="fas fa-star"></i><span>4.7-4.9 Rating</span></div>
+                    <div class="stat-item"><i class="fas fa-users"></i><span>[X,XXX]+ Enrolled</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="course-detail-section">
+        <div class="container">
+            <div class="course-detail-grid">
+                <div class="course-main-content">
+                    <div class="content-block">
+                        <h2><i class="fas fa-graduation-cap"></i> What You'll Learn</h2>
+                        <p>[2-3 sentences about the practical focus and immediate applicability of the course]</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h2><i class="fas fa-tools"></i> Key Skills You'll Master</h2>
+                        <div class="skills-grid">
+                            <!-- COPY THIS BLOCK 6 TIMES - ONE FOR EACH SKILL -->
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>[Skill Name 1]</h4>
+                                    <p>[20-30 word description of this specific skill and how students will apply it]</p>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>[Skill Name 2]</h4>
+                                    <p>[20-30 word description]</p>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>[Skill Name 3]</h4>
+                                    <p>[20-30 word description]</p>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>[Skill Name 4]</h4>
+                                    <p>[20-30 word description]</p>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>[Skill Name 5]</h4>
+                                    <p>[20-30 word description]</p>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>[Skill Name 6]</h4>
+                                    <p>[20-30 word description]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h2><i class="fas fa-users"></i> Who Should Enroll</h2>
+                        <div class="audience-list">
+                            <!-- 4 TARGET AUDIENCES -->
+                            <div class="audience-item"><i class="fas fa-[ICON]"></i><span>[Audience 1 description]</span></div>
+                            <div class="audience-item"><i class="fas fa-[ICON]"></i><span>[Audience 2 description]</span></div>
+                            <div class="audience-item"><i class="fas fa-[ICON]"></i><span>[Audience 3 description]</span></div>
+                            <div class="audience-item"><i class="fas fa-[ICON]"></i><span>[Audience 4 description]</span></div>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h2><i class="fas fa-briefcase"></i> Career Outcomes</h2>
+                        <!-- For career-focused courses; for educational courses (math, literacy), modify to "Learning Outcomes" or "Skills Benefits" -->
+                        <p>[Brief intro about career opportunities OR learning benefits]</p>
+                        <div class="careers-grid">
+                            <!-- 4-5 CAREER PATHS with salary ranges, OR learning milestones for non-career courses -->
+                            <div class="career-card"><i class="fas fa-[ICON]"></i><h4>[Job Title 1]</h4><p>[$XXK - $XXK avg. salary]</p></div>
+                            <div class="career-card"><i class="fas fa-[ICON]"></i><h4>[Job Title 2]</h4><p>[$XXK - $XXK avg. salary]</p></div>
+                            <div class="career-card"><i class="fas fa-[ICON]"></i><h4>[Job Title 3]</h4><p>[$XXK - $XXK avg. salary]</p></div>
+                            <div class="career-card"><i class="fas fa-[ICON]"></i><h4>[Job Title 4]</h4><p>[$XXK - $XXK avg. salary]</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-sidebar">
+                    <div class="sidebar-card enrollment-card">
+                        <div class="price-section">
+                            <div class="price-original">$[XXX]</div>
+                            <div class="price-current">$[XX]</div>
+                            <div class="price-save">Save $[XX] ([XX]% off)</div>
+                        </div>
+                        <a href="../contact.html" class="btn btn-primary btn-block btn-lg"><i class="fas fa-rocket"></i> Enroll Now</a>
+                        <a href="plans.html" class="btn btn-outline btn-block"><i class="fas fa-crown"></i> Or Get All-Access Pass</a>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-info-circle"></i> Course Includes</h3>
+                        <ul class="course-includes">
+                            <li><i class="fas fa-video"></i> [X] HD Video Lessons</li>
+                            <li><i class="fas fa-file-download"></i> [Downloadable Resources]</li>
+                            <li><i class="fas fa-laptop-code"></i> [Hands-on Projects/Exercises]</li>
+                            <li><i class="fas fa-tasks"></i> [Real-World Examples/Projects]</li>
+                            <li><i class="fas fa-certificate"></i> Certificate of Completion</li>
+                            <li><i class="fas fa-infinity"></i> Lifetime Access</li>
+                            <li><i class="fas fa-mobile-alt"></i> Mobile & Desktop Access</li>
+                            <li><i class="fas fa-headset"></i> Instructor Support</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-graduation-cap"></i> Prerequisites</h3>
+                        <ul class="prerequisites-list">
+                            <li><i class="fas fa-check"></i> [Prerequisite 1]</li>
+                            <li><i class="fas fa-check"></i> [Prerequisite 2]</li>
+                            <li><i class="fas fa-check"></i> [Prerequisite 3 - often "No prior experience required"]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand"><a href="../index.html" class="logo"><i class="fas fa-globe"></i><span>DigiTech<strong>Globals</strong></span></a><p>Delivering secure, scalable IT solutions and world-class training that drive success.</p></div>
+                <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="../index.html">Home</a></li><li><a href="../about.html">About Us</a></li><li><a href="../contact.html">Contact Us</a></li></ul></div>
+                <div class="footer-links"><h4>Academy</h4><ul><li><a href="courses.html">All Courses</a></li><li><a href="plans.html">Plans</a></li><li><a href="dashboard.html">Dashboard</a></li></ul></div>
+                <div class="footer-contact"><h4>Contact</h4><ul><li><i class="fas fa-phone"></i> <a href="tel:+13012215575">+1 301 221 5575</a></li><li><i class="fas fa-envelope"></i> <a href="mailto:info@digitechglobals.com">info@digitechglobals.com</a></li><li><i class="fas fa-map-marker-alt"></i> <span>Maryland, USA</span></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 DigiTech Globals. All Rights Reserved. | Designed by <strong>Fedelis Andonganyung</strong></p></div>
+        </div>
+    </footer>
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    <script src="../js/main.js"></script>
+</body>
+</html>
+
+<!--
+QUICK REFERENCE FOR REMAINING 13 COURSES:
+
+1. windows-basics.html - Windows 11 Complete Beginner Guide
+2. windows-power.html - Windows Power User Tips & Tricks
+3. computer-basics.html - Computer Basics for Absolute Beginners
+4. internet-safety.html - Internet Safety & Online Security
+5. email-social.html - Email & Social Media Essentials
+6. math-grade1-3.html - Fun Math for Grades 1-3
+7. math-grade4-6.html - Math Mastery for Grades 4-6
+8. math-grade7-9.html - Pre-Algebra & Algebra Basics
+9. entrepreneurship.html - Entrepreneurship 101
+10. leadership.html - Leadership & Team Management
+11. digital-marketing.html - Digital Marketing for Small Business
+12. financial-literacy.html - Financial Literacy & Money Management
+13. communication.html - Professional Communication Skills
+-->
