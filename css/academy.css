@@ -1309,14 +1309,17 @@
     }
 }
 
-/* Course Card Buttons - Smaller, More Compact */
+/* Course Card Buttons - Same Size as Popular Badge */
 .course-buttons { display: flex; gap: 6px; width: 100%; }
 .course-buttons .btn-sm { 
     flex: 1; 
-    font-size: 0.75rem; 
-    padding: 6px 10px; 
-    font-weight: 500;
+    font-size: 11px; 
+    padding: 5px 12px; 
+    font-weight: 600;
     white-space: nowrap;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
 .course-buttons .btn-outline { 
     background: transparent; 
