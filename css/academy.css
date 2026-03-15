@@ -273,7 +273,7 @@
 
 .courses-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin-bottom: 50px;
 }
@@ -766,7 +766,13 @@
     .courses-grid,
     .plans-grid,
     .testimonials-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+    
+    .course-card {
+        max-width: 100%;
+        margin: 0 auto;
     }
     
     .academy-why,
