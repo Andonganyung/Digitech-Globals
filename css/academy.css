@@ -1310,9 +1310,13 @@
 }
 
 /* Course Card Buttons - Same Size as Popular Badge */
-.course-buttons { display: flex; gap: 6px; width: 100%; }
+.course-buttons { 
+    display: flex; 
+    gap: 6px; 
+    justify-content: flex-start;
+}
 .course-buttons .btn-sm { 
-    flex: 1; 
+    flex: 0 0 auto;
     font-size: 11px !important; 
     padding: 5px 12px !important; 
     font-weight: 600 !important;
