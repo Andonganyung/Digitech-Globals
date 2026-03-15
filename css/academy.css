@@ -1313,12 +1313,12 @@
 .course-buttons { display: flex; gap: 6px; width: 100%; }
 .course-buttons .btn-sm { 
     flex: 1; 
-    font-size: 11px; 
-    padding: 5px 12px; 
-    font-weight: 600;
+    font-size: 11px !important; 
+    padding: 5px 12px !important; 
+    font-weight: 600 !important;
     white-space: nowrap;
-    border-radius: 20px;
-    text-transform: uppercase;
+    border-radius: 20px !important;
+    text-transform: uppercase !important;
     letter-spacing: 0.3px;
 }
 .course-buttons .btn-outline { 
