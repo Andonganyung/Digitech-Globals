@@ -1279,3 +1279,9 @@
         gap: 15px;
     }
 }
+
+/* Course Card Buttons */
+.course-buttons { display: flex; gap: 8px; width: 100%; }
+.course-buttons .btn-sm { flex: 1; font-size: 0.85rem; padding: 8px 12px; }
+.course-buttons .btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--accent); }
+.course-buttons .btn-outline:hover { background: var(--accent); color: var(--dark); }
