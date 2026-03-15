@@ -420,8 +420,9 @@
 }
 
 .btn-sm {
-    padding: 10px 20px;
+    padding: 8px 16px;
     font-size: 12px;
+    font-weight: 500;
 }
 
 .section-cta {
@@ -1308,11 +1309,24 @@
     }
 }
 
-/* Course Card Buttons */
-.course-buttons { display: flex; gap: 8px; width: 100%; }
-.course-buttons .btn-sm { flex: 1; font-size: 0.85rem; padding: 8px 12px; }
-.course-buttons .btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--accent); }
-.course-buttons .btn-outline:hover { background: var(--accent); color: var(--dark); }
+/* Course Card Buttons - Smaller, More Compact */
+.course-buttons { display: flex; gap: 6px; width: 100%; }
+.course-buttons .btn-sm { 
+    flex: 1; 
+    font-size: 0.75rem; 
+    padding: 6px 10px; 
+    font-weight: 500;
+    white-space: nowrap;
+}
+.course-buttons .btn-outline { 
+    background: transparent; 
+    border: 1.5px solid var(--accent); 
+    color: var(--accent); 
+}
+.course-buttons .btn-outline:hover { 
+    background: var(--accent); 
+    color: var(--dark); 
+}
 
 /* =============================================
    MOBILE OPTIMIZATION - SMALL PHONES
