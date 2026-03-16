@@ -334,19 +334,190 @@
         padding: 80px 0 40px;
     }
     
+    .course-detail-section {
+        padding: 40px 0;
+    }
+    
+    .course-detail-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px;
+        padding: 0 15px;
+    }
+    
+    .course-main-content {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .course-sidebar {
+        width: 100%;
+        max-width: 100%;
+        order: 2;
+    }
+    
     .course-stats {
-        gap: 20px;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .stat-item {
         font-size: 0.85rem;
+        flex: 0 1 auto;
+        min-width: 100px;
+    }
+    
+    .content-block {
+        padding: 0;
+        margin-bottom: 30px;
     }
     
     .content-block h2 {
         font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
     }
     
     .careers-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+    
+    .audience-list {
+        gap: 10px;
+    }
+    
+    .audience-item {
+        font-size: 0.9rem;
+        padding: 12px 15px;
+    }
+    
+    .curriculum {
+        padding: 0;
+    }
+    
+    .module {
+        margin-bottom: 20px;
+    }
+    
+    .module h3 {
+        font-size: 1.1rem;
+    }
+    
+    .module ul li {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+    
+    .instructor-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .instructor-avatar {
+        margin: 0 auto;
+    }
+    
+    .instructor-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .sidebar-card {
+        padding: 20px 15px;
+    }
+    
+    .price-section {
+        padding: 20px 15px;
+    }
+    
+    .btn-block {
+        width: 100%;
+        padding: 14px;
+    }
+    
+    .course-includes li,
+    .prerequisites-list li {
+        font-size: 0.9rem;
+        padding: 8px 0;
+    }
+}
+
+/* Small phones - Extra optimization */
+@media (max-width: 480px) {
+    .course-detail-header {
+        padding: 70px 0 30px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .course-badge-group {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .badge {
+        font-size: 10px;
+        padding: 4px 10px;
+    }
+    
+    .course-detail-header h1 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .course-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .course-stats {
+        gap: 10px;
+    }
+    
+    .stat-item {
+        font-size: 0.75rem;
+        min-width: 80px;
+    }
+    
+    .content-block h2 {
+        font-size: 1.3rem;
+    }
+    
+    .content-block h3 {
+        font-size: 1.1rem;
+    }
+    
+    .content-block h4 {
+        font-size: 1rem;
+    }
+    
+    .skill-item,
+    .career-card {
+        padding: 15px;
+    }
+    
+    .module h3 {
+        font-size: 1rem;
+    }
+    
+    .sidebar-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .price-original-large {
+        font-size: 1.5rem;
+    }
+    
+    .price-current-large {
+        font-size: 2rem;
     }
 }
