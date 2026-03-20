@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0A2540">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Enterprise Endpoint Management with SCCM & Intune | DigiTech Academy</title>
+    <meta name="description" content="Master SCCM and Microsoft Intune for enterprise endpoint management. Learn device deployment, co-management, patch management, Autopilot, and compliance policies.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/academy.css">
+    <link rel="stylesheet" href="../css/course-detail.css">
+    <script src="../js/auth.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo"><i class="fas fa-globe"></i><span>DigiTech<strong>Globals</strong></span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="../about.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../mission.html"><i class="fas fa-bullseye"></i> Mission & Vision</a></li>
+                        <li><a href="../accomplishments.html"><i class="fas fa-users"></i> Meet the Team</a></li>
+                        <li><a href="../education.html"><i class="fas fa-user-tie"></i> The CEO</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="../services.html" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../services/it-support.html"><i class="fas fa-headset"></i> IT Support</a></li>
+                        <li><a href="../services/endpoint-management.html"><i class="fas fa-laptop-code"></i> Endpoint Management</a></li>
+                        <li><a href="../services/cloud-services.html"><i class="fas fa-cloud"></i> Cloud Services</a></li>
+                        <li><a href="../services/networking.html"><i class="fas fa-network-wired"></i> Networking</a></li>
+                        <li><a href="../services/security.html"><i class="fas fa-shield-alt"></i> Security</a></li>
+                        <li><a href="../services/automation.html"><i class="fas fa-cogs"></i> Automation</a></li>
+                        <li><a href="../services/web-development.html"><i class="fas fa-code"></i> Web Development</a></li>
+                        <li><a href="../services/seo-digital-visibility.html"><i class="fas fa-search"></i> Google SEO</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="index.html" class="nav-link active">DigiTech Academy <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html"><i class="fas fa-book-open"></i> All Courses</a></li>
+                        <li><a href="plans.html"><i class="fas fa-crown"></i> Subscription Plans</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> My Dashboard</a></li>
+                        <li><a href="certificates.html"><i class="fas fa-certificate"></i> Certificates</a></li>
+                    </ul>
+                </li>
+                <li><a href="../pricing.html" class="nav-link">Pricing</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Course Header -->
+    <section class="course-detail-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Academy</a> <i class="fas fa-chevron-right"></i>
+                <a href="courses.html">Courses</a> <i class="fas fa-chevron-right"></i>
+                <span>Enterprise Endpoint Management with SCCM & Intune</span>
+            </div>
+            <div class="course-header-content">
+                <div class="course-badge-group">
+                    <span class="badge badge-bestseller">Industry-Focused</span>
+                    <span class="badge badge-level">Advanced</span>
+                </div>
+                <h1>Enterprise Endpoint Management with SCCM & Intune</h1>
+                <p class="course-subtitle">Build job-ready skills in managing enterprise endpoints using SCCM and Microsoft Intune. Master device deployment, co-management, patch management, Autopilot, compliance policies, and troubleshooting in hybrid environments. This hands-on course prepares you for real-world enterprise scenarios with 75% lab-based training and ticket-based exercises.</p>
+                <div class="course-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span>60 Hours</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-video"></i>
+                        <span>110 Lessons</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-star"></i>
+                        <span>4.9 Rating</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span>850+ Enrolled</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Content -->
+    <section class="course-detail-section">
+        <div class="container">
+            <div class="course-detail-grid">
+                <!-- Main Content -->
+                <div class="course-main-content">
+                    <!-- What You'll Learn -->
+                    <div class="content-block">
+                        <h2><i class="fas fa-graduation-cap"></i> What You'll Learn</h2>
+                        <p>This advanced endpoint management course equips IT professionals with practical skills in SCCM and Microsoft Intune. Build, deploy, secure, and troubleshoot enterprise endpoints in hybrid cloud environments with confidence.</p>
+                    </div>
+
+                    <!-- Key Skills -->
+                    <div class="content-block">
+                        <h2><i class="fas fa-tools"></i> Key Skills You'll Master</h2>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>SCCM Deployment & Configuration</h4>
+                                    <p>Install and configure Configuration Manager, manage boundaries, collections, and integrate with Active Directory for enterprise endpoint control.</p>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>Microsoft Intune Administration</h4>
+                                    <p>Configure Intune tenants, enroll devices, deploy applications, and enforce compliance policies across Windows, iOS, and Android platforms.</p>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>Co-Management & Hybrid Environments</h4>
+                                    <p>Implement co-management strategies, configure workload transitions, and manage endpoints across on-premises and cloud infrastructures seamlessly.</p>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>OS Deployment & Task Sequences</h4>
+                                    <p>Build custom OS images, create automated task sequences, deploy Windows 10/11 at scale, and configure Software Center for user self-service.</p>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>Patch Management & Compliance</h4>
+                                    <p>Automate software updates, enforce security baselines, monitor compliance reports, and remediate vulnerabilities across enterprise endpoints.</p>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>Windows Autopilot & Modern Provisioning</h4>
+                                    <p>Deploy zero-touch device provisioning, configure Autopilot profiles, integrate with Azure AD, and streamline endpoint onboarding workflows.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course Modules -->
+                    <div class="content-block">
+                        <h2><i class="fas fa-book-open"></i> Course Modules</h2>
+                        <div class="modules-accordion">
+                            
+                            <div class="module-item">
+                                <div class="module-header">
+                                    <h3><i class="fas fa-cog"></i> Module 1: SCCM Fundamentals</h3>
+                                    <span class="module-duration">10 Hours</span>
+                                </div>
+                                <div class="module-content">
+                                    <ul>
+                                        <li>Introduction to Configuration Manager architecture</li>
+                                        <li>Site hierarchy design and planning</li>
+                                        <li>Installing and configuring SCCM infrastructure</li>
+                                        <li>Boundaries, boundary groups, and discovery methods</li>
+                                        <li>Client installation and health monitoring</li>
+                                        <li>Collections, queries, and targeting strategies</li>
+                                        <li>Lab: Build SCCM primary site from scratch</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-header">
+                                    <h3><i class="fas fa-cloud"></i> Module 2: Microsoft Intune Fundamentals</h3>
+                                    <span class="module-duration">8 Hours</span>
+                                </div>
+                                <div class="module-content">
+                                    <ul>
+                                        <li>Intune architecture and licensing</li>
+                                        <li>Tenant setup and Azure AD integration</li>
+                                        <li>Device enrollment methods (Windows, iOS, Android)</li>
+                                        <li>Mobile Device Management (MDM) vs Mobile Application Management (MAM)</li>
+                                        <li>Intune portals and administration interfaces</li>
+                                        <li>Lab: Configure Intune tenant and enroll test devices</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-header">
+                                    <h3><i class="fas fa-sync-alt"></i> Module 3: Co-Management & Hybrid Setup</h3>
+                                    <span class="module-duration">7 Hours</span>
+                                </div>
+                                <div class="module-content">
+                                    <ul>
+                                        <li>Understanding co-management scenarios</li>
+                                        <li>Prerequisites and hybrid Azure AD join</li>
+                                        <li>Enabling co-management in SCCM</li>
+                                        <li>Workload migration strategies (Compliance, Device Config, Endpoint Protection)</li>
+                                        <li>Monitoring co-managed devices</li>
+                                        <li>Lab: Enable co-management and shift workloads</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-header">
+                                    <h3><i class="fas fa-box"></i> Module 4: Application Deployment</h3>
+                                    <span class="module-duration">8 Hours</span>
+                                </div>
+                                <div class="module-content">
+                                    <ul>
+                                        <li>Creating and packaging applications in SCCM</li>
+                                        <li>Deployment types and detection methods</li>
+                                        <li>Software Center configuration and user experience</li>
+                                        <li>App deployment in Intune (MSI, Win32, Microsoft Store)</li>
+                                        <li>App protection policies and conditional access</li>
+                                        <li>Lab: Deploy enterprise apps via SCCM and Intune</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-header">
+                                    <h3><i class="fas fa-shield-alt"></i> Module 5: Compliance & Configuration</h3>
+                                    <span class="module-duration">7 Hours</span>
+                                </div>
+                                <div class="module-content">
+                                    <ul>
+                                        <li>Compliance policies in SCCM and Intune</li>
+                                        <li>Configuration profiles (device restrictions, Wi-Fi, VPN)</li>
+                                        <li>Security baselines and hardening templates</li>
+                                        <li>Conditional access policies and device compliance</li>
+                                        <li>Compliance reporting and remediation</li>
+                                        <li>Lab: Create compliance policies and enforce device restrictions</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-header">
+                                    <h3><i class="fas fa-download"></i> Module 6: OS Deployment & Task Sequences</h3>
+                                    <span class="module-duration">9 Hours</span>
+                                </div>
+                                <div class="module-content">
+                                    <ul>
+                                        <li>OS deployment methods (PXE, USB, Software Center)</li>
+                                        <li>Creating and customizing boot images</li>
+                                        <li>Building OS images and WIM files</li>
+                                        <li>Task sequence creation and editing</li>
+                                        <li>Driver management and injection</li>
+                                        <li>Zero-touch installation (ZTI) workflows</li>
+                                        <li>Lab: Build and deploy Windows 11 image via SCCM</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-header">
+                                    <h3><i class="fas fa-shield-virus"></i> Module 7: Patch Management</h3>
+                                    <span class="module-duration">6 Hours</span>
+                                </div>
+                                <div class="module-content">
+                                    <ul>
+                                        <li>Software update management in SCCM</li>
+                                        <li>Update rings and deployment schedules</li>
+                                        <li>Windows Update for Business in Intune</li>
+                                        <li>Feature updates vs quality updates</li>
+                                        <li>Patch compliance monitoring and reporting</li>
+                                        <li>Lab: Deploy monthly security patches across endpoints</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-header">
+                                    <h3><i class="fas fa-plane"></i> Module 8: Windows Autopilot</h3>
+                                    <span class="module-duration">5 Hours</span>
+                                </div>
+                                <div class="module-content">
+                                    <ul>
+                                        <li>Understanding Autopilot scenarios (User-driven, Self-deploying, White glove)</li>
+                                        <li>Device registration and hardware ID import</li>
+                                        <li>Creating and assigning Autopilot profiles</li>
+                                        <li>Azure AD join and Intune enrollment</li>
+                                        <li>Customizing OOBE experience</li>
+                                        <li>Lab: Deploy laptops with zero-touch Autopilot provisioning</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-header">
+                                    <h3><i class="fas fa-lock"></i> Module 9: Endpoint Security</h3>
+                                    <span class="module-duration">6 Hours</span>
+                                </div>
+                                <div class="module-content">
+                                    <ul>
+                                        <li>Microsoft Defender for Endpoint integration</li>
+                                        <li>BitLocker encryption policies</li>
+                                        <li>Firewall rules and threat protection</li>
+                                        <li>Attack surface reduction policies</li>
+                                        <li>Security incident response workflows</li>
+                                        <li>Lab: Implement endpoint security baseline</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="module-item">
+                                <div class="module-header">
+                                    <h3><i class="fas fa-chart-line"></i> Module 10: Reporting & Troubleshooting</h3>
+                                    <span class="module-duration">4 Hours</span>
+                                </div>
+                                <div class="module-content">
+                                    <ul>
+                                        <li>Built-in reports in SCCM and Intune</li>
+                                        <li>Creating custom Power BI dashboards</li>
+                                        <li>Log file analysis and common errors</li>
+                                        <li>Client troubleshooting tools (CMTrace, Support Center)</li>
+                                        <li>Policy sync and enrollment troubleshooting</li>
+                                        <li>Lab: Diagnose and resolve endpoint management issues</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Hands-on Labs -->
+                    <div class="content-block">
+                        <h2><i class="fas fa-flask"></i> Hands-On Labs & Projects</h2>
+                        <div class="labs-grid">
+                            <div class="lab-card">
+                                <i class="fas fa-project-diagram"></i>
+                                <h4>Lab 1: Enterprise SCCM Infrastructure Build</h4>
+                                <p>Install and configure a production-ready SCCM environment with SQL Server backend, management points, and distribution points.</p>
+                            </div>
+                            <div class="lab-card">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h4>Lab 2: Intune Tenant Setup & Device Enrollment</h4>
+                                <p>Configure Azure AD-integrated Intune tenant and enroll Windows, iOS, and Android devices using multiple enrollment methods.</p>
+                            </div>
+                            <div class="lab-card">
+                                <i class="fas fa-sync"></i>
+                                <h4>Lab 3: Co-Management Configuration</h4>
+                                <p>Enable co-management between SCCM and Intune, migrate workloads, and manage hybrid device policies.</p>
+                            </div>
+                            <div class="lab-card">
+                                <i class="fas fa-rocket"></i>
+                                <h4>Lab 4: Application Packaging & Deployment</h4>
+                                <p>Package and deploy 10+ enterprise applications (Office 365, Chrome, Zoom) via both SCCM and Intune portals.</p>
+                            </div>
+                            <div class="lab-card">
+                                <i class="fas fa-desktop"></i>
+                                <h4>Lab 5: Windows 11 Image Deployment</h4>
+                                <p>Build custom Windows 11 image, create automated task sequences, and deploy via PXE boot across multiple endpoints.</p>
+                            </div>
+                            <div class="lab-card">
+                                <i class="fas fa-certificate"></i>
+                                <h4>Lab 6: Compliance & Security Baselines</h4>
+                                <p>Implement security baselines, enforce BitLocker encryption, configure firewall rules, and monitor compliance reporting.</p>
+                            </div>
+                            <div class="lab-card">
+                                <i class="fas fa-plane-departure"></i>
+                                <h4>Lab 7: Windows Autopilot Provisioning</h4>
+                                <p>Register devices, create Autopilot profiles, and deploy zero-touch OOBE provisioning for new enterprise laptops.</p>
+                            </div>
+                            <div class="lab-card">
+                                <i class="fas fa-ticket-alt"></i>
+                                <h4>Project: Ticket-Based Real-World Scenarios</h4>
+                                <p>Resolve 20+ simulated helpdesk tickets covering app deployment failures, compliance issues, policy conflicts, and enrollment errors.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Platforms -->
+                    <div class="content-block">
+                        <h2><i class="fas fa-toolbox"></i> Tools & Platforms Required</h2>
+                        <div class="tools-grid">
+                            <div class="tool-item"><i class="fas fa-server"></i> Microsoft Configuration Manager (SCCM)</div>
+                            <div class="tool-item"><i class="fas fa-cloud"></i> Microsoft Intune / Endpoint Manager</div>
+                            <div class="tool-item"><i class="fas fa-database"></i> SQL Server 2019/2022</div>
+                            <div class="tool-item"><i class="fas fa-ad"></i> Active Directory Domain Services</div>
+                            <div class="tool-item"><i class="fas fa-shield-alt"></i> Azure Active Directory</div>
+                            <div class="tool-item"><i class="fas fa-windows"></i> Windows Server 2019/2022</div>
+                            <div class="tool-item"><i class="fas fa-terminal"></i> PowerShell 5.1 / 7.x</div>
+                            <div class="tool-item"><i class="fas fa-chart-bar"></i> Power BI Desktop</div>
+                            <div class="tool-item"><i class="fas fa-file-code"></i> CMTrace Log Viewer</div>
+                            <div class="tool-item"><i class="fas fa-network-wired"></i> Virtual Lab Environment (Hyper-V or VMware)</div>
+                        </div>
+                        <p class="tools-note"><strong>Note:</strong> Full lab environment setup guide provided. Azure trial accounts and eval licenses included.</p>
+                    </div>
+
+                    <!-- Target Audience -->
+                    <div class="content-block">
+                        <h2><i class="fas fa-users"></i> Who Should Enroll</h2>
+                        <div class="audience-list">
+                            <div class="audience-item">
+                                <i class="fas fa-user-cog"></i>
+                                <span>Systems Administrators managing Windows endpoints</span>
+                            </div>
+                            <div class="audience-item">
+                                <i class="fas fa-headset"></i>
+                                <span>Desktop Support Engineers advancing to endpoint management roles</span>
+                            </div>
+                            <div class="audience-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>IT Professionals preparing for MD-101 or MD-102 certifications</span>
+                            </div>
+                            <div class="audience-item">
+                                <i class="fas fa-laptop-code"></i>
+                                <span>Intune Administrators seeking SCCM hybrid expertise</span>
+                            </div>
+                            <div class="audience-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>IT Consultants supporting enterprise endpoint projects</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Career Outcomes -->
+                    <div class="content-block">
+                        <h2><i class="fas fa-briefcase"></i> Career Outcomes</h2>
+                        <p>Graduates of this course are prepared for high-demand enterprise endpoint management roles including:</p>
+                        <div class="careers-grid">
+                            <div class="career-card">
+                                <i class="fas fa-server"></i>
+                                <h4>SCCM Administrator</h4>
+                                <p>$75K - $105K avg. salary</p>
+                            </div>
+                            <div class="career-card">
+                                <i class="fas fa-cloud"></i>
+                                <h4>Intune / Endpoint Manager Admin</h4>
+                                <p>$80K - $110K avg. salary</p>
+                            </div>
+                            <div class="career-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>Endpoint Security Engineer</h4>
+                                <p>$85K - $120K avg. salary</p>
+                            </div>
+                            <div class="career-card">
+                                <i class="fas fa-network-wired"></i>
+                                <h4>Modern Desktop Administrator</h4>
+                                <p>$72K - $98K avg. salary</p>
+                            </div>
+                            <div class="career-card">
+                                <i class="fas fa-user-tie"></i>
+                                <h4>Enterprise IT Consultant</h4>
+                                <p>$90K - $130K avg. salary</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Sidebar -->
+                <div class="course-sidebar">
+                    <div class="sidebar-card enrollment-card">
+                        <div class="price-section">
+                            <div class="price-original">$599</div>
+                            <div class="price-current">$249</div>
+                            <div class="price-save">Save $350 (58% off)</div>
+                        </div>
+                        <a href="../contact.html" class="btn btn-primary btn-block btn-lg">
+                            <i class="fas fa-rocket"></i> Enroll Now
+                        </a>
+                        <a href="plans.html" class="btn btn-outline btn-block">
+                            <i class="fas fa-crown"></i> Or Get All-Access Pass
+                        </a>
+                        <p class="limited-offer"><i class="fas fa-fire"></i> Limited offer - Price increases soon</p>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-info-circle"></i> Course Includes</h3>
+                        <ul class="course-includes">
+                            <li><i class="fas fa-video"></i> 110 HD Video Lessons</li>
+                            <li><i class="fas fa-file-download"></i> Downloadable Lab Guides</li>
+                            <li><i class="fas fa-laptop-code"></i> 20+ Hands-on Labs</li>
+                            <li><i class="fas fa-ticket-alt"></i> Real-World Ticket Scenarios</li>
+                            <li><i class="fas fa-certificate"></i> Certificate of Completion</li>
+                            <li><i class="fas fa-infinity"></i> Lifetime Access</li>
+                            <li><i class="fas fa-mobile-alt"></i> Mobile & Desktop Access</li>
+                            <li><i class="fas fa-headset"></i> Instructor Support</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-graduation-cap"></i> Prerequisites</h3>
+                        <ul class="prerequisites-list">
+                            <li><i class="fas fa-check"></i> Windows Server administration basics</li>
+                            <li><i class="fas fa-check"></i> Active Directory fundamentals</li>
+                            <li><i class="fas fa-check"></i> Basic PowerShell scripting knowledge</li>
+                            <li><i class="fas fa-check"></i> 1+ year IT support or systems admin experience</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-trophy"></i> Why Choose This Course</h3>
+                        <ul class="highlights-list">
+                            <li><i class="fas fa-check-circle"></i> 75% hands-on lab training</li>
+                            <li><i class="fas fa-check-circle"></i> Real enterprise scenarios</li>
+                            <li><i class="fas fa-check-circle"></i> Ticket-based exercises</li>
+                            <li><i class="fas fa-check-circle"></i> Industry-recognized skills</li>
+                            <li><i class="fas fa-check-circle"></i> Prepares for MD-101/102 exams</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Master Enterprise Endpoint Management?</h2>
+            <p>Join 850+ IT professionals who are building job-ready SCCM and Intune skills</p>
+            <div class="cta-buttons">
+                <a href="../contact.html" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Enroll Now - $249</a>
+                <a href="plans.html" class="btn btn-outline btn-lg"><i class="fas fa-crown"></i> View All-Access Plans</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand"><a href="../index.html" class="logo"><i class="fas fa-globe"></i><span>DigiTech<strong>Globals</strong></span></a><p>Delivering secure, scalable IT solutions and world-class training that drive success.</p></div>
+                <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="../index.html">Home</a></li><li><a href="../about.html">About Us</a></li><li><a href="../contact.html">Contact Us</a></li></ul></div>
+                <div class="footer-links"><h4>Academy</h4><ul><li><a href="courses.html">All Courses</a></li><li><a href="plans.html">Plans</a></li><li><a href="dashboard.html">Dashboard</a></li></ul></div>
+                <div class="footer-contact"><h4>Contact</h4><ul><li><i class="fas fa-phone"></i> <a href="tel:+13012215575">+1 301 221 5575</a></li><li><i class="fas fa-envelope"></i> <a href="mailto:info@digitechglobals.com">info@digitechglobals.com</a></li><li><i class="fas fa-map-marker-alt"></i> <span>Maryland, USA</span></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 DigiTech Globals. All Rights Reserved. | Designed by <strong>Fedelis Andonganyung</strong></p></div>
+        </div>
+    </footer>
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    <script src="../js/main.js"></script>
+</body>
+</html>
