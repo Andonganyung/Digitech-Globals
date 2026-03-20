@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | DigiTech Academy</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #f3f4f6; }
+        .admin-header { background: linear-gradient(135deg, #0A2540 0%, #1e3a5f 100%); padding: 20px 0; color: white; }
+        .admin-header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        .admin-title { font-size: 24px; font-weight: 600; }
+        .logout-btn { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 8px 20px; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+        .logout-btn:hover { background: rgba(255,255,255,0.2); }
+        .dashboard-stats { max-width: 1400px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .stat-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .stat-card h3 { font-size: 14px; color: #6b7280; font-weight: 500; margin-bottom: 10px; }
+        .stat-card .value { font-size: 32px; font-weight: 700; color: #0A2540; }
+        .stat-card .icon { font-size: 24px; color: #2563eb; float: right; }
+        .applications-section { max-width: 1400px; margin: 30px auto; padding: 0 20px; }
+        .section-header { background: white; padding: 20px; border-radius: 12px 12px 0 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .section-header h2 { font-size: 20px; color: #0A2540; margin: 0; }
+        .filters { display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap; }
+        .filter-select { padding: 10px 15px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; }
+        .applications-table { background: white; border-radius: 0 0 12px 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #f9fafb; padding: 15px; text-align: left; font-size: 13px; color: #6b7280; font-weight: 600; text-transform: uppercase; border-bottom: 2px solid #e5e7eb; }
+        td { padding: 15px; border-bottom: 1px solid #e5e7eb; font-size: 14px; }
+        tr:hover { background: #f9fafb; }
+        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+        .status-pending { background: #fef3c7; color: #92400e; }
+        .status-approved { background: #d1fae5; color: #065f46; }
+        .status-declined { background: #fee2e2; color: #991b1b; }
+        .action-btn { padding: 6px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 500; transition: all 0.3s; margin-right: 5px; }
+        .btn-view { background: #3b82f6; color: white; }
+        .btn-approve { background: #10b981; color: white; }
+        .btn-decline { background: #ef4444; color: white; }
+        .action-btn:hover { opacity: 0.8; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
+        .modal.show { display: flex; }
+        .modal-content { background: white; border-radius: 12px; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto; padding: 30px; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #e5e7eb; }
+        .modal-header h2 { font-size: 22px; color: #0A2540; margin: 0; }
+        .close-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: #6b7280; }
+        .modal-section { margin-bottom: 25px; }
+        .modal-section h3 { font-size: 16px; color: #374151; margin-bottom: 15px; }
+        .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .detail-item { background: #f9fafb; padding: 12px; border-radius: 8px; }
+        .detail-item label { display: block; font-size: 11px; color: #6b7280; font-weight: 600; text-transform: uppercase; margin-bottom: 5px; }
+        .detail-item .value { font-size: 14px; color: #111827; font-weight: 500; }
+        .modal-actions { display: flex; gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 2px solid #e5e7eb; }
+        .modal-btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .btn-approve-modal { background: #10b981; color: white; }
+        .btn-decline-modal { background: #ef4444; color: white; }
+        .btn-cancel { background: #e5e7eb; color: #374151; }
+        @media (max-width: 768px) {
+            .dashboard-stats { grid-template-columns: 1fr; }
+            .filters { flex-direction: column; }
+            table { font-size: 12px; }
+            th, td { padding: 10px; }
+            .modal-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-header">
+        <div class="container">
+            <h1 class="admin-title"><i class="fas fa-shield-alt"></i> Admin Dashboard</h1>
+            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </div>
+
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <i class="fas fa-file-alt icon"></i>
+            <h3>Total Applications</h3>
+            <div class="value" id="totalApps">0</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-clock icon"></i>
+            <h3>Pending</h3>
+            <div class="value" id="pendingApps">0</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-check-circle icon"></i>
+            <h3>Approved</h3>
+            <div class="value" id="approvedApps">0</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-times-circle icon"></i>
+            <h3>Declined</h3>
+            <div class="value" id="declinedApps">0</div>
+        </div>
+    </div>
+
+    <div class="applications-section">
+        <div class="section-header">
+            <h2><i class="fas fa-users"></i> All Applications</h2>
+            <div class="filters">
+                <select class="filter-select" id="statusFilter" onchange="filterApplications()">
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="declined">Declined</option>
+                </select>
+                <input type="text" class="filter-select" id="searchFilter" placeholder="Search by name, email..." onkeyup="filterApplications()">
+            </div>
+        </div>
+        <div class="applications-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="applicationsBody">
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 40px;">No applications found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="applicationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-file-alt"></i> Application Details</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
+        if (!currentUser || currentUser.role !== 'admin') {
+            window.location.href = 'login.html';
+        }
+
+        let allApplications = [];
+
+        function loadApplications() {
+            allApplications = JSON.parse(localStorage.getItem('applications') || '[]');
+            updateStats();
+            renderApplications(allApplications);
+        }
+
+        function updateStats() {
+            document.getElementById('totalApps').textContent = allApplications.length;
+            document.getElementById('pendingApps').textContent = allApplications.filter(a => a.status === 'pending').length;
+            document.getElementById('approvedApps').textContent = allApplications.filter(a => a.status === 'approved').length;
+            document.getElementById('declinedApps').textContent = allApplications.filter(a => a.status === 'declined').length;
+        }
+
+        function renderApplications(apps) {
+            const tbody = document.getElementById('applicationsBody');
+            if (apps.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px;">No applications found</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = apps.map(app => `
+                <tr>
+                    <td>${app.id}</td>
+                    <td>${app.firstName} ${app.lastName}</td>
+                    <td>${app.email}</td>
+                    <td>${app.courseName}</td>
+                    <td>${new Date(app.submittedAt).toLocaleDateString()}</td>
+                    <td><span class="status-badge status-${app.status}">${app.status.charAt(0).toUpperCase() + app.status.slice(1)}</span></td>
+                    <td>
+                        <button class="action-btn btn-view" onclick="viewApplication('${app.id}')"><i class="fas fa-eye"></i> View</button>
+                        ${app.status === 'pending' ? `
+                            <button class="action-btn btn-approve" onclick="updateStatus('${app.id}', 'approved')"><i class="fas fa-check"></i></button>
+                            <button class="action-btn btn-decline" onclick="updateStatus('${app.id}', 'declined')"><i class="fas fa-times"></i></button>
+                        ` : ''}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterApplications() {
+            const statusFilter = document.getElementById('statusFilter').value;
+            const searchText = document.getElementById('searchFilter').value.toLowerCase();
+
+            let filtered = allApplications;
+
+            if (statusFilter !== 'all') {
+                filtered = filtered.filter(app => app.status === statusFilter);
+            }
+
+            if (searchText) {
+                filtered = filtered.filter(app => 
+                    app.firstName.toLowerCase().includes(searchText) ||
+                    app.lastName.toLowerCase().includes(searchText) ||
+                    app.email.toLowerCase().includes(searchText) ||
+                    app.courseName.toLowerCase().includes(searchText)
+                );
+            }
+
+            renderApplications(filtered);
+        }
+
+        function viewApplication(appId) {
+            const app = allApplications.find(a => a.id === appId);
+            if (!app) return;
+
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <div class="modal-section">
+                    <h3><i class="fas fa-info-circle"></i> Application Information</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><label>Application ID</label><div class="value">${app.id}</div></div>
+                        <div class="detail-item"><label>Status</label><div class="value"><span class="status-badge status-${app.status}">${app.status.toUpperCase()}</span></div></div>
+                        <div class="detail-item"><label>Submitted</label><div class="value">${new Date(app.submittedAt).toLocaleString()}</div></div>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3><i class="fas fa-user"></i> Personal Information</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><label>Full Name</label><div class="value">${app.firstName} ${app.lastName}</div></div>
+                        <div class="detail-item"><label>Email</label><div class="value">${app.email}</div></div>
+                        <div class="detail-item"><label>Phone</label><div class="value">${app.phone}</div></div>
+                        <div class="detail-item"><label>Date of Birth</label><div class="value">${new Date(app.dob).toLocaleDateString()}</div></div>
+                        <div class="detail-item"><label>Gender</label><div class="value">${app.gender}</div></div>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><label>Address</label><div class="value">${app.address}</div></div>
+                        <div class="detail-item"><label>City</label><div class="value">${app.city}</div></div>
+                        <div class="detail-item"><label>State</label><div class="value">${app.state}</div></div>
+                        <div class="detail-item"><label>Country</label><div class="value">${app.country}</div></div>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Education & Course</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><label>Education Level</label><div class="value">${app.education}</div></div>
+                        <div class="detail-item"><label>Employment</label><div class="value">${app.employment}</div></div>
+                        <div class="detail-item"><label>Course</label><div class="value">${app.courseName}</div></div>
+                        <div class="detail-item"><label>Study Mode</label><div class="value">${app.studyMode}</div></div>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3><i class="fas fa-comment-alt"></i> Personal Statement</h3>
+                    <div class="detail-item" style="background: #f9fafb; padding: 15px; border-radius: 8px;">
+                        <div class="value" style="line-height: 1.6;">${app.statement}</div>
+                    </div>
+                </div>
+                ${app.status === 'pending' ? `
+                <div class="modal-actions">
+                    <button class="modal-btn btn-approve-modal" onclick="updateStatus('${app.id}', 'approved'); closeModal();">
+                        <i class="fas fa-check"></i> Approve Application
+                    </button>
+                    <button class="modal-btn btn-decline-modal" onclick="updateStatus('${app.id}', 'declined'); closeModal();">
+                        <i class="fas fa-times"></i> Decline Application
+                    </button>
+                    <button class="modal-btn btn-cancel" onclick="closeModal()">Cancel</button>
+                </div>
+                ` : ''}
+            `;
+
+            document.getElementById('applicationModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('applicationModal').classList.remove('show');
+        }
+
+        function updateStatus(appId, newStatus) {
+            const appIndex = allApplications.findIndex(a => a.id === appId);
+            if (appIndex !== -1) {
+                allApplications[appIndex].status = newStatus;
+                allApplications[appIndex].updatedAt = new Date().toISOString();
+                localStorage.setItem('applications', JSON.stringify(allApplications));
+                loadApplications();
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+
+        // Initialize
+        loadApplications();
+
+        // Create admin user if doesn't exist
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        if (!users.find(u => u.role === 'admin')) {
+            users.push({
+                id: 'ADMIN001',
+                username: 'admin',
+                email: 'admin@digitechglobals.com',
+                password: 'Admin@123',
+                role: 'admin',
+                firstName: 'Admin',
+                lastName: 'User',
+                createdAt: new Date().toISOString()
+            });
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+    </script>
+</body>
+</html>

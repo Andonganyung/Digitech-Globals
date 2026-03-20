@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | DigiTech Academy</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+        .login-page { background: linear-gradient(135deg, #0A2540 0%, #1e3a5f 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .login-container { max-width: 450px; width: 100%; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); padding: 40px; }
+        .login-header { text-align: center; margin-bottom: 30px; }
+        .login-header i { font-size: 48px; color: #2563eb; margin-bottom: 15px; }
+        .login-header h1 { font-size: 28px; color: #0A2540; margin: 0 0 10px 0; }
+        .login-header p { color: #666; font-size: 14px; margin: 0; }
+        .alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; display: none; }
+        .alert.show { display: block; }
+        .alert-success { background: #d1fae5; color: #065f46; border-left: 4px solid #10b981; }
+        .alert-error { background: #fee2e2; color: #991b1b; border-left: 4px solid #ef4444; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 500; color: #374151; margin-bottom: 8px; font-size: 14px; }
+        .form-control { width: 100%; padding: 12px 16px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; transition: all 0.3s; box-sizing: border-box; }
+        .form-control:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        .form-control.error { border-color: #ef4444; }
+        .login-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .login-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(37,99,235,0.3); }
+        .login-options { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 14px; }
+        .register-link { text-align: center; margin-top: 20px; font-size: 14px; color: #6b7280; }
+        .register-link a { color: #2563eb; text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-container">
+            <div class="login-header">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>Welcome Back</h1>
+                <p>Login to your DigiTech Academy account</p>
+            </div>
+
+            <div class="alert alert-success" id="successAlert">
+                <i class="fas fa-check-circle"></i> Registration successful! Please login.
+            </div>
+
+            <div class="alert alert-error" id="errorAlert">
+                <i class="fas fa-exclamation-circle"></i> <span id="errorMessage">Invalid credentials</span>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Username or Email</label>
+                    <input type="text" class="form-control" name="username" required placeholder="Enter your username or email">
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" required placeholder="Enter your password">
+                </div>
+
+                <div class="login-options">
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" name="remember"> Remember me
+                    </label>
+                    <a href="#" style="color: #2563eb; text-decoration: none;">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+
+                <div class="register-link">
+                    Don't have an account? <a href="courses.html">Browse courses to register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Check for registration success
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('registered') === 'true') {
+            document.getElementById('successAlert').classList.add('show');
+        }
+
+        // Login handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const usernameOrEmail = formData.get('username');
+            const password = formData.get('password');
+
+            // Get users from localStorage
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+
+            // Find user
+            const user = users.find(u => 
+                (u.username === usernameOrEmail || u.email === usernameOrEmail) && 
+                u.password === password
+            );
+
+            if (user) {
+                // Set session
+                sessionStorage.setItem('currentUser', JSON.stringify(user));
+                
+                // Redirect based on role
+                if (user.role === 'admin') {
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    window.location.href = 'candidate-dashboard.html';
+                }
+            } else {
+                document.getElementById('errorAlert').classList.add('show');
+                setTimeout(() => {
+                    document.getElementById('errorAlert').classList.remove('show');
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

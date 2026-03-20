@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | DigiTech Academy</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/academy.css">
+    <style>
+        .dashboard-header { background: linear-gradient(135deg, #0A2540 0%, #1e3a5f 100%); padding: 40px 0; color: white; }
+        .dashboard-welcome { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+        .user-avatar { width: 60px; height: 60px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; }
+        .welcome-text h1 { font-size: 28px; margin: 0 0 5px 0; }
+        .welcome-text p { margin: 0; opacity: 0.9; }
+        .logout-btn { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 8px 20px; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+        .logout-btn:hover { background: rgba(255,255,255,0.2); }
+        .dashboard-content { padding: 40px 0; }
+        .status-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+        .status-pending { background: #fef3c7; color: #92400e; }
+        .status-approved { background: #d1fae5; color: #065f46; }
+        .status-declined { background: #fee2e2; color: #991b1b; }
+        .info-card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 30px; margin-bottom: 30px; }
+        .info-card h2 { font-size: 20px; color: #0A2540; margin: 0 0 20px 0; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .info-item { padding: 15px; background: #f9fafb; border-radius: 8px; }
+        .info-item label { display: block; font-size: 12px; color: #6b7280; font-weight: 600; text-transform: uppercase; margin-bottom: 5px; }
+        .info-item .value { font-size: 15px; color: #111827; font-weight: 500; }
+        .course-card-dash { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px; }
+        .course-card-dash h3 { margin: 0 0 10px 0; font-size: 22px; }
+        .course-card-dash p { margin: 0; opacity: 0.9; }
+        @media (max-width: 768px) {
+            .dashboard-welcome { flex-direction: column; text-align: center; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar scrolled">
+        <div class="container">
+            <a href="../index.html" class="logo"><i class="fas fa-globe"></i><span>DigiTech<strong>Globals</strong></span></a>
+            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </nav>
+
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="dashboard-welcome">
+                <div class="user-avatar" id="userAvatar">CA</div>
+                <div class="welcome-text">
+                    <h1>Welcome, <span id="userName">Candidate</span>!</h1>
+                    <p>View your application status and profile</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard-content">
+        <div class="container">
+            <div class="course-card-dash" id="courseCard">
+                <h3><i class="fas fa-book-open"></i> <span id="courseName">Loading...</span></h3>
+                <p><span id="courseDuration"></span></p>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-file-alt"></i> Application Status</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Application ID</label>
+                        <div class="value" id="appId">-</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Status</label>
+                        <div class="value"><span id="appStatus" class="status-badge status-pending">Pending</span></div>
+                    </div>
+                    <div class="info-item">
+                        <label>Submitted Date</label>
+                        <div class="value" id="submittedDate">-</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Study Mode</label>
+                        <div class="value" id="studyMode">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-user"></i> Personal Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Full Name</label>
+                        <div class="value" id="fullName">-</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Email</label>
+                        <div class="value" id="email">-</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Phone</label>
+                        <div class="value" id="phone">-</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Date of Birth</label>
+                        <div class="value" id="dob">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-map-marker-alt"></i> Address</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Address</label>
+                        <div class="value" id="address">-</div>
+                    </div>
+                    <div class="info-item">
+                        <label>City</label>
+                        <div class="value" id="city">-</div>
+                    </div>
+                    <div class="info-item">
+                        <label>State</label>
+                        <div class="value" id="state">-</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Country</label>
+                        <div class="value" id="country">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-graduation-cap"></i> Education & Employment</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Education Level</label>
+                        <div class="value" id="education">-</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Employment Status</label>
+                        <div class="value" id="employment">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2><i class="fas fa-comment-alt"></i> Personal Statement</h2>
+                <div class="info-item">
+                    <div class="value" id="statement" style="line-height: 1.6;">-</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Check authentication
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
+        if (!currentUser || currentUser.role !== 'candidate') {
+            window.location.href = 'login.html';
+        }
+
+        // Load application data
+        const applications = JSON.parse(localStorage.getItem('applications') || '[]');
+        const userApp = applications.find(app => app.id === currentUser.applicationId);
+
+        if (userApp) {
+            // Update UI with user data
+            document.getElementById('userName').textContent = userApp.firstName;
+            document.getElementById('userAvatar').textContent = userApp.firstName.charAt(0) + userApp.lastName.charAt(0);
+            
+            document.getElementById('courseName').textContent = userApp.courseName;
+            document.getElementById('courseDuration').innerHTML = `<i class="fas fa-clock"></i> Application submitted on ${new Date(userApp.submittedAt).toLocaleDateString()}`;
+            
+            document.getElementById('appId').textContent = userApp.id;
+            document.getElementById('submittedDate').textContent = new Date(userApp.submittedAt).toLocaleDateString();
+            document.getElementById('studyMode').textContent = userApp.studyMode;
+            
+            const statusBadge = document.getElementById('appStatus');
+            statusBadge.textContent = userApp.status.charAt(0).toUpperCase() + userApp.status.slice(1);
+            statusBadge.className = 'status-badge status-' + userApp.status;
+            
+            document.getElementById('fullName').textContent = `${userApp.firstName} ${userApp.lastName}`;
+            document.getElementById('email').textContent = userApp.email;
+            document.getElementById('phone').textContent = userApp.phone;
+            document.getElementById('dob').textContent = new Date(userApp.dob).toLocaleDateString();
+            document.getElementById('address').textContent = userApp.address;
+            document.getElementById('city').textContent = userApp.city;
+            document.getElementById('state').textContent = userApp.state;
+            document.getElementById('country').textContent = userApp.country;
+            document.getElementById('education').textContent = userApp.education;
+            document.getElementById('employment').textContent = userApp.employment;
+            document.getElementById('statement').textContent = userApp.statement;
+        }
+
+        function logout() {
+            sessionStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
