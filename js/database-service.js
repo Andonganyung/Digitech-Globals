@@ -267,3 +267,8 @@ const DatabaseService = {
 
 // Export for use in other scripts
 window.DatabaseService = DatabaseService;
+
+// Certificate Management Functions
+async function createCertificate(certificateData) { try { const certsRef = collection(db, 'certificates'); const docRef = await addDoc(certsRef, { ...certificateData, createdAt: serverTimestamp() }); return { success: true, certificateId: docRef.id }; } catch (error) { console.error('Error creating certificate:', error); return { success: false, error: error.message }; } }
+async function getUserCertificates(userId) { try { const certsRef = collection(db, 'certificates'); const q = query(certsRef, where('userId', '==', userId)); const snapshot = await getDocs(q); return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })); } catch (error) { console.error('Error fetching certificates:', error); return []; } }
+async function verifyCertificate(certificateId) { try { const certsRef = collection(db, 'certificates'); const q = query(certsRef, where('certificateId', '==', certificateId)); const snapshot = await getDocs(q); if (snapshot.empty) return { valid: false, message: 'Certificate not found' }; const certData = snapshot.docs[0].data(); return { valid: true, certificate: certData, message: 'Certificate is valid' }; } catch (error) { return { valid: false, message: 'Verification failed' }; } }
