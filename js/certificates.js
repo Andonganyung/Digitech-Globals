@@ -28,14 +28,24 @@ const CertificateManager = {
     },
 
     async getUserCourses() {
-        // Mock enrolled courses with progress
-        // In production, fetch from Firestore applications collection
-        return [
-            { id: 'az-900', title: 'Microsoft Azure Fundamentals (AZ-900)', progress: 100, completedDate: '2026-03-15', lessons: 45, completedLessons: 45 },
-            { id: 'cybersec', title: 'Cybersecurity Essentials', progress: 100, completedDate: '2026-03-10', lessons: 60, completedLessons: 60 },
-            { id: 'intune', title: 'Microsoft Intune & Endpoint Management', progress: 75, completedDate: null, lessons: 50, completedLessons: 38 },
-            { id: 'networking', title: 'Networking Fundamentals', progress: 45, completedDate: null, lessons: 40, completedLessons: 18 }
-        ];
+        // Fetch real course progress from Firestore
+        if (!CourseCompletion) {
+            console.error('CourseCompletion not loaded');
+            return [];
+        }
+
+        const progressData = await CourseCompletion.getAllUserProgress(this.currentUser.uid);
+        
+        // Format for display
+        return progressData.map(p => ({
+            id: p.courseId,
+            title: p.courseTitle,
+            progress: p.progress || 0,
+            completedDate: p.completedDate,
+            lessons: p.totalLessons,
+            completedLessons: p.completedLessons,
+            status: p.status
+        }));
     },
 
     async getUserCertificates() {
@@ -48,15 +58,19 @@ const CertificateManager = {
     },
 
     getCertStatus(course) {
-        // Check if certificate already issued
+        // Check if certificate already issued for this specific course
         const existing = this.certificates.find(c => c.courseId === course.id);
         if (existing) return 'issued';
         
-        // Check if eligible (100% complete)
-        if (course.progress >= 100 && course.completedDate) return 'ready';
+        // Check if eligible for THIS SPECIFIC COURSE (100% complete)
+        if (course.progress >= 100 && course.completedDate && course.status === 'completed') {
+            return 'ready';
+        }
         
         // Check if in progress (50-99%)
-        if (course.progress >= 50) return 'in-progress';
+        if (course.progress >= 50 && course.progress < 100) {
+            return 'in-progress';
+        }
         
         // Not eligible
         return 'not-eligible';
@@ -148,7 +162,17 @@ const CertificateManager = {
 
     async generateCertificate(courseId) {
         const course = this.courses.find(c => c.id === courseId);
-        if (!course || this.getCertStatus(course) !== 'ready') return;
+        if (!course || this.getCertStatus(course) !== 'ready') {
+            alert('You are not eligible for this certificate yet. Please complete the course first.');
+            return;
+        }
+
+        // Double-check eligibility using CourseCompletion
+        const isEligible = await CourseCompletion.isCertificateEligible(this.currentUser.uid, courseId);
+        if (!isEligible) {
+            alert('Certificate eligibility check failed. Please ensure the course is 100% complete.');
+            return;
+        }
 
         try {
             const profile = await getUserProfile(this.currentUser.uid);
@@ -166,14 +190,14 @@ const CertificateManager = {
                 verificationToken: this.generateVerificationToken()
             };
 
-            // Save to Firestore
+            // Save to Firestore - ONE CERTIFICATE PER COURSE
             const certRef = await addDoc(collection(db, 'certificates'), certData);
             certData.id = certRef.id;
             
             this.certificates.push(certData);
             this.renderDashboard();
             
-            alert('Certificate generated successfully!');
+            alert(`Certificate for "${course.title}" generated successfully!`);
             this.previewCertificate(certRef.id);
         } catch (error) {
             console.error('Error generating certificate:', error);

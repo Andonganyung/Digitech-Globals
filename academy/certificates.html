@@ -16,6 +16,7 @@
     <script src="../js/firebase-config.js"></script>
     <script src="../js/auth-service.js"></script>
     <script src="../js/database-service.js"></script>
+    <script src="../js/course-completion.js"></script>
     <style>
         body { background: var(--dark); padding-top: 60px; }
         .cert-header { background: linear-gradient(135deg, #0A2540 0%, #1e3a5f 100%); padding: 60px 20px; text-align: center; color: white; }
@@ -88,16 +89,27 @@
     </style>
 </head>
 <body>
-    <nav class="navbar scrolled">
+    <nav class="navbar scrolled" id="navbar">
         <div class="container">
-            <a href="../index.html" class="logo"><i class="fas fa-globe"></i><span>DigiTech<strong>Globals</strong></span></a>
-            <ul class="nav-menu">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-globe"></i>
+                <span>DigiTech<strong>Globals</strong></span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="../index.html" class="nav-link">Home</a></li>
-                <li><a href="courses.html" class="nav-link">Courses</a></li>
-                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
-                <li><a href="certificates-new.html" class="nav-link active">Certificates</a></li>
+                <li class="nav-dropdown">
+                    <a href="index.html" class="nav-link active">DigiTech Academy <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html"><i class="fas fa-home"></i> Academy Home</a></li>
+                        <li><a href="courses.html"><i class="fas fa-book-open"></i> All Courses</a></li>
+                        <li><a href="plans.html"><i class="fas fa-crown"></i> Subscription Plans</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> My Dashboard</a></li>
+                        <li><a href="certificates.html" class="active"><i class="fas fa-certificate"></i> Certificates</a></li>
+                    </ul>
+                </li>
+                <li><a href="../contact.html" class="nav-link">Contact Us</a></li>
             </ul>
-            <button class="mobile-toggle"><span></span><span></span><span></span></button>
+            <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
