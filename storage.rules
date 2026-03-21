@@ -1,0 +1,52 @@
+// ============================================
+// FIREBASE STORAGE SECURITY RULES
+// ============================================
+// Deploy these rules to Firebase Console > Storage > Rules
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+             firestore.get(/databases/(default)/documents/userProfiles/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    function isValidFileSize() {
+      return request.resource.size <= 5 * 1024 * 1024; // 5MB max
+    }
+    
+    function isValidFileType() {
+      return request.resource.contentType.matches('application/pdf') ||
+             request.resource.contentType.matches('image/jpeg') ||
+             request.resource.contentType.matches('image/jpg') ||
+             request.resource.contentType.matches('image/png');
+    }
+    
+    // Documents folder - user uploaded application documents
+    match /documents/{userId}/{fileName} {
+      // Users can read their own documents, admins can read all
+      allow read: if isOwner(userId) || isAdmin();
+      
+      // Users can upload their own documents with validation
+      allow create: if isOwner(userId) && 
+                      isValidFileSize() && 
+                      isValidFileType();
+      
+      // Users can delete their own documents
+      allow delete: if isOwner(userId) || isAdmin();
+      
+      // No updates allowed (delete and re-upload instead)
+      allow update: if false;
+    }
+  }
+}

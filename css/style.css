@@ -59,6 +59,7 @@ body {
     line-height: 1.7;
     color: var(--text);
     background: var(--dark);
+    padding-top: 60px; /* Space for fixed navbar */
     overflow-x: hidden;
 }
 
@@ -79,14 +80,20 @@ img {
     height: auto;
 }
 
-/* Navigation */
+/* Navigation - FIXED at top (always visible) */
 .navbar {
     background: var(--dark);
     padding: 12px 0;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .navbar .container {
@@ -1956,10 +1963,11 @@ img {
     transform: translateY(-5px);
 }
 
-/* Navbar Scrolled State */
+/* Navbar Scrolled State - Enhanced shadow and background */
 .navbar.scrolled {
-    background: var(--dark);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    background: rgba(10, 37, 64, 0.98);
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* ==============================================
