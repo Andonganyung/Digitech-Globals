@@ -78,17 +78,6 @@
         </div>
     </div>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    
-    <!-- Firebase Configuration & Services -->
-    <script src="../js/firebase-config.js"></script>
-    <script src="../js/auth-service.js"></script>
-    <script src="../js/database-service.js"></script>
-    
-    <!-- Login Handler -->
-    <script src="../js/login.js"></script>
-</body>
-</html>
+    <!-- Firebase SDK -->`r`n    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>`r`n    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>`r`n    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>`r`n    `r`n    <!-- Firebase Configuration & Services -->`r`n    <script src="../js/firebase-config.js"></script>`r`n    <script src="../js/auth-service.js"></script>`r`n    <script src="../js/database-service.js"></script>`r`n    `r`n    <!-- Login Handler -->`r`n    <script src="../js/login.js"></script>`r`n</body>`r`n</html>
+
+

@@ -1,4 +1,7 @@
-// Course Registration Handler
+// ============================================
+// COURSE REGISTRATION WITH FIREBASE
+// ============================================
+
 const COURSES_DATA = {
     'it-support-fundamentals': { name: 'IT Support Fundamentals', duration: '15 Hours', price: '$49' },
     'helpdesk-pro': { name: 'Help Desk Professional Certification', duration: '20 Hours', price: '$79' },
@@ -17,6 +20,8 @@ const COURSES_DATA = {
     'ai-for-it-engineers': { name: 'AI for IT Engineers: Practical Automation', duration: '35 Hours', price: '$199' }
 };
 
+let uploadedDocument = null; // Store uploaded file temporarily
+
 // Get course from URL
 const urlParams = new URLSearchParams(window.location.search);
 const courseId = urlParams.get('course');
@@ -34,9 +39,26 @@ if (course) {
 
 // File upload handler
 document.getElementById('fileUpload').addEventListener('change', function(e) {
-    const fileName = e.target.files[0]?.name;
-    if (fileName) {
-        document.getElementById('fileName').innerHTML = `<i class="fas fa-file"></i> ${fileName}`;
+    const file = e.target.files[0];
+    if (file) {
+        // Validate file size and type
+        const maxSize = 5 * 1024 * 1024; // 5MB
+        const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+        
+        if (file.size > maxSize) {
+            alert('File size must be less than 5MB');
+            this.value = '';
+            return;
+        }
+        
+        if (!allowedTypes.includes(file.type)) {
+            alert('Only PDF, JPG, and PNG files are allowed');
+            this.value = '';
+            return;
+        }
+        
+        uploadedDocument = file;
+        document.getElementById('fileName').innerHTML = `<i class="fas fa-file"></i> ${file.name}`;
     }
 });
 
@@ -119,7 +141,7 @@ function validateForm(formData) {
     return isValid;
 }
 
-// Form submission
+// Form submission with Firebase
 document.getElementById('registrationForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -129,83 +151,108 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         return;
     }
 
-    // Prepare application data
-    const applicationData = {
-        courseId: formData.get('courseId'),
-        courseName: formData.get('course'),
-        firstName: formData.get('firstName'),
-        lastName: formData.get('lastName'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        address: formData.get('address'),
-        city: formData.get('city'),
-        state: formData.get('state'),
-        country: formData.get('country'),
-        dob: formData.get('dob'),
-        gender: formData.get('gender'),
-        education: formData.get('education'),
-        employment: formData.get('employment'),
-        studyMode: formData.get('studyMode'),
-        statement: formData.get('statement'),
-        username: formData.get('username'),
-        password: formData.get('password'),
-        role: 'candidate',
-        status: 'pending',
-        submittedAt: new Date().toISOString(),
-        document: formData.get('document')?.name || null
-    };
+    // Disable submit button to prevent double submission
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
-    // Save to localStorage (simulating backend)
-    const applications = JSON.parse(localStorage.getItem('applications') || '[]');
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    try {
+        const email = formData.get('email');
+        const password = formData.get('password');
 
-    // Check username uniqueness
-    if (users.find(u => u.username === applicationData.username)) {
-        const input = document.querySelector('[name="username"]');
-        input.classList.add('error');
-        input.nextElementSibling.textContent = 'Username already exists';
-        input.nextElementSibling.classList.add('show');
-        return;
+        // Step 1: Register user with Firebase Authentication
+        const user = await AuthService.registerUser(email, password);
+        console.log('User created:', user.uid);
+
+        // Step 2: Upload document if provided
+        let documentUrl = null;
+        let documentName = null;
+        if (uploadedDocument) {
+            try {
+                const uploadResult = await StorageService.uploadDocument(uploadedDocument, user.uid);
+                documentUrl = uploadResult.url;
+                documentName = uploadResult.name;
+                console.log('Document uploaded:', documentUrl);
+            } catch (uploadError) {
+                console.error('Document upload failed:', uploadError);
+                // Continue without document - it's optional
+            }
+        }
+
+        // Step 3: Prepare application data
+        const applicationData = {
+            courseId: formData.get('courseId'),
+            courseName: formData.get('course'),
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            email: email,
+            phone: formData.get('phone'),
+            address: formData.get('address'),
+            city: formData.get('city'),
+            state: formData.get('state'),
+            country: formData.get('country'),
+            dob: formData.get('dob'),
+            gender: formData.get('gender'),
+            education: formData.get('education'),
+            employment: formData.get('employment'),
+            studyMode: formData.get('studyMode'),
+            statement: formData.get('statement'),
+            documentUrl: documentUrl,
+            documentName: documentName
+        };
+
+        // Step 4: Create application in Firestore
+        const applicationId = await DatabaseService.createApplication(user.uid, applicationData);
+        console.log('Application created:', applicationId);
+
+        // Step 5: Create user profile in Firestore
+        await DatabaseService.createUserProfile(user.uid, {
+            email: email,
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            role: 'candidate',
+            applicationId: applicationId
+        });
+        console.log('User profile created');
+
+        // Step 6: Show success message
+        document.getElementById('successMessage').classList.add('show');
+        this.style.display = 'none';
+
+        // Step 7: Redirect to login after 2 seconds
+        setTimeout(() => {
+            window.location.href = 'login.html?registered=true';
+        }, 2000);
+
+    } catch (error) {
+        console.error('Registration error:', error);
+        
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+
+        // Show error message
+        let errorMessage = 'Registration failed. Please try again.';
+        if (error.message) {
+            errorMessage = error.message;
+        }
+
+        // Display error in UI
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message show';
+        errorDiv.style.cssText = 'background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ef4444;';
+        errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${errorMessage}`;
+        
+        const form = document.getElementById('registrationForm');
+        form.insertBefore(errorDiv, form.firstChild);
+        
+        // Scroll to error
+        errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Remove error after 5 seconds
+        setTimeout(() => {
+            errorDiv.remove();
+        }, 5000);
     }
-
-    // Check email uniqueness
-    if (users.find(u => u.email === applicationData.email)) {
-        const input = document.querySelector('[name="email"]');
-        input.classList.add('error');
-        input.nextElementSibling.textContent = 'Email already registered';
-        input.nextElementSibling.classList.add('show');
-        return;
-    }
-
-    // Generate application ID
-    applicationData.id = 'APP' + Date.now();
-
-    // Save application
-    applications.push(applicationData);
-    localStorage.setItem('applications', JSON.stringify(applications));
-
-    // Create user account
-    const userAccount = {
-        id: 'USER' + Date.now(),
-        username: applicationData.username,
-        email: applicationData.email,
-        password: applicationData.password, // In production, hash this
-        role: 'candidate',
-        firstName: applicationData.firstName,
-        lastName: applicationData.lastName,
-        applicationId: applicationData.id,
-        createdAt: new Date().toISOString()
-    };
-
-    users.push(userAccount);
-    localStorage.setItem('users', JSON.stringify(users));
-
-    // Show success message
-    document.getElementById('successMessage').classList.add('show');
-    this.style.display = 'none';
-
-    // Redirect to login after 2 seconds
-    setTimeout(() => {
-        window.location.href = 'login.html?registered=true';
-    }, 2000);
 });
