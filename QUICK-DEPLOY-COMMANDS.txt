@@ -1,0 +1,121 @@
+================================================================================
+  FIREBASE DEPLOYMENT - QUICK REFERENCE
+================================================================================
+
+STATUS: Firebase CLI Installed ✅
+NEXT: Login and Deploy
+
+================================================================================
+COMMANDS TO RUN (In Order):
+================================================================================
+
+1. LOGIN
+--------
+firebase login
+
+(Browser will open - sign in with Google account)
+
+
+2. NAVIGATE TO PROJECT
+----------------------
+cd C:\Users\Andong\Digitech-Globals
+
+
+3. INITIALIZE FIREBASE
+----------------------
+firebase init
+
+Select (use Space to check):
+  ✅ Firestore
+  ✅ Functions
+  ✅ Hosting
+  ✅ Storage
+
+Use existing project: digitech-globals-academy
+Firestore rules: firestore.rules
+Functions language: JavaScript
+Install dependencies: Yes
+Hosting directory: .
+Storage rules: storage.rules
+
+
+4. DEPLOY FIRESTORE RULES
+--------------------------
+firebase deploy --only firestore:rules
+
+
+5. DEPLOY STORAGE RULES
+------------------------
+firebase deploy --only storage:rules
+
+
+6. INSTALL FUNCTION DEPENDENCIES
+---------------------------------
+cd functions
+npm install
+cd ..
+
+
+7. DEPLOY CLOUD FUNCTIONS
+--------------------------
+firebase deploy --only functions
+
+(This takes 2-5 minutes)
+
+
+8. DEPLOY HOSTING
+------------------
+firebase deploy --only hosting
+
+
+9. CREATE ADMIN USER
+--------------------
+Firebase Console → Firestore → userProfiles
+Find your user → Edit → Change role to "admin"
+
+
+10. TEST
+--------
+- Register new user
+- Try XSS: <script>alert('test')</script>
+- Try weak password: password123
+- All should be blocked ✅
+
+================================================================================
+QUICK TROUBLESHOOTING
+================================================================================
+
+Problem: Not logged in
+→ firebase logout
+→ firebase login
+
+Problem: Wrong directory
+→ cd C:\Users\Andong\Digitech-Globals
+
+Problem: Functions fail
+→ cd functions
+→ npm install
+→ cd ..
+→ firebase deploy --only functions
+
+Problem: Need to check status
+→ firebase login:list
+→ firebase projects:list
+
+================================================================================
+FIREBASE CONSOLE LINKS
+================================================================================
+
+Main: https://console.firebase.google.com/
+Firestore: /firestore
+Functions: /functions
+Hosting: /hosting
+Auth: /authentication
+
+================================================================================
+
+✅ READY TO DEPLOY!
+
+Start with: firebase login
+
+================================================================================

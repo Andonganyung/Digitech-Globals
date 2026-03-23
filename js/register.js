@@ -141,7 +141,7 @@ function validateForm(formData) {
     return isValid;
 }
 
-// Form submission with Firebase
+// ✅ SECURE Form submission using Cloud Functions
 document.getElementById('registrationForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -164,6 +164,9 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         // Step 1: Register user with Firebase Authentication
         const user = await AuthService.registerUser(email, password);
         console.log('User created:', user.uid);
+        
+        // ✅ User profile is automatically created by Cloud Function!
+        // No client-side profile creation - prevents role manipulation
 
         // Step 2: Upload document if provided
         let documentUrl = null;
@@ -202,25 +205,17 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
             documentName: documentName
         };
 
-        // Step 4: Create application in Firestore
-        const applicationId = await DatabaseService.createApplication(user.uid, applicationData);
-        console.log('Application created:', applicationId);
+        // Step 4: ✅ SECURE - Call Cloud Function for server-side validation
+        const createApp = firebase.functions().httpsCallable('createApplication');
+        const result = await createApp(applicationData);
+        
+        console.log('Application created securely:', result.data.applicationId);
 
-        // Step 5: Create user profile in Firestore
-        await DatabaseService.createUserProfile(user.uid, {
-            email: email,
-            firstName: formData.get('firstName'),
-            lastName: formData.get('lastName'),
-            role: 'candidate',
-            applicationId: applicationId
-        });
-        console.log('User profile created');
-
-        // Step 6: Show success message
+        // Step 5: Show success message
         document.getElementById('successMessage').classList.add('show');
         this.style.display = 'none';
 
-        // Step 7: Redirect to login after 2 seconds
+        // Step 6: Redirect to login after 2 seconds
         setTimeout(() => {
             window.location.href = 'login.html?registered=true';
         }, 2000);
@@ -232,17 +227,24 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
 
-        // Show error message
+        // Show error message (sanitized)
         let errorMessage = 'Registration failed. Please try again.';
         if (error.message) {
-            errorMessage = error.message;
+            // ✅ Sanitize error message to prevent XSS
+            const tempDiv = document.createElement('div');
+            tempDiv.textContent = error.message;
+            errorMessage = tempDiv.innerHTML;
         }
 
         // Display error in UI
         const errorDiv = document.createElement('div');
         errorDiv.className = 'error-message show';
         errorDiv.style.cssText = 'background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ef4444;';
-        errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${errorMessage}`;
+        // ✅ Use textContent instead of innerHTML to prevent XSS
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-exclamation-circle';
+        errorDiv.appendChild(icon);
+        errorDiv.appendChild(document.createTextNode(' ' + errorMessage));
         
         const form = document.getElementById('registrationForm');
         form.insertBefore(errorDiv, form.firstChild);

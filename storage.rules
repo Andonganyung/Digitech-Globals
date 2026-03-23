@@ -1,52 +1,113 @@
-// ============================================
-// FIREBASE STORAGE SECURITY RULES
-// ============================================
-// Deploy these rules to Firebase Console > Storage > Rules
-
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
     
-    // Helper functions
-    function isAuthenticated() {
+    // ============================================
+    // HELPER FUNCTIONS
+    // ============================================
+    
+    // Check if user is authenticated
+    function isSignedIn() {
       return request.auth != null;
     }
     
-    function isOwner(userId) {
-      return isAuthenticated() && request.auth.uid == userId;
-    }
-    
+    // Check if user is admin
     function isAdmin() {
-      return isAuthenticated() && 
+      return isSignedIn() && 
              firestore.get(/databases/(default)/documents/userProfiles/$(request.auth.uid)).data.role == 'admin';
     }
     
-    function isValidFileSize() {
-      return request.resource.size <= 5 * 1024 * 1024; // 5MB max
+    // Validate file size (5MB max)
+    function isValidSize() {
+      return request.resource.size <= 5 * 1024 * 1024;
     }
     
-    function isValidFileType() {
-      return request.resource.contentType.matches('application/pdf') ||
-             request.resource.contentType.matches('image/jpeg') ||
-             request.resource.contentType.matches('image/jpg') ||
-             request.resource.contentType.matches('image/png');
+    // Validate file type (only images and PDFs)
+    function isValidType() {
+      return request.resource.contentType.matches('image/.*') 
+          || request.resource.contentType == 'application/pdf';
     }
     
-    // Documents folder - user uploaded application documents
+    // ============================================
+    // DOCUMENT UPLOADS (user applications)
+    // ============================================
     match /documents/{userId}/{fileName} {
-      // Users can read their own documents, admins can read all
-      allow read: if isOwner(userId) || isAdmin();
+      // Users can upload to their own folder only
+      allow write: if isSignedIn()
+                   && request.auth.uid == userId
+                   && isValidSize()
+                   && isValidType();
       
-      // Users can upload their own documents with validation
-      allow create: if isOwner(userId) && 
-                      isValidFileSize() && 
-                      isValidFileType();
+      // Users can read their own files, admins can read all
+      allow read: if isSignedIn() && (
+                     request.auth.uid == userId
+                     || isAdmin()
+                  );
       
-      // Users can delete their own documents
-      allow delete: if isOwner(userId) || isAdmin();
+      // Only owner can delete their files
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+    }
+    
+    // ============================================
+    // CERTIFICATES (generated PDFs)
+    // ============================================
+    match /certificates/{userId}/{certFileName} {
+      // Anyone can read (for verification)
+      allow read: if true;
       
-      // No updates allowed (delete and re-upload instead)
-      allow update: if false;
+      // Only admins can upload
+      allow write: if isAdmin()
+                   && isValidSize()
+                   && request.resource.contentType == 'application/pdf';
+      
+      // Only admins can delete
+      allow delete: if isAdmin();
+    }
+    
+    // ============================================
+    // COURSE MATERIALS (if used)
+    // ============================================
+    match /courses/{courseId}/{material} {
+      // Enrolled users and admins can read
+      allow read: if isSignedIn();
+      
+      // Only admins can upload
+      allow write, delete: if isAdmin();
+    }
+    
+    // ============================================
+    // PROFILE PICTURES (if used)
+    // ============================================
+    match /profilePictures/{userId}/{fileName} {
+      // User can upload their own picture
+      allow write: if isSignedIn()
+                   && request.auth.uid == userId
+                   && isValidSize()
+                   && request.resource.contentType.matches('image/.*');
+      
+      // Anyone can view profile pictures
+      allow read: if true;
+      
+      // Only owner can delete
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+    }
+    
+    // ============================================
+    // BLOG IMAGES (if used)
+    // ============================================
+    match /blog/{postId}/{fileName} {
+      // Everyone can read
+      allow read: if true;
+      
+      // Only admins can upload/delete
+      allow write, delete: if isAdmin();
+    }
+    
+    // ============================================
+    // DEFAULT: DENY ALL
+    // ============================================
+    match /{allPaths=**} {
+      allow read, write: if false;
     }
   }
 }
