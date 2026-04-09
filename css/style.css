@@ -114,6 +114,9 @@ img {
 .logo i {
     font-size: 22px;
     color: var(--accent);
+    display: inline-block;
+    min-width: 22px;
+    text-align: center;
 }
 
 .logo strong {
