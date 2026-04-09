@@ -1,2 +1,0 @@
-# Digitech-Globals
-Website 
