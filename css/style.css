@@ -121,6 +121,12 @@ img {
     font-style: normal;
 }
 
+.logo img.logo-icon {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
+}
+
 .logo strong {
     color: var(--accent);
 }
