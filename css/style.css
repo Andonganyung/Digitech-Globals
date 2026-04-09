@@ -131,6 +131,20 @@ img {
     color: var(--accent);
 }
 
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    line-height: 1;
+}
+
+.logo-tagline {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
