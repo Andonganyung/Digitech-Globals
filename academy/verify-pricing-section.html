@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify Pricing Section</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; }
+        h1 { color: #0A2540; }
+        .pricing-options { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .pricing-card { border: 2px solid #d1d5db; padding: 20px; border-radius: 8px; cursor: pointer; }
+        .pricing-card:hover { border-color: #2563eb; background: #f8fafc; }
+        .price { font-size: 32px; font-weight: 700; color: #2563eb; margin-top: 10px; }
+        .test-result { padding: 15px; margin: 20px 0; border-radius: 6px; }
+        .success { background: #10b981; color: white; }
+        .error { background: #ef4444; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Pricing Section Verification Test</h1>
+        
+        <div id="testResult" class="test-result"></div>
+        
+        <h2>Course: <span id="courseName">Loading...</span></h2>
+        
+        <h3>Select Training Option:</h3>
+        <div class="pricing-options">
+            <div class="pricing-card">
+                <div style="font-weight: 600; margin-bottom: 5px;">Online Self-Study</div>
+                <div style="font-size: 14px; color: #666; margin-bottom: 10px;">Learn at your own pace</div>
+                <div class="price" id="selfStudyPrice">$99</div>
+            </div>
+            
+            <div class="pricing-card">
+                <div style="font-weight: 600; margin-bottom: 5px;">Class-Based Instructor-Led</div>
+                <div style="font-size: 14px; color: #666; margin-bottom: 10px;">Live guided training</div>
+                <div class="price" id="instructorLedPrice">$1,195</div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #f0f9ff; border-radius: 6px;">
+            <h3>Test Results:</h3>
+            <ul id="results"></ul>
+        </div>
+    </div>
+
+    <script src="../js/course-pricing.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('course') || 'python-it';
+        const results = document.getElementById('results');
+        const testResult = document.getElementById('testResult');
+        
+        // Test 1: Check if getCoursePricing exists
+        let allPassed = true;
+        if (typeof getCoursePricing === 'function') {
+            results.innerHTML += '<li>✅ course-pricing.js loaded successfully</li>';
+        } else {
+            results.innerHTML += '<li>❌ course-pricing.js NOT loaded</li>';
+            allPassed = false;
+        }
+        
+        // Test 2: Get pricing data
+        try {
+            const pricing = getCoursePricing(courseId);
+            results.innerHTML += `<li>✅ Got pricing for ${courseId}: Self-Study=$${pricing.selfStudy}, Instructor-Led=$${pricing.instructorLed}</li>`;
+            
+            // Test 3: Update DOM
+            document.getElementById('courseName').textContent = courseId;
+            document.getElementById('selfStudyPrice').textContent = '$' + pricing.selfStudy;
+            document.getElementById('instructorLedPrice').textContent = '$' + pricing.instructorLed;
+            results.innerHTML += '<li>✅ Prices updated in DOM</li>';
+            
+            // Test 4: Verify elements exist
+            if (document.getElementById('selfStudyPrice') && document.getElementById('instructorLedPrice')) {
+                results.innerHTML += '<li>✅ Both price elements exist</li>';
+            }
+            
+        } catch(e) {
+            results.innerHTML += '<li>❌ Error: ' + e.message + '</li>';
+            allPassed = false;
+        }
+        
+        if (allPassed) {
+            testResult.className = 'test-result success';
+            testResult.innerHTML = '<strong>✅ ALL TESTS PASSED!</strong> Pricing system is working correctly.';
+        } else {
+            testResult.className = 'test-result error';
+            testResult.innerHTML = '<strong>❌ TESTS FAILED!</strong> There are issues with the pricing system.';
+        }
+    </script>
+</body>
+</html>

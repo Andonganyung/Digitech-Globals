@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Pricing Update</title>
+</head>
+<body>
+    <h1>Test Course Pricing Update</h1>
+    
+    <p>Course: <span id="courseId"></span></p>
+    <p>Self-Study Price: <span id="selfStudyPrice">$99</span></p>
+    <p>Instructor-Led Price: <span id="instructorLedPrice">$1,195</span></p>
+    
+    <script src="../js/course-pricing.js"></script>
+    <script>
+        // Test script
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('course') || 'it-support-fundamentals';
+        
+        console.log('Course ID from URL:', courseId);
+        
+        document.getElementById('courseId').textContent = courseId;
+        
+        if (typeof getCoursePricing === 'function') {
+            const pricing = getCoursePricing(courseId);
+            console.log('Pricing data:', pricing);
+            
+            document.getElementById('selfStudyPrice').textContent = '$' + pricing.selfStudy;
+            document.getElementById('instructorLedPrice').textContent = '$' + pricing.instructorLed;
+            
+            console.log('Updated prices successfully!');
+        } else {
+            console.error('getCoursePricing function not found!');
+        }
+    </script>
+</body>
+</html>

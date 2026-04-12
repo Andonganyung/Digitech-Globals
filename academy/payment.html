@@ -77,6 +77,15 @@
     <script src="../js/firebase-config.js"></script>
     
     <script>
+    // ============================================
+    // FIREBASE FUNCTION URL - DYNAMIC PRICING
+    // ============================================
+    const FIREBASE_FUNCTION_URL = 'https://us-central1-digitech-globals-academy.cloudfunctions.net/createCheckoutSession';
+    // ============================================
+    
+    // Initialize Stripe
+    const stripe = Stripe('pk_live_51TLPcpDJaxA7K4rBFPJx9z1GiUZwaoUl4yO39tIacQfEpwLMJTLhQLCzm06Wf02J27Kcy1RkLHJWzqaVkDggLqTg00cYmOTvKD');
+    
     const urlParams = new URLSearchParams(window.location.search);
     const amount = parseFloat(urlParams.get('amount'));
     const courseId = urlParams.get('course');
@@ -95,38 +104,54 @@
             if (paymentMethod === 'card') {
                 const registrationData = JSON.parse(sessionStorage.getItem('pendingRegistration'));
                 
-                // For now, redirect to contact for Stripe setup
-                // Once you create products in Stripe Dashboard, we'll use Payment Links
-                const message = `STRIPE PAYMENT READY!\n\n` +
-                    `Your Stripe account is connected.\n\n` +
-                    `To complete setup:\n` +
-                    `1. Go to dashboard.stripe.com/products\n` +
-                    `2. Create products for each course\n` +
-                    `3. I'll integrate the payment links\n\n` +
-                    `For now, please email to complete payment:\n` +
-                    `billing@digitechglobals.com\n\n` +
-                    `Course: ${courseId}\n` +
-                    `Amount: $${amount}\n` +
-                    `Student: ${registrationData.email}`;
+                // Call Firebase Function to create Stripe Checkout Session with dynamic pricing
+                const response = await fetch(FIREBASE_FUNCTION_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        amount: Math.round(amount * 100), // Convert to cents
+                        courseId: courseId,
+                        customerEmail: registrationData.email,
+                        customerName: `${registrationData.firstName} ${registrationData.lastName}`,
+                        registrationData: registrationData
+                    })
+                });
                 
-                alert(message);
+                if (!response.ok) {
+                    throw new Error('Failed to create checkout session');
+                }
                 
-                // Store payment intent
+                const session = await response.json();
+                
+                // Store payment data for success page
                 sessionStorage.setItem('paymentPending', JSON.stringify({
-                    courseId, amount, email, 
+                    courseId, 
+                    amount, 
+                    email: registrationData.email,
+                    firstName: registrationData.firstName,
+                    lastName: registrationData.lastName,
+                    trainingMode: registrationData.trainingMode,
                     timestamp: new Date().toISOString()
                 }));
                 
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                // Redirect to Stripe Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id
+                });
+                
+                if (result.error) {
+                    throw new Error(result.error.message);
+                }
                 
             } else if (paymentMethod === 'paypal') {
-                alert('PayPal: Contact info@digitechglobals.com\n\nCourse: ' + courseId + '\nAmount: $' + amount);
+                alert('PayPal payment option is coming soon.\n\nFor now, please contact:\nbilling@digitechglobals.com\n\nCourse: ' + courseId + '\nAmount: $' + amount);
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
                 
             } else if (paymentMethod === 'bank') {
-                alert('Bank Transfer: Contact billing@digitechglobals.com\n\nCourse: ' + courseId + '\nAmount: $' + amount);
+                alert('Bank Transfer Details:\n\nContact billing@digitechglobals.com for bank transfer instructions.\n\nCourse: ' + courseId + '\nAmount: $' + amount);
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
             }
