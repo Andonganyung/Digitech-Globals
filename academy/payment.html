@@ -93,32 +93,47 @@
         
         try {
             if (paymentMethod === 'card') {
-                // Display payment instructions
-                alert('PAYMENT SETUP REQUIRED\n\nTo accept real payments:\n1. Create Stripe account at dashboard.stripe.com\n2. Get your API keys\n3. Follow STRIPE_SETUP_INSTRUCTIONS.md\n\nFor now, this will simulate a successful payment for testing.');
+                const registrationData = JSON.parse(sessionStorage.getItem('pendingRegistration'));
                 
-                // Simulate payment delay
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                // For now, redirect to contact for Stripe setup
+                // Once you create products in Stripe Dashboard, we'll use Payment Links
+                const message = `STRIPE PAYMENT READY!\n\n` +
+                    `Your Stripe account is connected.\n\n` +
+                    `To complete setup:\n` +
+                    `1. Go to dashboard.stripe.com/products\n` +
+                    `2. Create products for each course\n` +
+                    `3. I'll integrate the payment links\n\n` +
+                    `For now, please email to complete payment:\n` +
+                    `billing@digitechglobals.com\n\n` +
+                    `Course: ${courseId}\n` +
+                    `Amount: $${amount}\n` +
+                    `Student: ${registrationData.email}`;
                 
-                // Generate mock session ID
-                const mockSessionId = 'cs_test_' + Date.now();
+                alert(message);
                 
-                // Redirect to success page
-                window.location.href = `payment-success.html?session_id=${mockSessionId}`;
+                // Store payment intent
+                sessionStorage.setItem('paymentPending', JSON.stringify({
+                    courseId, amount, email, 
+                    timestamp: new Date().toISOString()
+                }));
+                
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
                 
             } else if (paymentMethod === 'paypal') {
-                alert('PayPal: Please contact info@digitechglobals.com to complete payment via PayPal.');
+                alert('PayPal: Contact info@digitechglobals.com\n\nCourse: ' + courseId + '\nAmount: $' + amount);
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
                 
             } else if (paymentMethod === 'bank') {
-                alert('Bank Transfer Details:\n\nBank: [Your Bank Name]\nAccount: [Your Account Number]\nRouting: [Your Routing Number]\n\nReference: Course Enrollment - ' + courseId + '\n\nEmail proof of payment to: billing@digitechglobals.com');
+                alert('Bank Transfer: Contact billing@digitechglobals.com\n\nCourse: ' + courseId + '\nAmount: $' + amount);
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
             }
             
         } catch (error) {
             console.error('Payment error:', error);
-            alert('Payment failed: ' + error.message);
+            alert('Error: ' + error.message);
             btn.disabled = false;
             btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
         }
