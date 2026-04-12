@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful | DigiTech Academy</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body { background: #0A2540; font-family: Poppins, sans-serif; }
+        .success-container { max-width: 700px; margin: 80px auto; padding: 60px 40px; background: white; border-radius: 12px; text-align: center; }
+        .success-icon { font-size: 80px; color: #10b981; margin-bottom: 20px; }
+        .success-container h1 { color: #0A2540; font-size: 32px; margin-bottom: 15px; }
+        .success-container p { color: #6b7280; font-size: 16px; margin-bottom: 30px; }
+        .order-details { background: #f8f9fa; padding: 30px; border-radius: 8px; margin: 30px 0; text-align: left; }
+        .detail-row { display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #e5e7eb; }
+        .detail-row:last-child { border-bottom: none; margin-bottom: 0; }
+        .detail-label { color: #6b7280; }
+        .detail-value { font-weight: 600; color: #0A2540; }
+        .action-buttons { display: flex; gap: 15px; margin-top: 30px; }
+        .btn { flex: 1; padding: 14px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; text-align: center; }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-secondary { background: #f3f4f6; color: #374151; }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1>Payment Successful!</h1>
+        <p>Thank you for enrolling. Your course access has been activated.</p>
+        
+        <div class="order-details">
+            <h3 style="margin-bottom: 20px; color: #0A2540;">Order Confirmation</h3>
+            <div class="detail-row">
+                <span class="detail-label">Course:</span>
+                <span class="detail-value" id="courseName">-</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Training Mode:</span>
+                <span class="detail-value" id="trainingMode">-</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Student Email:</span>
+                <span class="detail-value" id="studentEmail">-</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Amount Paid:</span>
+                <span class="detail-value" id="amountPaid" style="color: #10b981; font-size: 20px;">-</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Order Date:</span>
+                <span class="detail-value" id="orderDate">-</span>
+            </div>
+        </div>
+        
+        <div style="background: #eff6ff; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #2563eb;">
+            <p style="margin: 0; color: #1e40af; font-size: 14px;">
+                <i class="fas fa-info-circle"></i> A confirmation email has been sent to your registered email address with login credentials and course access details.
+            </p>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="dashboard.html" class="btn btn-primary">
+                <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+            </a>
+            <a href="courses.html" class="btn btn-secondary">
+                <i class="fas fa-book-open"></i> Browse Courses
+            </a>
+        </div>
+    </div>
+    
+    <script>
+    const registrationData = JSON.parse(sessionStorage.getItem('pendingRegistration'));
+    const paymentData = JSON.parse(sessionStorage.getItem('paymentComplete'));
+    
+    if (registrationData && paymentData) {
+        const courseName = paymentData.courseId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        document.getElementById('courseName').textContent = courseName;
+        document.getElementById('trainingMode').textContent = registrationData.trainingMode === 'self-study' ? 'Online Self-Study' : 'Class-Based Instructor-Led';
+        document.getElementById('studentEmail').textContent = registrationData.email;
+        document.getElementById('amountPaid').textContent = '$' + paymentData.amount;
+        document.getElementById('orderDate').textContent = new Date(paymentData.timestamp).toLocaleDateString('en-US', { 
+            year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+        });
+        
+        // Clear session storage
+        setTimeout(() => {
+            sessionStorage.removeItem('pendingRegistration');
+            sessionStorage.removeItem('paymentComplete');
+        }, 5000);
+    }
+    </script>
+</body>
+</html>

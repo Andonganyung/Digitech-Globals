@@ -51,37 +51,42 @@
     </div>
     
     <script>
-    const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY'); // Replace with actual key
     const urlParams = new URLSearchParams(window.location.search);
     const courseId = urlParams.get('course');
     const mode = urlParams.get('mode');
     const amount = parseFloat(urlParams.get('amount'));
+    const registrationData = JSON.parse(sessionStorage.getItem('pendingRegistration'));
     
-    document.getElementById('courseName').textContent = courseId.replace(/-/g, ' ').toUpperCase();
+    // Display order summary
+    const courseName = courseId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    document.getElementById('courseName').textContent = courseName;
     document.getElementById('trainingMode').textContent = mode === 'self-study' ? 'Online Self-Study' : 'Class-Based Instructor-Led';
     document.getElementById('totalAmount').textContent = '$' + amount;
     
+    // Handle checkout button click
     document.getElementById('checkoutBtn').addEventListener('click', async () => {
-        const registrationData = JSON.parse(sessionStorage.getItem('pendingRegistration'));
+        const btn = document.getElementById('checkoutBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
         
-        // Call backend to create Stripe checkout session
-        const response = await fetch('/api/create-checkout-session', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
+        try {
+            // Save order to Firestore
+            await firebase.firestore().collection('orders').add({
+                ...registrationData,
                 courseId,
                 trainingMode: mode,
                 amount,
-                customerEmail: registrationData.email,
-                customerName: registrationData.firstName + ' ' + registrationData.lastName
-            })
-        });
-        
-        const session = await response.json();
-        const result = await stripe.redirectToCheckout({ sessionId: session.id });
-        
-        if (result.error) {
-            alert(result.error.message);
+                status: 'pending_payment',
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            
+            // Redirect to payment page
+            window.location.href = `payment.html?course=${courseId}&amount=${amount}&email=${registrationData.email}`;
+            
+        } catch (error) {
+            console.error('Order creation failed:', error);
+            // If Firestore fails, still proceed to payment
+            window.location.href = `payment.html?course=${courseId}&amount=${amount}&email=${registrationData.email}`;
         }
     });
     </script>
