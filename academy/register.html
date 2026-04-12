@@ -192,8 +192,37 @@
                     <h3><i class="fas fa-book"></i> Course Preferences</h3>
                     <div class="form-group">
                         <label>Course Applying For <span class="required">*</span></label>
-                        <input type="text" class="form-control" name="course" id="courseInput" readonly required>
-                        <input type="hidden" name="courseId" id="courseIdInput">
+                        <select class="form-control" name="course" id="courseSelect" required>
+                            <option value="">Select a course</option>
+                            <option value="it-support-fundamentals">IT Support Fundamentals</option>
+                            <option value="helpdesk-pro">Help Desk Professional Certification</option>
+                            <option value="enterprise-desktop-engineer">Enterprise Desktop Engineer</option>
+                            <option value="az-900">Microsoft Azure Fundamentals (AZ-900)</option>
+                            <option value="az-104">Azure Administrator (AZ-104)</option>
+                            <option value="cybersec-essentials">Cybersecurity Essentials</option>
+                            <option value="security-plus">CompTIA Security+ Prep</option>
+                            <option value="ms-900">Microsoft 365 Fundamentals (MS-900)</option>
+                            <option value="intune-endpoint">Microsoft Intune & Endpoint Management</option>
+                            <option value="sccm-intune-endpoint">Enterprise Endpoint Management with SCCM & Intune</option>
+                            <option value="networking-fundamentals">Networking Fundamentals</option>
+                            <option value="ccna-prep">Cisco CCNA Preparation</option>
+                            <option value="powershell-it">PowerShell for IT Professionals</option>
+                            <option value="python-it">Python for IT Automation</option>
+                            <option value="ai-for-it-engineers">AI for IT Engineers: Practical Automation</option>
+                            <option value="computer-basics">Computer Basics for Beginners</option>
+                            <option value="windows-basics">Windows 10/11 Fundamentals</option>
+                            <option value="internet-safety">Internet Safety & Security</option>
+                            <option value="ms-excel">Microsoft Excel Essentials</option>
+                            <option value="ms-word">Microsoft Word Essentials</option>
+                            <option value="ms-powerpoint">Microsoft PowerPoint Essentials</option>
+                            <option value="ms-outlook">Microsoft Outlook Essentials</option>
+                            <option value="windows-power">Windows Power User</option>
+                            <option value="digital-marketing">Digital Marketing Fundamentals</option>
+                            <option value="entrepreneurship">Entrepreneurship Essentials</option>
+                            <option value="leadership">Leadership & Management</option>
+                            <option value="email-social">Email & Social Media Marketing</option>
+                        </select>
+                        <div class="error-message">Please select a course</div>
                     </div>
                     <div class="form-group">
                         <label>Preferred Study Mode <span class="required">*</span></label>

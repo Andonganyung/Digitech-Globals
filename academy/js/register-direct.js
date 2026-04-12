@@ -43,9 +43,8 @@ if (courseData) {
     document.getElementById('selfStudyPrice').textContent = '$' + pricing.selfStudy;
     document.getElementById('instructorLedPrice').textContent = '$' + pricing.instructorLed;
     
-    // Auto-fill course input fields
-    document.getElementById('courseInput').value = courseData.name;
-    document.getElementById('courseIdInput').value = courseId;
+    // Auto-select course in dropdown
+    document.getElementById('courseSelect').value = courseId;
 } else {
     document.getElementById('courseInfoCard').innerHTML = '<h3>Course not found</h3><p>Please select a course from the catalog</p>';
 }
@@ -64,10 +63,9 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         const password = formData.get('password');
         const trainingMode = document.querySelector('input[name="trainingMode"]:checked').value;
         
-        // Get pricing
-        const urlParams = new URLSearchParams(window.location.search);
-        const courseId = urlParams.get('course');
-        const pricing = getCoursePricing(courseId);
+        // Get pricing from selected course
+        const selectedCourseId = document.getElementById('courseSelect').value;
+        const pricing = getCoursePricing(selectedCourseId);
         const amount = trainingMode === 'self-study' ? pricing.selfStudy : pricing.instructorLed;
 
         // Create user account
@@ -77,7 +75,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         // Save registration data to Firestore
         await firebase.firestore().collection('registrations').add({
             uid: user.uid,
-            courseId: courseId,
+            courseId: selectedCourseId,
             trainingMode: trainingMode,
             amount: amount,
             firstName: formData.get('firstName'),
@@ -100,7 +98,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
 
         // Store data for checkout
         sessionStorage.setItem('pendingRegistration', JSON.stringify({
-            courseId, trainingMode, amount,
+            courseId: selectedCourseId, trainingMode, amount,
             firstName: formData.get('firstName'),
             lastName: formData.get('lastName'),
             email: email,
@@ -108,7 +106,7 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         }));
 
         // Redirect to checkout
-        window.location.href = `checkout.html?course=${courseId}&mode=${trainingMode}&amount=${amount}`;
+        window.location.href = `checkout.html?course=${selectedCourseId}&mode=${trainingMode}&amount=${amount}`;
 
     } catch (error) {
         console.error('Registration error:', error);
