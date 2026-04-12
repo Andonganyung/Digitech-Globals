@@ -1,0 +1,100 @@
+<!-- This is the NEW payment.html code that uses Firebase Functions for dynamic pricing -->
+<!-- Replace the <script> section in payment.html with this after deploying Firebase Functions -->
+
+<script>
+    // ============================================
+    // FIREBASE FUNCTION URL - UPDATE AFTER DEPLOYMENT
+    // ============================================
+    const FIREBASE_FUNCTION_URL = 'REPLACE_WITH_YOUR_FUNCTION_URL';
+    // Example: 'https://us-central1-digitech-globals-academy.cloudfunctions.net/createCheckoutSession'
+    // ============================================
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const amount = parseFloat(urlParams.get('amount'));
+    const courseId = urlParams.get('course');
+    const email = urlParams.get('email');
+    
+    document.getElementById('amount').textContent = '$' + amount;
+    
+    // Initialize Stripe
+    const stripe = Stripe('pk_live_51TLPcpDJaxA7K4rBFPJx9z1GiUZwaoUl4yO39tIacQfEpwLMJTLhQLCzm06Wf02J27Kcy1RkLHJWzqaVkDggLqTg00cYmOTvKD');
+    
+    document.getElementById('payBtn').addEventListener('click', async () => {
+        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+        const btn = document.getElementById('payBtn');
+        
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Payment...';
+        
+        try {
+            if (paymentMethod === 'card') {
+                const registrationData = JSON.parse(sessionStorage.getItem('pendingRegistration'));
+                
+                // Check if Firebase Function is configured
+                if (FIREBASE_FUNCTION_URL.includes('REPLACE_WITH')) {
+                    alert('Payment system is being configured. Please contact billing@digitechglobals.com to complete your enrollment.');
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                    return;
+                }
+                
+                // Call Firebase Function to create Stripe Checkout Session
+                const response = await fetch(FIREBASE_FUNCTION_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        amount: Math.round(amount * 100), // Convert to cents
+                        courseId: courseId,
+                        customerEmail: registrationData.email,
+                        customerName: `${registrationData.firstName} ${registrationData.lastName}`,
+                        registrationData: registrationData
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to create checkout session');
+                }
+                
+                const session = await response.json();
+                
+                // Store payment data for success page
+                sessionStorage.setItem('paymentPending', JSON.stringify({
+                    courseId, 
+                    amount, 
+                    email: registrationData.email,
+                    firstName: registrationData.firstName,
+                    lastName: registrationData.lastName,
+                    trainingMode: registrationData.trainingMode,
+                    timestamp: new Date().toISOString()
+                }));
+                
+                // Redirect to Stripe Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id
+                });
+                
+                if (result.error) {
+                    throw new Error(result.error.message);
+                }
+                
+            } else if (paymentMethod === 'paypal') {
+                alert('PayPal payment option is coming soon.\n\nFor now, please contact:\nbilling@digitechglobals.com\n\nCourse: ' + courseId + '\nAmount: $' + amount);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+                
+            } else if (paymentMethod === 'bank') {
+                alert('Bank Transfer Details:\n\nContact billing@digitechglobals.com for bank transfer instructions.\n\nCourse: ' + courseId + '\nAmount: $' + amount);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+            }
+            
+        } catch (error) {
+            console.error('Payment error:', error);
+            alert('Payment Error: ' + error.message + '\n\nPlease try again or contact support.');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
+        }
+    });
+</script>
