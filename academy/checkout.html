@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | DigiTech Academy</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="../js/course-pricing.js"></script>
+    <style>
+        body { background: #0A2540; font-family: Poppins, sans-serif; }
+        .checkout-container { max-width: 900px; margin: 80px auto; padding: 40px; background: white; border-radius: 12px; }
+        .checkout-header { text-align: center; margin-bottom: 30px; }
+        .checkout-header h1 { color: #0A2540; font-size: 28px; margin-bottom: 10px; }
+        .order-summary { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .order-item { display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e5e7eb; }
+        .order-item:last-child { border-bottom: none; margin-bottom: 0; }
+        .order-total { font-size: 24px; font-weight: 700; color: #0A2540; margin-top: 15px; }
+        .payment-btn { width: 100%; padding: 16px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; }
+        .payment-btn:hover { background: #1d4ed8; }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h1>Complete Your Purchase</h1>
+            <p>Secure payment powered by Stripe</p>
+        </div>
+        
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div class="order-item">
+                <span>Course:</span>
+                <strong id="courseName">Loading...</strong>
+            </div>
+            <div class="order-item">
+                <span>Training Mode:</span>
+                <strong id="trainingMode">-</strong>
+            </div>
+            <div class="order-item order-total">
+                <span>Total:</span>
+                <span id="totalAmount">$0</span>
+            </div>
+        </div>
+        
+        <button id="checkoutBtn" class="payment-btn">
+            <i class="fas fa-lock"></i> Proceed to Secure Payment
+        </button>
+    </div>
+    
+    <script>
+    const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY'); // Replace with actual key
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseId = urlParams.get('course');
+    const mode = urlParams.get('mode');
+    const amount = parseFloat(urlParams.get('amount'));
+    
+    document.getElementById('courseName').textContent = courseId.replace(/-/g, ' ').toUpperCase();
+    document.getElementById('trainingMode').textContent = mode === 'self-study' ? 'Online Self-Study' : 'Class-Based Instructor-Led';
+    document.getElementById('totalAmount').textContent = '$' + amount;
+    
+    document.getElementById('checkoutBtn').addEventListener('click', async () => {
+        const registrationData = JSON.parse(sessionStorage.getItem('pendingRegistration'));
+        
+        // Call backend to create Stripe checkout session
+        const response = await fetch('/api/create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                courseId,
+                trainingMode: mode,
+                amount,
+                customerEmail: registrationData.email,
+                customerName: registrationData.firstName + ' ' + registrationData.lastName
+            })
+        });
+        
+        const session = await response.json();
+        const result = await stripe.redirectToCheckout({ sessionId: session.id });
+        
+        if (result.error) {
+            alert(result.error.message);
+        }
+    });
+    </script>
+</body>
+</html>
