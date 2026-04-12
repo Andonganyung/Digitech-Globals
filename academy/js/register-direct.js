@@ -42,6 +42,10 @@ if (courseData) {
     document.getElementById('courseDetails').textContent = `${courseData.duration} • Self-Study: $${pricing.selfStudy} • Instructor-Led: $${pricing.instructorLed}`;
     document.getElementById('selfStudyPrice').textContent = '$' + pricing.selfStudy;
     document.getElementById('instructorLedPrice').textContent = '$' + pricing.instructorLed;
+    
+    // Auto-fill course input fields
+    document.getElementById('courseInput').value = courseData.name;
+    document.getElementById('courseIdInput').value = courseId;
 } else {
     document.getElementById('courseInfoCard').innerHTML = '<h3>Course not found</h3><p>Please select a course from the catalog</p>';
 }
