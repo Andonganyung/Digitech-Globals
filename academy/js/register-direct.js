@@ -72,8 +72,13 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
 
-        // Save registration data to Firestore
-        await firebase.firestore().collection('registrations').add({
+        // Update user profile
+        await user.updateProfile({
+            displayName: formData.get('firstName') + ' ' + formData.get('lastName')
+        });
+
+        // Store complete registration data for checkout
+        sessionStorage.setItem('pendingRegistration', JSON.stringify({
             uid: user.uid,
             courseId: selectedCourseId,
             trainingMode: trainingMode,
@@ -92,21 +97,16 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
             employment: formData.get('employment'),
             studyMode: formData.get('studyMode'),
             statement: formData.get('statement'),
-            status: 'pending',
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-
-        // Store data for checkout
-        sessionStorage.setItem('pendingRegistration', JSON.stringify({
-            courseId: selectedCourseId, trainingMode, amount,
-            firstName: formData.get('firstName'),
-            lastName: formData.get('lastName'),
-            email: email,
-            phone: formData.get('phone')
+            registeredAt: new Date().toISOString()
         }));
 
-        // Redirect to checkout
-        window.location.href = `checkout.html?course=${selectedCourseId}&mode=${trainingMode}&amount=${amount}`;
+        // Show success and redirect to checkout
+        document.getElementById('successMessage').textContent = '✓ Account created! Redirecting to payment...';
+        document.getElementById('successMessage').classList.add('show');
+
+        setTimeout(() => {
+            window.location.href = `checkout.html?course=${selectedCourseId}&mode=${trainingMode}&amount=${amount}`;
+        }, 1500);
 
     } catch (error) {
         console.error('Registration error:', error);
