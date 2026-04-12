@@ -64,35 +64,74 @@
         </div>
         
         <div class="action-buttons">
-            <a href="dashboard.html" class="btn btn-primary">
-                <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+            <button id="downloadReceipt" class="btn btn-secondary" style="flex: none; margin-bottom: 15px;">
+                <i class="fas fa-download"></i> Download Receipt
+            </button>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="index.html" class="btn btn-primary">
+                <i class="fas fa-home"></i> Go to Academy Home
             </a>
             <a href="courses.html" class="btn btn-secondary">
-                <i class="fas fa-book-open"></i> Browse Courses
+                <i class="fas fa-book-open"></i> Browse More Courses
             </a>
         </div>
     </div>
     
     <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
     const registrationData = JSON.parse(sessionStorage.getItem('pendingRegistration'));
-    const paymentData = JSON.parse(sessionStorage.getItem('paymentComplete'));
     
-    if (registrationData && paymentData) {
-        const courseName = paymentData.courseId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    // Verify this is a real Stripe payment
+    if (!sessionId) {
+        alert('Invalid payment session. Please complete payment properly.');
+        window.location.href = 'courses.html';
+    }
+    
+    if (registrationData) {
+        const courseName = registrationData.courseId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
         document.getElementById('courseName').textContent = courseName;
         document.getElementById('trainingMode').textContent = registrationData.trainingMode === 'self-study' ? 'Online Self-Study' : 'Class-Based Instructor-Led';
         document.getElementById('studentEmail').textContent = registrationData.email;
-        document.getElementById('amountPaid').textContent = '$' + paymentData.amount;
-        document.getElementById('orderDate').textContent = new Date(paymentData.timestamp).toLocaleDateString('en-US', { 
+        document.getElementById('amountPaid').textContent = '$' + registrationData.amount;
+        document.getElementById('orderDate').textContent = new Date().toLocaleDateString('en-US', { 
             year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' 
         });
-        
-        // Clear session storage
-        setTimeout(() => {
-            sessionStorage.removeItem('pendingRegistration');
-            sessionStorage.removeItem('paymentComplete');
-        }, 5000);
     }
+    
+    // Download Receipt
+    document.getElementById('downloadReceipt').addEventListener('click', () => {
+        const receipt = `
+DIGITECH ACADEMY - PAYMENT RECEIPT
+====================================
+
+Course: ${document.getElementById('courseName').textContent}
+Training Mode: ${document.getElementById('trainingMode').textContent}
+Student: ${registrationData.firstName} ${registrationData.lastName}
+Email: ${registrationData.email}
+Phone: ${registrationData.phone}
+
+Amount Paid: ${document.getElementById('amountPaid').textContent}
+Payment Date: ${document.getElementById('orderDate').textContent}
+Payment Method: Credit Card (Stripe)
+Transaction ID: ${sessionId}
+
+====================================
+Thank you for enrolling with DigiTech Academy!
+For support, contact: info@digitechglobals.com
+====================================
+        `;
+        
+        const blob = new Blob([receipt], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `DigiTech_Receipt_${sessionId.substring(0, 10)}.txt`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    });
     </script>
 </body>
 </html>
