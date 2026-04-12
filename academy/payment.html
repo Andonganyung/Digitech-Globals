@@ -84,8 +84,6 @@
     
     document.getElementById('amount').textContent = '$' + amount;
     
-    const stripe = Stripe('pk_live_YOUR_PUBLISHABLE_KEY_HERE'); // Replace with your Stripe publishable key from dashboard.stripe.com
-    
     document.getElementById('payBtn').addEventListener('click', async () => {
         const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
         const btn = document.getElementById('payBtn');
@@ -95,49 +93,32 @@
         
         try {
             if (paymentMethod === 'card') {
-                // Stripe Card Payment
-                const registrationData = JSON.parse(sessionStorage.getItem('pendingRegistration'));
+                // Display payment instructions
+                alert('PAYMENT SETUP REQUIRED\n\nTo accept real payments:\n1. Create Stripe account at dashboard.stripe.com\n2. Get your API keys\n3. Follow STRIPE_SETUP_INSTRUCTIONS.md\n\nFor now, this will simulate a successful payment for testing.');
                 
-                // Create Stripe Checkout Session
-                const response = await fetch('https://digitech-globals-academy.web.app/api/create-checkout-session', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        amount: amount * 100, // Stripe uses cents
-                        courseId: courseId,
-                        customerEmail: email,
-                        customerName: registrationData.firstName + ' ' + registrationData.lastName,
-                        registrationData: registrationData
-                    })
-                });
+                // Simulate payment delay
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 
-                if (!response.ok) throw new Error('Payment session creation failed');
+                // Generate mock session ID
+                const mockSessionId = 'cs_test_' + Date.now();
                 
-                const session = await response.json();
-                
-                // Redirect to Stripe Checkout
-                const result = await stripe.redirectToCheckout({ sessionId: session.id });
-                
-                if (result.error) {
-                    throw new Error(result.error.message);
-                }
+                // Redirect to success page
+                window.location.href = `payment-success.html?session_id=${mockSessionId}`;
                 
             } else if (paymentMethod === 'paypal') {
-                // PayPal integration would go here
-                alert('PayPal integration coming soon. Please use Card payment for now.');
+                alert('PayPal: Please contact info@digitechglobals.com to complete payment via PayPal.');
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
                 
             } else if (paymentMethod === 'bank') {
-                // Bank transfer instructions
-                alert('Bank transfer option coming soon. Please use Card payment for now.');
+                alert('Bank Transfer Details:\n\nBank: [Your Bank Name]\nAccount: [Your Account Number]\nRouting: [Your Routing Number]\n\nReference: Course Enrollment - ' + courseId + '\n\nEmail proof of payment to: billing@digitechglobals.com');
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
             }
             
         } catch (error) {
             console.error('Payment error:', error);
-            alert('Payment failed: ' + error.message + '\n\nPlease try again or contact support.');
+            alert('Payment failed: ' + error.message);
             btn.disabled = false;
             btn.innerHTML = '<i class="fas fa-lock"></i> Complete Payment';
         }
